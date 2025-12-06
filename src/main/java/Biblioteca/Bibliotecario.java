@@ -13,7 +13,7 @@ public class Bibliotecario {
     /**
      * @brief 
      */
-    public loginBibliotecario {
+    public Bibliotecario() {};
         
-    }
+  
 }

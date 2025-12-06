@@ -10,38 +10,33 @@ package Biblioteca;
  * @author ssabr
  */
 public class Libro {
+    private String titolo;
+    private String autore;
     /**
      * @brief 
      */
-    public inserimentoDatiLibro {
-        
+    public Libro(String titolo, String autore) {
+        this.titolo = titolo;
+        this.autore = autore;
     }
     
     /**
      * @brief 
      */
-    public modificaDatiLibro {
-        
-    }
+    public void modificaDatiLibro(){};
     
     /**
      * @brief 
      */
-    public cancellazioneDatiLibro {
-        
-    }
+    public void cancellazioneDatiLibro() {};
     
     /**
      * @brief 
      */
-    public visualizzazioneListaLibri {
-        
-    }
+    public void visualizzazioneListaLibri() {};
     
     /**
      * @brief 
      */
-    public ricercaLibro {
-        
-    }
+    public void ricercaLibro(){};
 }

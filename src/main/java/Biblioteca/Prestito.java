@@ -13,21 +13,20 @@ public class Prestito {
     /**
      * @brief 
      */
-    public registrazionePrestito {
+    public Prestito() {};
+    /**
+     * @brief 
+     */
+    public void registrazionePrestito(){};
         
-    }
     
     /**
      * @brief 
      */
-    public visualizzazioneElencoPrestiti {
-        
-    }
+    public void visualizzazioneElencoPrestiti(){};
     
     /**
      * @brief 
      */
-    public registrazione restituzione {
-        
-    }
+    public void registrazioneRestituzione(){};
 }

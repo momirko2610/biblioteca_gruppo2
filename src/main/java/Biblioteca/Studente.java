@@ -13,42 +13,30 @@ public class Studente {
     /**
      * @brief 
      */
-    public inserimentoDatiStudente {
-        
-    }
+    public void Studente() {};
     
     /**
      * @brief 
      */
-    public modificaDatiStudente {
-        
-    }
+    public void modificaDatiStudente() {};
     
     /**
      * @brief 
      */
-    public cancellazioneDatiStudente {
-        
-    }
+    public void cancellazioneDatiStudente () {};
     
     /**
      * @brief 
      */
-    public visualizzazioneElencoStudenti {
-        
-    }
+    public void visualizzazioneElencoStudenti() {};
     
     /**
      * @brief 
      */
-    public ricercaStudente {
-        
-    }
+    public void ricercaStudente(){};
     
     /**
      * @brief 
      */
-    public prenotazioneLibro {
-        
-    }
+    public void prenotazioneLibro (){};
 }
