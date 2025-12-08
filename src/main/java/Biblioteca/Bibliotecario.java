@@ -23,6 +23,8 @@ public class Bibliotecario {
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
     /**
      * @brief Costruttore di base
+     * @param e_mail L'email del bibliotecario
+     * @param password La password del bibliotecario
      */
     public Bibliotecario(String e_mail, String password) {
         this.e_mail = e_mail;
