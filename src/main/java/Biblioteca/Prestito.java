@@ -1,53 +1,80 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca;
 
 /**
- *
- * @author ssabr
+ * @brief Classe che gestisce il database dei prestiti
+ * @author Mirko Montella
+ * @author Ciro Senese
+ * @author Achille Romano
+ * @author Sabrina Soriano
  */
 public class Prestito {
     /**
-     * @brief 
+     * @brief Costruttore di base
      */
     public Prestito() {};
+
     /**
-     * @brief 
+     * @brief Aggiorna il database dei prestiti creando un nuovo elemento
+     * @pre Il Bibliotecariə deve essere autenticatə
+     * @post Lo studente riceve in prestito il libro
      */
     public void registrazionePrestito(){};
+
     /**
-     * @brief 
+     * @brief Mostra gli elementi presenti nel database dei libri
+     * @pre Il Bibliotecariə deve essere autenticatə
+     * @post Bibliotecariə visualizza la lista completa dei libri in prestito in ordine alfabetico
      */
     public void visualizzazioneElencoPrestiti(){};
+
     /**
-     * @brief 
+     * @brief Aggiorna il database dei prestiti eliminando un elemento
+     * @pre Il Bibliotecariə deve essere autenticatə
+     * @post N/A
      */
     public void registrazioneRestituzione(){};
+
     /**
-     * @brief 
+     * @brief Verifica se lo studente esiste nel database degli studenti
+     * @pre Lo studente deve essere registrato nel database
+     * @post Permesso prestito libro
+     * @return boolean
      */
     private int checkAccountStudente() {
         return 0;
     };
+
     /**
-     * @brief 
+     * @brief Verifica se è presente almeno una copia del libro nel database dei libri
+     * @pre Accesso database libri e prestiti
+     * @post N/A
+     * @return numero di copie disponibili/boolean
      */
     private int checkCopieDisponibili() {
         return 0;
     };
+
     /**
-     * @brief 
+     * @brief Verifica quanti prestiti ha attivo lo studente
+     * @pre Accesso database studenti e prestiti
+     * @post N/A
+     * @return numero di prestiti attivi
      */
     private int checkPrestitiAttiviStudente() {
         return 0;
     };
+
     /**
-     * @brief 
+     * @brief Verifica se lo studente ha un ritardo nella restituzione di un prestito
+     * @pre Accesso database studenti e prestiti
+     * @post N/A
+     * @return boolean
      */
     private int checkRitardoRestituzionePrestito() {
         return 0;
     };
 }
+
+
+
+
