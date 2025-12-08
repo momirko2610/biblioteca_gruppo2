@@ -1,16 +1,5 @@
 {
-  "libri": [
-    {
-      "titolo": "1984",
-      "autore": "Orwell",
-      "numCopie": 1
-    },
-    {
-      "titolo": "Frankestein",
-      "autore": "Mary Shelly",
-      "numCopie": 2
-    }
-  ],
+  "libri": [],
   "studenti": [],
   "prestiti": [],
   "bibliotecari": []

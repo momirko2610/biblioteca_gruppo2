@@ -18,6 +18,8 @@ import java.util.List;
 public class Libro {
     private String titolo;
     private String autore;
+    private int annoPubblicazione;
+    private int ISBN;
     private int numCopie = 1;
     
     private static final String NAME = "database.json";
@@ -27,9 +29,11 @@ public class Libro {
     /**
      * @brief 
      */
-    public Libro(String titolo, String autore) {
+    public Libro(String titolo, String autore, int annoPubblicazione,int ISBN) {
         this.titolo = titolo;
         this.autore = autore;
+        this.annoPubblicazione = annoPubblicazione;
+        this.ISBN = ISBN;
     }
     
     /**
@@ -56,14 +60,16 @@ public class Libro {
             int copie = obj.get("numCopie").getAsInt();
             obj.addProperty("numCopie", copie + 1);
 
-        // aggiorna array
-        bookArray.set(i, obj);
+            // aggiorna array
+            bookArray.set(i, obj);
         }
         else {
             //Aggiungo nuovo libro
             JsonObject newBook = new JsonObject();
             newBook.addProperty("titolo", this.titolo);
             newBook.addProperty("autore", this.autore);
+            newBook.addProperty("annoPubblicazione", this.annoPubblicazione);
+            newBook.addProperty("ISBN", this.ISBN);
             newBook.addProperty("numCopie", this.numCopie);
             bookArray.add(newBook);
         
@@ -105,17 +111,85 @@ public class Libro {
     /**
      * @brief 
      */
-    public void cancellazioneDatiLibro() {};
+    public void cancellazioneDatiLibro() throws IOException {
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return;
+        }
+        
+        int i = ricercaLibro();
+        
+        if ( i != -1) {
+            bookArray.remove(i);
+            try (FileWriter writer = new FileWriter(file)) {
+                database.toJson(label, writer);
+            }
+            System.out.println("Libro eliminato");
+        }
+        else System.out.println("Libro non risulta nel nostro database");
+    };
     
     /**
      * @brief 
      */
-    public void visualizzazioneListaLibri() {};
+    public static void visualizzazioneListaLibri() throws IOException {
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+        }
+        
+        for (int i = 0; i < bookArray.size(); i++) {
+            JsonObject obj = bookArray.get(i).getAsJsonObject();
+            System.out.println(obj.toString());
+        }
+    };
     
     /**
      * @brief 
      */
-    public void stampaLibro(){};
+    public void stampaLibro()throws IOException{
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return;
+        }
+        
+        int i = ricercaLibro();
+        
+        if ( i != -1) {
+            JsonObject obj = bookArray.get(i).getAsJsonObject();
+            System.out.println(obj.toString());
+        }
+        else System.out.println("Libro non risulta nel nostro database");
+    };
     
     /**
      * @brief 

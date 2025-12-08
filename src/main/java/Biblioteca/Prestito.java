@@ -18,15 +18,36 @@ public class Prestito {
      * @brief 
      */
     public void registrazionePrestito(){};
-        
-    
     /**
      * @brief 
      */
     public void visualizzazioneElencoPrestiti(){};
-    
     /**
      * @brief 
      */
     public void registrazioneRestituzione(){};
+    /**
+     * @brief 
+     */
+    private int checkAccountStudente() {
+        return 0;
+    };
+    /**
+     * @brief 
+     */
+    private int checkCopieDisponibili() {
+        return 0;
+    };
+    /**
+     * @brief 
+     */
+    private int checkPrestitiAttiviStudente() {
+        return 0;
+    };
+    /**
+     * @brief 
+     */
+    private int checkRitardoRestituzionePrestito() {
+        return 0;
+    };
 }

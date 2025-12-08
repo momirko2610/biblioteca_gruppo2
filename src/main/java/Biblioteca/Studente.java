@@ -5,15 +5,36 @@
  */
 package Biblioteca;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  *
  * @author ssabr
  */
 public class Studente {
+    private String nome;
+    private String cognome;
+    private int matricola;
+    private String e_mail;
+    
+    private static final String NAME = "database.json";
+    
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
     /**
      * @brief 
      */
-    public void Studente() {};
+    public Studente(String nome, String cognome, int matricola, String e_mail) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.matricola = matricola;
+        this.e_mail = e_mail;
+    }
+    
+    /**
+     * @brief 
+     */
+    public void inserisciDatiStudente() {};
     
     /**
      * @brief 
@@ -33,10 +54,17 @@ public class Studente {
     /**
      * @brief 
      */
-    public void ricercaStudente(){};
+    public void stampaStudente(){};
     
     /**
      * @brief 
      */
     public void prenotazioneLibro (){};
+    
+    /**
+     * @brief 
+     */
+    private int ricercaStudente() {
+        return 0;
+    };
 }
