@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca;
 
 import com.google.gson.*;
@@ -10,18 +5,29 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- *
- * @author ssabr
+ * @brief Classe che gestisce la creazione dei database
+ * @author Mirko Montella
+ * @author Ciro Senese
+ * @author Achille Romano
+ * @author Sabrina Soriano
  */
 
-
 public class Database {
-    
+
+    /**< Nome del database che verrà creato */
     private static final String NAME = "database.json";
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
-    
+    /**< Oggetto della funzione per la creazione dei file JSON */
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione per la creazione dei file JSON*/
+
     //se il file database.json non esiste lo crea, altrimenti non fa nulla
-    
+    /**
+     * @brief Metodo che crea il database se non esiste
+     * * Controlla l'esistenza del file database.json. Se non esiste, ne crea uno nuovo
+     * inizializzando la struttura con array vuoti per libri, studenti, prestiti e bibliotecari
+     * @pre Il sistema deve avere i permessi di scrittura
+     * @post Viene creato il file database.json
+     * @throws IOException Se si verifica un errore durante la scrittura del file.
+     */
     public static void creaDatabase() throws IOException {
         File file = new File(NAME);
 
@@ -32,12 +38,12 @@ public class Database {
             label.add("studenti", new JsonArray());
             label.add("prestiti", new JsonArray());
             label.add("bibliotecari", new JsonArray());
-            
+
             //Scriviamo sul database
             try (FileWriter writer = new FileWriter(NAME)) {
-                database.toJson(label, writer);
+                database.toJson(label, writer); /*!<Scrive sul file*/
             }
-            
+
         }
     }
 }
