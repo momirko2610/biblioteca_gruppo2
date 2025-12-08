@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package Biblioteca;
-    /**
-     * @brief Classe che gestisce il login dei bibliotecari
-     */
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
+ * @brief Classe che gestisce il login dei bibliotecari
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
@@ -20,7 +18,7 @@ public class Bibliotecario {
     private String e_mail; /*!<Email dell'account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo loginBibliotecario*/
     private String password; /*!<password dell'account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo loginBibliotecario*/
     
-    private static final String NAME = "database.json"; /*!<Nome del database da cui verranno confrontati i dati/*
+    private static final String NAME = "database.json"; /*!<Nome del database da cui verranno confrontati i dati*/
     
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
     /**
