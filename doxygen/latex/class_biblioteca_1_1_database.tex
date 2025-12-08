@@ -1,0 +1,84 @@
+\doxysection{Biblioteca.\+Database Class Reference}
+\hypertarget{class_biblioteca_1_1_database}{}\label{class_biblioteca_1_1_database}\index{Biblioteca.Database@{Biblioteca.Database}}
+
+
+Classe che gestisce la creazione dei database.  
+
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_database_adbea7fe12a04cdfd319e7f66d0ab9593}{crea\+Database}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Metodo che crea il database se non esiste. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String \mbox{\hyperlink{class_biblioteca_1_1_database_a886f81d7a705962bd429b82ca9d21aec}{NAME}} = "{}database.\+json"{}
+\item 
+static final Gson \mbox{\hyperlink{class_biblioteca_1_1_database_adb3d5faa904c01cc5cf80c8951c3da2f}{database}} = new Gson\+Builder().set\+Pretty\+Printing().create()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe che gestisce la creazione dei database. 
+
+\begin{DoxyAuthor}{Author}
+Mirko Montella 
+
+Ciro Senese 
+
+Achille Romano 
+
+Sabrina Soriano 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_database_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_database_adbea7fe12a04cdfd319e7f66d0ab9593}\index{Biblioteca.Database@{Biblioteca.Database}!creaDatabase@{creaDatabase}}
+\index{creaDatabase@{creaDatabase}!Biblioteca.Database@{Biblioteca.Database}}
+\doxysubsubsection{\texorpdfstring{creaDatabase()}{creaDatabase()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_database_adbea7fe12a04cdfd319e7f66d0ab9593} 
+void Biblioteca.\+Database.\+crea\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Metodo che crea il database se non esiste. 
+
+
+\begin{DoxyItemize}
+\item Controlla l\textquotesingle{}esistenza del file database.\+json. Se non esiste, ne crea uno nuovo inizializzando la struttura con array vuoti per libri, studenti, prestiti e bibliotecari \begin{DoxyPrecond}{Precondition}
+Il sistema deve avere i permessi di scrittura 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Viene creato il file database.\+json 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & Se si verifica un errore durante la scrittura del file. \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}\texorpdfstring{$<$}{<}Scrive sul file
+
+\label{doc-variable-members}
+\Hypertarget{class_biblioteca_1_1_database_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_biblioteca_1_1_database_adb3d5faa904c01cc5cf80c8951c3da2f}\index{Biblioteca.Database@{Biblioteca.Database}!database@{database}}
+\index{database@{database}!Biblioteca.Database@{Biblioteca.Database}}
+\doxysubsubsection{\texorpdfstring{database}{database}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_database_adb3d5faa904c01cc5cf80c8951c3da2f} 
+final Gson Biblioteca.\+Database.\+database = new Gson\+Builder().set\+Pretty\+Printing().create()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Oggetto della funzione per la creazione dei file JSON \Hypertarget{class_biblioteca_1_1_database_a886f81d7a705962bd429b82ca9d21aec}\index{Biblioteca.Database@{Biblioteca.Database}!NAME@{NAME}}
+\index{NAME@{NAME}!Biblioteca.Database@{Biblioteca.Database}}
+\doxysubsubsection{\texorpdfstring{NAME}{NAME}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_database_a886f81d7a705962bd429b82ca9d21aec} 
+final String Biblioteca.\+Database.\+NAME = "{}database.\+json"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\texorpdfstring{$<$}{<} Nome del database che verrà creato Oggetto della funzione per la creazione dei file JSON 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/Database.\+java\end{DoxyCompactItemize}

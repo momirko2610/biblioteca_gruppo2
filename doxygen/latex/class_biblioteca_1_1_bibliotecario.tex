@@ -1,0 +1,114 @@
+\doxysection{Biblioteca.\+Bibliotecario Class Reference}
+\hypertarget{class_biblioteca_1_1_bibliotecario}{}\label{class_biblioteca_1_1_bibliotecario}\index{Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}}
+
+
+Classe che gestisce il login dei bibliotecari.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_aed481fe1d4c87aa8651a2daeba1ec8a1}{Bibliotecario}} (String \mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_a73c7659d6b7bcc80d3692f8832dd0adc}{e\+\_\+mail}}, String \mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_aeabda2311d8f979fd32f12db85548948}{password}})
+\begin{DoxyCompactList}\small\item\em Costruttore di base. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_a0db380934909915d8195a41aa7a96745}{login\+Bibliotecario}} ()
+\begin{DoxyCompactList}\small\item\em Funzione che verifica gli attrubuti dell\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_bibliotecario}{Bibliotecario} con i dati presenti nel database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_a73c7659d6b7bcc80d3692f8832dd0adc}{e\+\_\+mail}}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_aeabda2311d8f979fd32f12db85548948}{password}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String \mbox{\hyperlink{class_biblioteca_1_1_bibliotecario_ae32f785cfb438a328b5aa1e50dd9af79}{NAME}} = "{}database.\+json"{}
+\item 
+\Hypertarget{class_biblioteca_1_1_bibliotecario_aad5aeccad4e0b1dca39075e1b2674b77}\label{class_biblioteca_1_1_bibliotecario_aad5aeccad4e0b1dca39075e1b2674b77} 
+static final Gson {\bfseries database} = new Gson\+Builder().set\+Pretty\+Printing().create()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe che gestisce il login dei bibliotecari. 
+
+\begin{DoxyAuthor}{Author}
+Mirko Montella 
+
+Ciro Senese 
+
+Achille Romano 
+
+Sabrina Soriano 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_biblioteca_1_1_bibliotecario_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_biblioteca_1_1_bibliotecario_aed481fe1d4c87aa8651a2daeba1ec8a1}\index{Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}!Bibliotecario@{Bibliotecario}}
+\index{Bibliotecario@{Bibliotecario}!Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{Bibliotecario()}{Bibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_bibliotecario_aed481fe1d4c87aa8651a2daeba1ec8a1} 
+Biblioteca.\+Bibliotecario.\+Bibliotecario (\begin{DoxyParamCaption}\item[{String}]{e\+\_\+mail}{, }\item[{String}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Costruttore di base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e\+\_\+mail} & L\textquotesingle{}email del bibliotecariə \\
+\hline
+{\em password} & La password del bibliotecariə \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_bibliotecario_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_bibliotecario_a0db380934909915d8195a41aa7a96745}\index{Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}!loginBibliotecario@{loginBibliotecario}}
+\index{loginBibliotecario@{loginBibliotecario}!Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{loginBibliotecario()}{loginBibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_bibliotecario_a0db380934909915d8195a41aa7a96745} 
+void Biblioteca.\+Bibliotecario.\+login\+Bibliotecario (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Funzione che verifica gli attrubuti dell\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_bibliotecario}{Bibliotecario} con i dati presenti nel database. 
+
+Login da parte dei bibliotecari per accedere alle funzionalità ristrette. \begin{DoxyPrecond}{Precondition}
+N/A 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il bibliotecariə ha accesso a tutte le funzionalità 
+\end{DoxyPostcond}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_biblioteca_1_1_bibliotecario_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_biblioteca_1_1_bibliotecario_a73c7659d6b7bcc80d3692f8832dd0adc}\index{Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}!e\_mail@{e\_mail}}
+\index{e\_mail@{e\_mail}!Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{e\_mail}{e\_mail}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_bibliotecario_a73c7659d6b7bcc80d3692f8832dd0adc} 
+String Biblioteca.\+Bibliotecario.\+e\+\_\+mail\hspace{0.3cm}{\ttfamily [private]}}
+
+Email dell\textquotesingle{}account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo login\+Bibliotecario \Hypertarget{class_biblioteca_1_1_bibliotecario_ae32f785cfb438a328b5aa1e50dd9af79}\index{Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}!NAME@{NAME}}
+\index{NAME@{NAME}!Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{NAME}{NAME}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_bibliotecario_ae32f785cfb438a328b5aa1e50dd9af79} 
+final String Biblioteca.\+Bibliotecario.\+NAME = "{}database.\+json"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Nome del database da cui verranno confrontati i dati \Hypertarget{class_biblioteca_1_1_bibliotecario_aeabda2311d8f979fd32f12db85548948}\index{Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}!password@{password}}
+\index{password@{password}!Biblioteca.Bibliotecario@{Biblioteca.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_bibliotecario_aeabda2311d8f979fd32f12db85548948} 
+String Biblioteca.\+Bibliotecario.\+password\hspace{0.3cm}{\ttfamily [private]}}
+
+password dell\textquotesingle{}account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo login\+Bibliotecario 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/Bibliotecario.\+java\end{DoxyCompactItemize}

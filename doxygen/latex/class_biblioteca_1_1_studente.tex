@@ -1,0 +1,248 @@
+\doxysection{Biblioteca.\+Studente Class Reference}
+\hypertarget{class_biblioteca_1_1_studente}{}\label{class_biblioteca_1_1_studente}\index{Biblioteca.Studente@{Biblioteca.Studente}}
+
+
+Classe che gestisce il database degli studenti.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_biblioteca_1_1_studente_a0691dc0b17039d05abe0e8db94994087}{Studente}} (String \mbox{\hyperlink{class_biblioteca_1_1_studente_a54c588f8c220bdf1ca6e57f507281f0a}{nome}}, String \mbox{\hyperlink{class_biblioteca_1_1_studente_a1e8d973a0ebbfd8dbf18a37e4f5d0d01}{cognome}}, int \mbox{\hyperlink{class_biblioteca_1_1_studente_a214abc0a165cee6b3e7f7a4fced9e5cd}{matricola}}, String \mbox{\hyperlink{class_biblioteca_1_1_studente_a2eb154ce451896516eb1142803325193}{e\+\_\+mail}})
+\begin{DoxyCompactList}\small\item\em Costruttore di base. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_studente_a717347bd02ae2b14cdac5664563e82e7}{inserisci\+Dati\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Aggiorna il database degli studenti creando un nuovo elemento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_studente_a1ed472b954a3487a72df29d93221022e}{modifica\+Dati\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Aggiorna il database degli studenti modificando un elemento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_studente_a7431c0dd386b56627c3a6813bb20ae6d}{cancellazione\+Dati\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Aggiorna il database degli studenti eliminando un elemento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_studente_a82fcfb5ec2acc44ccdac23c015fae82f}{visualizzazione\+Elenco\+Studenti}} ()
+\begin{DoxyCompactList}\small\item\em Mostra gli elementi presenti nel database degli studentui. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_studente_a39f9f269cf6f4c046ec119d2aea0d2ce}{stampa\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Mostra l\textquotesingle{}elemento cercato dal database degli studenti. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_studente_a99a5ca1cb618aa8da0bd6359b77d6632}{prenotazione\+Libro}} ()
+\begin{DoxyCompactList}\small\item\em Permette allo studente di prenotare un libro da ritirare in biblioteca. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_studente_a8d0337c3264dc38e1a705efd497cf273}{ricerca\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Cerca un elemento dal database degli studenti. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_studente_a54c588f8c220bdf1ca6e57f507281f0a}{nome}}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_studente_a1e8d973a0ebbfd8dbf18a37e4f5d0d01}{cognome}}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_studente_a214abc0a165cee6b3e7f7a4fced9e5cd}{matricola}}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_studente_a2eb154ce451896516eb1142803325193}{e\+\_\+mail}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String \mbox{\hyperlink{class_biblioteca_1_1_studente_a790cefd8fa42113d982756405ff40ec3}{NAME}} = "{}database.\+json"{}
+\item 
+\Hypertarget{class_biblioteca_1_1_studente_ae9fc73c34153daad330ed4db0d3bf34e}\label{class_biblioteca_1_1_studente_ae9fc73c34153daad330ed4db0d3bf34e} 
+static final Gson {\bfseries database} = new Gson\+Builder().set\+Pretty\+Printing().create()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe che gestisce il database degli studenti. 
+
+\begin{DoxyAuthor}{Author}
+Mirko Montella 
+
+Ciro Senese 
+
+Achille Romano 
+
+Sabrina Soriano 
+\end{DoxyAuthor}
+
+
+\label{doc-constructors}
+\Hypertarget{class_biblioteca_1_1_studente_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_biblioteca_1_1_studente_a0691dc0b17039d05abe0e8db94994087}\index{Biblioteca.Studente@{Biblioteca.Studente}!Studente@{Studente}}
+\index{Studente@{Studente}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{Studente()}{Studente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a0691dc0b17039d05abe0e8db94994087} 
+Biblioteca.\+Studente.\+Studente (\begin{DoxyParamCaption}\item[{String}]{nome}{, }\item[{String}]{cognome}{, }\item[{int}]{matricola}{, }\item[{String}]{e\+\_\+mail}{}\end{DoxyParamCaption})}
+
+
+
+Costruttore di base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & nome dello studente \\
+\hline
+{\em cognome} & nome dello studente \\
+\hline
+{\em matricola} & matricola nome dello studente \\
+\hline
+{\em e\+\_\+mail} & e-\/mail nome dello studente \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_studente_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_studente_a7431c0dd386b56627c3a6813bb20ae6d}\index{Biblioteca.Studente@{Biblioteca.Studente}!cancellazioneDatiStudente@{cancellazioneDatiStudente}}
+\index{cancellazioneDatiStudente@{cancellazioneDatiStudente}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{cancellazioneDatiStudente()}{cancellazioneDatiStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a7431c0dd386b56627c3a6813bb20ae6d} 
+void Biblioteca.\+Studente.\+cancellazione\+Dati\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Aggiorna il database degli studenti eliminando un elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il database contenente l’elenco degli studenti è aggiornato. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_studente_a717347bd02ae2b14cdac5664563e82e7}\index{Biblioteca.Studente@{Biblioteca.Studente}!inserisciDatiStudente@{inserisciDatiStudente}}
+\index{inserisciDatiStudente@{inserisciDatiStudente}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{inserisciDatiStudente()}{inserisciDatiStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a717347bd02ae2b14cdac5664563e82e7} 
+void Biblioteca.\+Studente.\+inserisci\+Dati\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Aggiorna il database degli studenti creando un nuovo elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il database contenente l’elenco degli studenti è aggiornato. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_studente_a1ed472b954a3487a72df29d93221022e}\index{Biblioteca.Studente@{Biblioteca.Studente}!modificaDatiStudente@{modificaDatiStudente}}
+\index{modificaDatiStudente@{modificaDatiStudente}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{modificaDatiStudente()}{modificaDatiStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a1ed472b954a3487a72df29d93221022e} 
+void Biblioteca.\+Studente.\+modifica\+Dati\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Aggiorna il database degli studenti modificando un elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il database contenente l’elenco degli studenti è aggiornato. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_studente_a99a5ca1cb618aa8da0bd6359b77d6632}\index{Biblioteca.Studente@{Biblioteca.Studente}!prenotazioneLibro@{prenotazioneLibro}}
+\index{prenotazioneLibro@{prenotazioneLibro}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{prenotazioneLibro()}{prenotazioneLibro()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a99a5ca1cb618aa8da0bd6359b77d6632} 
+void Biblioteca.\+Studente.\+prenotazione\+Libro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Permette allo studente di prenotare un libro da ritirare in biblioteca. 
+
+\begin{DoxyPrecond}{Precondition}
+N/A 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Prenota un libro da ritirare in biblioteca 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_studente_a8d0337c3264dc38e1a705efd497cf273}\index{Biblioteca.Studente@{Biblioteca.Studente}!ricercaStudente@{ricercaStudente}}
+\index{ricercaStudente@{ricercaStudente}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{ricercaStudente()}{ricercaStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a8d0337c3264dc38e1a705efd497cf273} 
+int Biblioteca.\+Studente.\+ricerca\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cerca un elemento dal database degli studenti. 
+
+\begin{DoxyPrecond}{Precondition}
+N/A 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Bibliotecariə visualizza a schermo i dati dello studente selezionato 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+posizione del libro nel database o -\/1 in caso di libro non presente 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_studente_a39f9f269cf6f4c046ec119d2aea0d2ce}\index{Biblioteca.Studente@{Biblioteca.Studente}!stampaStudente@{stampaStudente}}
+\index{stampaStudente@{stampaStudente}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{stampaStudente()}{stampaStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a39f9f269cf6f4c046ec119d2aea0d2ce} 
+void Biblioteca.\+Studente.\+stampa\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Mostra l\textquotesingle{}elemento cercato dal database degli studenti. 
+
+\begin{DoxyPrecond}{Precondition}
+lo studente è presente nel database 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+il bibliotecariə visualizza le informazioni dello studente cercato 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_studente_a82fcfb5ec2acc44ccdac23c015fae82f}\index{Biblioteca.Studente@{Biblioteca.Studente}!visualizzazioneElencoStudenti@{visualizzazioneElencoStudenti}}
+\index{visualizzazioneElencoStudenti@{visualizzazioneElencoStudenti}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{visualizzazioneElencoStudenti()}{visualizzazioneElencoStudenti()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a82fcfb5ec2acc44ccdac23c015fae82f} 
+void Biblioteca.\+Studente.\+visualizzazione\+Elenco\+Studenti (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Mostra gli elementi presenti nel database degli studentui. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Bibliotecariə visualizza la lista completa degli studenti in ordine alfabetico 
+\end{DoxyPostcond}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_biblioteca_1_1_studente_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_biblioteca_1_1_studente_a1e8d973a0ebbfd8dbf18a37e4f5d0d01}\index{Biblioteca.Studente@{Biblioteca.Studente}!cognome@{cognome}}
+\index{cognome@{cognome}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{cognome}{cognome}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a1e8d973a0ebbfd8dbf18a37e4f5d0d01} 
+String Biblioteca.\+Studente.\+cognome\hspace{0.3cm}{\ttfamily [private]}}
+
+Cognome dello studente \Hypertarget{class_biblioteca_1_1_studente_a2eb154ce451896516eb1142803325193}\index{Biblioteca.Studente@{Biblioteca.Studente}!e\_mail@{e\_mail}}
+\index{e\_mail@{e\_mail}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{e\_mail}{e\_mail}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a2eb154ce451896516eb1142803325193} 
+String Biblioteca.\+Studente.\+e\+\_\+mail\hspace{0.3cm}{\ttfamily [private]}}
+
+e-\/mail dello studente Nome del database che verrà creato \Hypertarget{class_biblioteca_1_1_studente_a214abc0a165cee6b3e7f7a4fced9e5cd}\index{Biblioteca.Studente@{Biblioteca.Studente}!matricola@{matricola}}
+\index{matricola@{matricola}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{matricola}{matricola}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a214abc0a165cee6b3e7f7a4fced9e5cd} 
+int Biblioteca.\+Studente.\+matricola\hspace{0.3cm}{\ttfamily [private]}}
+
+matricola dello studente \Hypertarget{class_biblioteca_1_1_studente_a790cefd8fa42113d982756405ff40ec3}\index{Biblioteca.Studente@{Biblioteca.Studente}!NAME@{NAME}}
+\index{NAME@{NAME}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{NAME}{NAME}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a790cefd8fa42113d982756405ff40ec3} 
+final String Biblioteca.\+Studente.\+NAME = "{}database.\+json"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Oggetto della funzione per la creazione dei file JSON \Hypertarget{class_biblioteca_1_1_studente_a54c588f8c220bdf1ca6e57f507281f0a}\index{Biblioteca.Studente@{Biblioteca.Studente}!nome@{nome}}
+\index{nome@{nome}!Biblioteca.Studente@{Biblioteca.Studente}}
+\doxysubsubsection{\texorpdfstring{nome}{nome}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_studente_a54c588f8c220bdf1ca6e57f507281f0a} 
+String Biblioteca.\+Studente.\+nome\hspace{0.3cm}{\ttfamily [private]}}
+
+Nome dello studente 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/Studente.\+java\end{DoxyCompactItemize}

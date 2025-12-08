@@ -1,0 +1,195 @@
+\doxysection{Biblioteca.\+Libro Class Reference}
+\hypertarget{class_biblioteca_1_1_libro}{}\label{class_biblioteca_1_1_libro}\index{Biblioteca.Libro@{Biblioteca.Libro}}
+
+
+Classe che gestisce il database dei libri.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_libro_af7c506df1dc7aef00bc8b701eaaa02a6}{modifica\+Dati\+Libro}} ()
+\begin{DoxyCompactList}\small\item\em Aggiorna il database dei libri modificando un elemento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_libro_aa7c0368b8ac6f10cd1c09fc81eb3683e}{cancellazione\+Dati\+Libro}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Aggiorna il database dei libri rimuovendo un elemento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_libro_a2a22151d45437ad44b6c55c1f8c2578d}{stampa\+Libro}} ()  throws IOException
+\begin{DoxyCompactList}\small\item\em Mostra l\textquotesingle{}elemento cercato dal database dei libri. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_libro_acd5a337b5bd5537c4f8b9b00602797c4}{visualizzazione\+Lista\+Libri}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Mostra gli elementi presenti nel database dei libri. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_libro_a8e35b5d55db4c6d9725c8718d53a619e}{ricerca\+Libro}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Cerca un elemento dal database dei libri. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_libro_aa5fae76fd5852c71d3dd5fa607fb38af}{titolo}}
+\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_libro_a33b616ef9d29a6568d1cdc2530a664f7}{autore}}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_libro_a2463da18dd11d78b406a2ce3b3b360a3}{anno\+Pubblicazione}}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_libro_a76c6a9689d6a8c7d204750148454d683}{ISBN}}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_libro_a33f85ed13bc1023d854d92fd75640e8d}{num\+Copie}} = 1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String \mbox{\hyperlink{class_biblioteca_1_1_libro_a4537db3042cb11fa25219c0377db1852}{NAME}} = "{}database.\+json"{}
+\item 
+\Hypertarget{class_biblioteca_1_1_libro_ab671427081172e721e24ddec9c71421b}\label{class_biblioteca_1_1_libro_ab671427081172e721e24ddec9c71421b} 
+static final Gson {\bfseries database} = new Gson\+Builder().set\+Pretty\+Printing().create()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe che gestisce il database dei libri. 
+
+\begin{DoxyAuthor}{Author}
+Mirko Montella 
+
+Ciro Senese 
+
+Achille Romano 
+
+Sabrina Soriano 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_libro_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_libro_aa7c0368b8ac6f10cd1c09fc81eb3683e}\index{Biblioteca.Libro@{Biblioteca.Libro}!cancellazioneDatiLibro@{cancellazioneDatiLibro}}
+\index{cancellazioneDatiLibro@{cancellazioneDatiLibro}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{cancellazioneDatiLibro()}{cancellazioneDatiLibro()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_aa7c0368b8ac6f10cd1c09fc81eb3683e} 
+void Biblioteca.\+Libro.\+cancellazione\+Dati\+Libro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Aggiorna il database dei libri rimuovendo un elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il database contenente il catalogo dei libri è aggiornato. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_libro_af7c506df1dc7aef00bc8b701eaaa02a6}\index{Biblioteca.Libro@{Biblioteca.Libro}!modificaDatiLibro@{modificaDatiLibro}}
+\index{modificaDatiLibro@{modificaDatiLibro}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{modificaDatiLibro()}{modificaDatiLibro()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_af7c506df1dc7aef00bc8b701eaaa02a6} 
+void Biblioteca.\+Libro.\+modifica\+Dati\+Libro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Aggiorna il database dei libri modificando un elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il database contenente il catalogo dei libri è aggiornato. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_libro_a8e35b5d55db4c6d9725c8718d53a619e}\index{Biblioteca.Libro@{Biblioteca.Libro}!ricercaLibro@{ricercaLibro}}
+\index{ricercaLibro@{ricercaLibro}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{ricercaLibro()}{ricercaLibro()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a8e35b5d55db4c6d9725c8718d53a619e} 
+int Biblioteca.\+Libro.\+ricerca\+Libro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cerca un elemento dal database dei libri. 
+
+\begin{DoxyPrecond}{Precondition}
+N/A 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+L’utente (sia bibliotecariə che studente) visualizza il libro selezionato 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+posizione del libro nel database o -\/1 in caso di libro non presente 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_libro_a2a22151d45437ad44b6c55c1f8c2578d}\index{Biblioteca.Libro@{Biblioteca.Libro}!stampaLibro@{stampaLibro}}
+\index{stampaLibro@{stampaLibro}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{stampaLibro()}{stampaLibro()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a2a22151d45437ad44b6c55c1f8c2578d} 
+void Biblioteca.\+Libro.\+stampa\+Libro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Mostra l\textquotesingle{}elemento cercato dal database dei libri. 
+
+\begin{DoxyPrecond}{Precondition}
+Il libro è presente nel database 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_libro_acd5a337b5bd5537c4f8b9b00602797c4}\index{Biblioteca.Libro@{Biblioteca.Libro}!visualizzazioneListaLibri@{visualizzazioneListaLibri}}
+\index{visualizzazioneListaLibri@{visualizzazioneListaLibri}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{visualizzazioneListaLibri()}{visualizzazioneListaLibri()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_acd5a337b5bd5537c4f8b9b00602797c4} 
+void Biblioteca.\+Libro.\+visualizzazione\+Lista\+Libri (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Mostra gli elementi presenti nel database dei libri. 
+
+\begin{DoxyPrecond}{Precondition}
+N/A 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+L’utente (sia bibliotecariə che studente) visualizza la lista completa dei libri (disponibili e non) in ordine alfabetico 
+\end{DoxyPostcond}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_biblioteca_1_1_libro_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_biblioteca_1_1_libro_a2463da18dd11d78b406a2ce3b3b360a3}\index{Biblioteca.Libro@{Biblioteca.Libro}!annoPubblicazione@{annoPubblicazione}}
+\index{annoPubblicazione@{annoPubblicazione}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{annoPubblicazione}{annoPubblicazione}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a2463da18dd11d78b406a2ce3b3b360a3} 
+int Biblioteca.\+Libro.\+anno\+Pubblicazione\hspace{0.3cm}{\ttfamily [private]}}
+
+Anno di publicazione del libro \Hypertarget{class_biblioteca_1_1_libro_a33b616ef9d29a6568d1cdc2530a664f7}\index{Biblioteca.Libro@{Biblioteca.Libro}!autore@{autore}}
+\index{autore@{autore}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{autore}{autore}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a33b616ef9d29a6568d1cdc2530a664f7} 
+String Biblioteca.\+Libro.\+autore\hspace{0.3cm}{\ttfamily [private]}}
+
+Autore/i del libro \Hypertarget{class_biblioteca_1_1_libro_a76c6a9689d6a8c7d204750148454d683}\index{Biblioteca.Libro@{Biblioteca.Libro}!ISBN@{ISBN}}
+\index{ISBN@{ISBN}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{ISBN}{ISBN}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a76c6a9689d6a8c7d204750148454d683} 
+int Biblioteca.\+Libro.\+ISBN\hspace{0.3cm}{\ttfamily [private]}}
+
+Codice identificativo unico del libro \Hypertarget{class_biblioteca_1_1_libro_a4537db3042cb11fa25219c0377db1852}\index{Biblioteca.Libro@{Biblioteca.Libro}!NAME@{NAME}}
+\index{NAME@{NAME}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{NAME}{NAME}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a4537db3042cb11fa25219c0377db1852} 
+final String Biblioteca.\+Libro.\+NAME = "{}database.\+json"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Nome del database contenente i libri \Hypertarget{class_biblioteca_1_1_libro_a33f85ed13bc1023d854d92fd75640e8d}\index{Biblioteca.Libro@{Biblioteca.Libro}!numCopie@{numCopie}}
+\index{numCopie@{numCopie}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{numCopie}{numCopie}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_a33f85ed13bc1023d854d92fd75640e8d} 
+int Biblioteca.\+Libro.\+num\+Copie = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+Numero di copie disponibili fisicamente nella biblioteca (non prestati)) \Hypertarget{class_biblioteca_1_1_libro_aa5fae76fd5852c71d3dd5fa607fb38af}\index{Biblioteca.Libro@{Biblioteca.Libro}!titolo@{titolo}}
+\index{titolo@{titolo}!Biblioteca.Libro@{Biblioteca.Libro}}
+\doxysubsubsection{\texorpdfstring{titolo}{titolo}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_libro_aa5fae76fd5852c71d3dd5fa607fb38af} 
+String Biblioteca.\+Libro.\+titolo\hspace{0.3cm}{\ttfamily [private]}}
+
+Titolo del libro 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/Libro.\+java\end{DoxyCompactItemize}

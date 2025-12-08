@@ -1,0 +1,178 @@
+\doxysection{Biblioteca.\+Prestito Class Reference}
+\hypertarget{class_biblioteca_1_1_prestito}{}\label{class_biblioteca_1_1_prestito}\index{Biblioteca.Prestito@{Biblioteca.Prestito}}
+
+
+Classe che gestisce il database dei prestiti.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_prestito_accfd486773feddbf7abc31a04faaee42}\label{class_biblioteca_1_1_prestito_accfd486773feddbf7abc31a04faaee42} 
+{\bfseries Prestito} ()
+\begin{DoxyCompactList}\small\item\em Costruttore di base. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_prestito_ab1352c7a47ff8e762518ead3ef166f16}{registrazione\+Prestito}} ()
+\begin{DoxyCompactList}\small\item\em Aggiorna il database dei prestiti creando un nuovo elemento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_prestito_a6a5dd5d8502f2b0c2861fbfa35d5611d}{visualizzazione\+Elenco\+Prestiti}} ()
+\begin{DoxyCompactList}\small\item\em Mostra gli elementi presenti nel database dei libri. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_prestito_a7b105a48a5a6015783336968fb78634e}{registrazione\+Restituzione}} ()
+\begin{DoxyCompactList}\small\item\em Aggiorna il database dei prestiti eliminando un elemento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_prestito_abca09082c21378293cda356cc96257bf}{check\+Account\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se lo studente esiste nel database degli studenti. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_prestito_a59f22649503e18e440db36989c51f69d}{check\+Copie\+Disponibili}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se è presente almeno una copia del libro nel database dei libri. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_prestito_a28a2d3474ab9372cf0517e7509c093c8}{check\+Prestiti\+Attivi\+Studente}} ()
+\begin{DoxyCompactList}\small\item\em Verifica quanti prestiti ha attivo lo studente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_prestito_ab090b0fb6d5cf7e7410129013fe4a1fa}{check\+Ritardo\+Restituzione\+Prestito}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se lo studente ha un ritardo nella restituzione di un prestito. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe che gestisce il database dei prestiti. 
+
+\begin{DoxyAuthor}{Author}
+Mirko Montella 
+
+Ciro Senese 
+
+Achille Romano 
+
+Sabrina Soriano 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_prestito_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_prestito_abca09082c21378293cda356cc96257bf}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!checkAccountStudente@{checkAccountStudente}}
+\index{checkAccountStudente@{checkAccountStudente}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkAccountStudente()}{checkAccountStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_abca09082c21378293cda356cc96257bf} 
+int Biblioteca.\+Prestito.\+check\+Account\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica se lo studente esiste nel database degli studenti. 
+
+\begin{DoxyPrecond}{Precondition}
+Lo studente deve essere registrato nel database 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Permesso prestito libro 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_prestito_a59f22649503e18e440db36989c51f69d}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!checkCopieDisponibili@{checkCopieDisponibili}}
+\index{checkCopieDisponibili@{checkCopieDisponibili}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkCopieDisponibili()}{checkCopieDisponibili()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_a59f22649503e18e440db36989c51f69d} 
+int Biblioteca.\+Prestito.\+check\+Copie\+Disponibili (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica se è presente almeno una copia del libro nel database dei libri. 
+
+\begin{DoxyPrecond}{Precondition}
+Accesso database libri e prestiti 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+N/A 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+numero di copie disponibili/boolean 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_prestito_a28a2d3474ab9372cf0517e7509c093c8}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!checkPrestitiAttiviStudente@{checkPrestitiAttiviStudente}}
+\index{checkPrestitiAttiviStudente@{checkPrestitiAttiviStudente}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkPrestitiAttiviStudente()}{checkPrestitiAttiviStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_a28a2d3474ab9372cf0517e7509c093c8} 
+int Biblioteca.\+Prestito.\+check\+Prestiti\+Attivi\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica quanti prestiti ha attivo lo studente. 
+
+\begin{DoxyPrecond}{Precondition}
+Accesso database studenti e prestiti 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+N/A 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+numero di prestiti attivi 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_prestito_ab090b0fb6d5cf7e7410129013fe4a1fa}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!checkRitardoRestituzionePrestito@{checkRitardoRestituzionePrestito}}
+\index{checkRitardoRestituzionePrestito@{checkRitardoRestituzionePrestito}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkRitardoRestituzionePrestito()}{checkRitardoRestituzionePrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_ab090b0fb6d5cf7e7410129013fe4a1fa} 
+int Biblioteca.\+Prestito.\+check\+Ritardo\+Restituzione\+Prestito (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica se lo studente ha un ritardo nella restituzione di un prestito. 
+
+\begin{DoxyPrecond}{Precondition}
+Accesso database studenti e prestiti 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+N/A 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_prestito_ab1352c7a47ff8e762518ead3ef166f16}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!registrazionePrestito@{registrazionePrestito}}
+\index{registrazionePrestito@{registrazionePrestito}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{registrazionePrestito()}{registrazionePrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_ab1352c7a47ff8e762518ead3ef166f16} 
+void Biblioteca.\+Prestito.\+registrazione\+Prestito (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Aggiorna il database dei prestiti creando un nuovo elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Lo studente riceve in prestito il libro 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_prestito_a7b105a48a5a6015783336968fb78634e}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!registrazioneRestituzione@{registrazioneRestituzione}}
+\index{registrazioneRestituzione@{registrazioneRestituzione}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{registrazioneRestituzione()}{registrazioneRestituzione()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_a7b105a48a5a6015783336968fb78634e} 
+void Biblioteca.\+Prestito.\+registrazione\+Restituzione (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Aggiorna il database dei prestiti eliminando un elemento. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+N/A 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_prestito_a6a5dd5d8502f2b0c2861fbfa35d5611d}\index{Biblioteca.Prestito@{Biblioteca.Prestito}!visualizzazioneElencoPrestiti@{visualizzazioneElencoPrestiti}}
+\index{visualizzazioneElencoPrestiti@{visualizzazioneElencoPrestiti}!Biblioteca.Prestito@{Biblioteca.Prestito}}
+\doxysubsubsection{\texorpdfstring{visualizzazioneElencoPrestiti()}{visualizzazioneElencoPrestiti()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_prestito_a6a5dd5d8502f2b0c2861fbfa35d5611d} 
+void Biblioteca.\+Prestito.\+visualizzazione\+Elenco\+Prestiti (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Mostra gli elementi presenti nel database dei libri. 
+
+\begin{DoxyPrecond}{Precondition}
+Il Bibliotecariə deve essere autenticatə 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Bibliotecariə visualizza la lista completa dei libri in prestito in ordine alfabetico 
+\end{DoxyPostcond}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/Prestito.\+java\end{DoxyCompactItemize}
