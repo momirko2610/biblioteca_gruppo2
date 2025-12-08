@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca;
 
 import com.google.gson.*;
@@ -12,22 +7,29 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
- *
- * @author ssabr
+ * @brief Classe che gestisce il database dei libri
+ * @author Mirko Montella
+ * @author Ciro Senese
+ * @author Achille Romano
+ * @author Sabrina Soriano
  */
 public class Libro {
-    private String titolo;
-    private String autore;
-    private int annoPubblicazione;
-    private int ISBN;
-    private int numCopie = 1;
+    private String titolo; /*!<Titolo del libro*/
+    private String autore; /*!<Autore/i del libro*/
+    private int annoPubblicazione; /*!<Anno di publicazione del libro*/
+    private int ISBN; /*!<Codice identificativo unico del libro*/
+    private int numCopie = 1; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
     
-    private static final String NAME = "database.json";
+    private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
     
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
-    
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); *!<Oggetto della funzione GSON per la creazione dei file JSON*/
+
     /**
-     * @brief 
+     * @brief Costruttore di base
+     * @param titolo Titolo del libro
+     * @param autore Autore/i del libro
+     * @param annoPubblicazione Anno di publicazione del libro
+     * @param ISBN Codice identificativo unico del libro
      */
     public Libro(String titolo, String autore, int annoPubblicazione,int ISBN) {
         this.titolo = titolo;
@@ -37,7 +39,9 @@ public class Libro {
     }
     
     /**
-     * @brief 
+     * @brief Aggiorna il database dei libri creando un nuovo elemento
+     * @pre Il Bibliotecariə deve essere autenticatə
+     * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void inserisciLibro() throws IOException {
 
@@ -102,14 +106,18 @@ public class Libro {
         }
     }
 
-    
+
     /**
-     * @brief 
+     * @brief Aggiorna il database dei libri modificando un elemento
+     * @pre Il Bibliotecariə deve essere autenticatə
+     * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void modificaDatiLibro(){};
-    
+
     /**
-     * @brief 
+     * @brief Aggiorna il database dei libri rimuovendo un elemento
+     * @pre Il Bibliotecariə deve essere autenticatə
+     * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void cancellazioneDatiLibro() throws IOException {
         File file = new File(NAME);
@@ -138,9 +146,11 @@ public class Libro {
         }
         else System.out.println("Libro non risulta nel nostro database");
     };
-    
+
     /**
-     * @brief 
+     * @brief Mostra gli elementi presenti nel database dei libri
+     * @pre N/A
+     * @post L’utente (sia bibliotecariə che studente) visualizza la lista completa dei libri (disponibili e non) in ordine alfabetico
      */
     public static void visualizzazioneListaLibri() throws IOException {
         File file = new File(NAME);
@@ -162,9 +172,11 @@ public class Libro {
             System.out.println(obj.toString());
         }
     };
-    
+
     /**
-     * @brief 
+     * @brief Mostra l'elemento cercato dal database dei libri
+     * @pre Il libro è presente nel database
+     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
      */
     public void stampaLibro()throws IOException{
         File file = new File(NAME);
@@ -190,9 +202,12 @@ public class Libro {
         }
         else System.out.println("Libro non risulta nel nostro database");
     };
-    
+
     /**
-     * @brief 
+     * @brief Cerca un elemento dal database dei libri
+     * @pre N/A
+     * @post L’utente (sia bibliotecariə che studente) visualizza il libro selezionato
+     * @return posizione del libro nel database o -1 in caso di libro non presente
      */
     private int ricercaLibro() throws IOException {
         File file = new File(NAME);
