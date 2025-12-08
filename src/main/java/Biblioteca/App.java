@@ -1,15 +1,15 @@
 package Biblioteca;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+//import javafx.application.Application;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
+//import javafx.stage.Stage;
 
-import java.io.IOException;
+//import java.io.IOException;
 
-import com.google.gson.*;
-import java.io.FileWriter;
+//import com.google.gson.*;
+//import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -33,6 +33,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        //Crea il database se non esiste
+        try {
+            Database.creaDatabase();
+        } catch (IOException exception1) {
+            exception1.printStackTrace();
+            return; // esce se non riesce a creare il database
+        }
         Label instruction = new Label("Inserisci TITOLO e AUTORE e premi Conferma:");
         
         Label instruction1 = new Label("TITOLO:");
@@ -50,20 +57,13 @@ public class App extends Application {
             String titolo = tf1.getText();
             String autore = tf2.getText();
 
-            // Stampa a console
-            System.out.println("Titolo: " + titolo);
-            System.out.println("Autore: " + autore);
-
-            // Crea l'oggetto libro
             Libro libro = new Libro(titolo, autore);
 
-            // Salva su file JSON
-            Gson gson = new Gson();
-            try (FileWriter writer = new FileWriter("database.json")) {
-                gson.toJson(libro, writer);
-                System.out.println("Salvato su database.json");
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            try {
+                libro.inserisciLibro();
+                System.out.println("Libro inserito!");
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
         });
 

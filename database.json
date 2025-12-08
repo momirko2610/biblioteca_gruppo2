@@ -1,1 +1,17 @@
-{"titolo":"aaaaa","autore":"bbbbbb"}
+{
+  "libri": [
+    {
+      "titolo": "1984",
+      "autore": "Orwell",
+      "numCopie": 1
+    },
+    {
+      "titolo": "Frankestein",
+      "autore": "Mary Shelly",
+      "numCopie": 2
+    }
+  ],
+  "studenti": [],
+  "prestiti": [],
+  "bibliotecari": []
+}
