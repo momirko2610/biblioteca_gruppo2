@@ -130,7 +130,7 @@ public class Libro {
         
         //Ottengo l'array dei libri
         JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) retun -1;
+        if (bookArray == null) return -1;
         
         for (int i = 0; i < bookArray.size(); i++) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
