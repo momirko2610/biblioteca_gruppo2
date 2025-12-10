@@ -1,8 +1,11 @@
 package Biblioteca;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import java.io.*;
-import java.util.ArrayList;
+import java.lang.reflect.Type;
+import java.io.FileReader;
+import java.util.List;
 
 /**
  * @brief Classe che gestisce la creazione dei database
@@ -44,6 +47,31 @@ public class Database {
                 database.toJson(label, writer); /*!<Scrive sul file*/
             }
 
+        }
+    }
+    //Implementa leggiDatabaseLibri, leggiDatabaseStudenti, leggiDatabasePrestiti  
+    public static List<Libro> leggiDatabaseLibri () throws IOException {
+        
+        File file = new File(NAME);
+        
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            //Leggo il database
+            label = database.fromJson(reader, JsonObject.class);
+            
+            //Copio i libri in un array libri
+            JsonElement bookArray = label.get("libri");
+            
+            //Creo una lista di tipo List<Libro>
+            Type bookList = new TypeToken<List<Libro>>() {}.getType();
+            
+            //Converto JsonElement in List<Libro>
+            return database.fromJson(bookArray, bookList);
+            
+        } 
+        catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
         }
     }
 }

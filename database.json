@@ -1,5 +1,13 @@
 {
-  "libri": [],
+  "libri": [
+    {
+      "titolo": "Lord of the rings",
+      "autore": "tolkien",
+      "annoPubblicazione": 1954,
+      "ISBN": 9788845292613,
+      "numCopie": 2
+    }
+  ],
   "studenti": [],
   "prestiti": [],
   "bibliotecari": []
