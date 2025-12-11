@@ -125,7 +125,7 @@ public class Libro {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
-    public void modificaDatiLibro( String newTitle) throws IOException{
+    public void modificaDatiLibro( String newTitle, String newAuthor, String newAnnoPubblicazione, String newISBN, String newNumCopie) throws IOException{
         File file = new File(NAME);
         
         //Leggo il database
@@ -145,12 +145,17 @@ public class Libro {
         
         if ( i != -1) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
-            obj.addProperty("titolo", newTitle);
-            
+            if (!(newTitle.isEmpty())) obj.addProperty("titolo", newTitle);
+            if (!(newAuthor.isEmpty())) obj.addProperty("autore", newAuthor);
+            if (!(newAnnoPubblicazione.isEmpty())) obj.addProperty("annoPubblicazione", newAnnoPubblicazione);
+            if (!(newISBN.isEmpty())) obj.addProperty("ISBN", newISBN);
+            if (!(newNumCopie.isEmpty())) obj.addProperty("numCopie", newNumCopie);
+                        
             try (FileWriter writer = new FileWriter(file)) {
                 database.toJson(label, writer);
             }
-            System.out.println("Libro modificato");
+        System.out.println("Libro modificato:");
+        System.out.println(obj.toString());
         }
         else System.out.println("Libro non risulta nel nostro database");
     };

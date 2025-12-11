@@ -74,4 +74,54 @@ public class Database {
             return null;
         }
     }
+    
+    public static List<Studente> leggiDatabaseStudenti () throws IOException {
+        
+        File file = new File(NAME);
+        
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            //Leggo il database
+            label = database.fromJson(reader, JsonObject.class);
+            
+            //Copio i libri in un array libri
+            JsonElement studentArray = label.get("studenti");
+            
+            //Creo una lista di tipo List<Libro>
+            Type studentList = new TypeToken<List<Studente>>() {}.getType();
+            
+            //Converto JsonElement in List<Studente>
+            return database.fromJson(studentArray, studentList);
+            
+        } 
+        catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static List<Prestito> leggiDatabasePrestiti () throws IOException {
+        
+        File file = new File(NAME);
+        
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            //Leggo il database
+            label = database.fromJson(reader, JsonObject.class);
+            
+            //Copio i libri in un array libri
+            JsonElement loanArray = label.get("prestiti");
+            
+            //Creo una lista di tipo List<Libro>
+            Type loanList = new TypeToken<List<Prestito>>() {}.getType();
+            
+            //Converto JsonElement in List<Studente>
+            return database.fromJson(loanArray, loanList);
+            
+        } 
+        catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+    }
 }

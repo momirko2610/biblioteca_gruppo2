@@ -2,13 +2,44 @@
   "libri": [
     {
       "titolo": "Lord of the rings",
-      "autore": "tolkien",
-      "annoPubblicazione": 1954,
+      "autore": "Tolkien",
+      "annoPubblicazione": "1954",
       "ISBN": 9788845292613,
       "numCopie": 2
+    },
+    {
+      "titolo": "Storia d\u0027inverno",
+      "autore": "mark helprin",
+      "annoPubblicazione": 1989,
+      "ISBN": 67446565788,
+      "numCopie": "1"
     }
   ],
-  "studenti": [],
+  "studenti": [
+    {
+      "nome": "Chiara",
+      "cognome": "De Vito",
+      "matricola": "13002320",
+      "e_mail": "chi.devito@studenti.unina.it"
+    },
+    {
+      "nome": "pinki",
+      "cognome": "ponki",
+      "matricola": 406,
+      "e_mail": "pnki.ponki@studenti.unisa.it"
+    },
+    {
+      "nome": "sabrina",
+      "cognome": "soriano",
+      "matricola": 4,
+      "e_mail": "xxx"
+    }
+  ],
   "prestiti": [],
-  "bibliotecari": []
+  "bibliotecari": [
+    {
+      "e_mail": "bibliotecario@unisa.it",
+      "password": "123456789"
+    }
+  ]
 }

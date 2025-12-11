@@ -22,7 +22,7 @@ import java.util.List;
 public class Studente {
     private String nome; /*!<Nome dello studente*/
     private String cognome; /*!<Cognome dello studente*/
-    private int matricola; /*!<matricola dello studente*/
+    private long matricola; /*!<matricola dello studente*/
     private String e_mail; /*!<e-mail dello studente*/
     /**< Nome del database che verrà creato */
     private static final String NAME = "database.json";
@@ -36,7 +36,7 @@ public class Studente {
      * @param matricola matricola nome dello studente
      * @param e_mail e-mail nome dello studente
      */
-    public Studente(String nome, String cognome, int matricola, String e_mail) {
+    public Studente(String nome, String cognome, long matricola, String e_mail) {
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;
@@ -44,8 +44,16 @@ public class Studente {
     }
     public String getNome() { return nome; }
     public String getCognome() { return cognome; }
-    public int getmatricola() { return matricola; }
+    public long getmatricola() { return matricola; }
     public String gete_mail() { return e_mail; }
+    
+    @Override
+    public String toString() {
+        return String.format(
+            "Nome: %s| Cognome: %s | Matricola: %d | e_mail: %s",
+            nome, cognome, matricola, e_mail
+        );
+    }
 
     /**
      * @brief Aggiorna il database degli studenti creando un nuovo elemento
@@ -66,37 +74,45 @@ public class Studente {
         JsonArray studentArray = label.getAsJsonArray("studenti");
         if (studentArray == null) studentArray = new JsonArray();
         
-        //Aggiungo nuovo studente
-        JsonObject newBook = new JsonObject();
-        newBook.addProperty("nome", this.nome);
-        newBook.addProperty("cognome", this.cognome);
-        newBook.addProperty("matricola", this.matricola);    
-        newBook.addProperty("e_mail", this.e_mail);
-        studentArray.add(newBook);
+        int i = ricercaStudente();
         
-        //Inserisco tutti gli studenti in una lista di studenti
-        List<JsonObject> studentList = new ArrayList<>();
-        for (JsonElement element : studentArray) {
-            studentList.add(element.getAsJsonObject());
+        if ( i != -1) {
+            System.out.println("Matricola già inserita nel database");
+            return;
         }
         
-        //Ordino la lista in base al titolo
-        studentList.sort((a, b) -> a.get("titolo").getAsString().compareToIgnoreCase(b.get("titolo").getAsString()));
+        else {
+            //Aggiungo nuovo studente
+            JsonObject newStudent = new JsonObject();
+            newStudent.addProperty("nome", this.nome);
+            newStudent.addProperty("cognome", this.cognome);
+            newStudent.addProperty("matricola", this.matricola);    
+            newStudent.addProperty("e_mail", this.e_mail);
+            studentArray.add(newStudent);
+        
+            //Inserisco tutti gli studenti in una lista di studenti
+            List<JsonObject> studentList = new ArrayList<>();
+            for (JsonElement element : studentArray) {
+                studentList.add(element.getAsJsonObject());
+            }
+        
+            //Ordino la lista in base al titolo
+            studentList.sort((a, b) -> a.get("nome").getAsString().compareToIgnoreCase(b.get("nome").getAsString()));
 
-        //Inserisco gli studenti in un Array ordinato
-        JsonArray sortedArray = new JsonArray();
-        for (JsonObject book : studentList) {
-            sortedArray.add(book);
-        }
+            //Inserisco gli studenti in un Array ordinato
+            JsonArray sortedArray = new JsonArray();
+            for (JsonObject book : studentList) {
+                sortedArray.add(book);
+            }
           
-        //Aggiorno l'Array
-        label.add("studenti", sortedArray);
+            //Aggiorno l'Array
+            label.add("studenti", sortedArray);
 
-        //Salvo
-        try (FileWriter writer = new FileWriter(file)) {
-            database.toJson(label, writer);
+            //Salvo
+            try (FileWriter writer = new FileWriter(file)) {
+                database.toJson(label, writer);
+            }
         }
-        
     };
 
     /**
@@ -104,7 +120,7 @@ public class Studente {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
-    public void modificaDatiStudente(int newMatricola) throws IOException{
+    public void modificaDatiStudente(String newNome, String newCognome, String newMatricola, String newE_mail) throws IOException{
         File file = new File(NAME);
         
         //Leggo il database
@@ -124,12 +140,16 @@ public class Studente {
         
         if ( i != -1) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
-            obj.addProperty("matricola", newMatricola);
+            if (!(newNome.isEmpty())) obj.addProperty("nome", newNome);
+            if (!(newCognome.isEmpty())) obj.addProperty("cognome", newCognome);
+            if (!(newMatricola.isEmpty())) obj.addProperty("matricola", newMatricola);
+            if (!(newE_mail.isEmpty())) obj.addProperty("e_mail", newE_mail);
             
             try (FileWriter writer = new FileWriter(file)) {
                 database.toJson(label, writer);
             }
-            System.out.println("Studente modificato");
+        System.out.println("Studente modificato:");
+        System.out.println(obj.toString());
         }
         else System.out.println("Studente non risulta nel nostro database");
     };
@@ -173,7 +193,7 @@ public class Studente {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Bibliotecariə visualizza la lista completa degli studenti in ordine alfabetico
      */
-    public void visualizzazioneElencoStudenti() throws IOException {
+    public static void visualizzazioneElencoStudenti() throws IOException {
         File file = new File(NAME);
         
         //Leggo il database
@@ -251,7 +271,7 @@ public class Studente {
         
         for (int i = 0; i < studentArray.size(); i++) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
-            if (obj.get("matricola").getAsBigInteger().equals(this.matricola)) {
+            if (obj.get("matricola").getAsLong() == this.matricola) {
                 return i;
             }
         }
