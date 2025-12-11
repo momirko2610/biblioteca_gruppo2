@@ -1,7 +1,5 @@
 package Biblioteca.Model;
 
-
-
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
@@ -19,12 +17,12 @@ public class Libro {
     private String titolo; /*!<Titolo del libro*/
     private String autore; /*!<Autore/i del libro*/
     private int annoPubblicazione; /*!<Anno di publicazione del libro*/
-    private int ISBN; /*!<Codice identificativo unico del libro*/
+    private long ISBN; /*!<Codice identificativo unico del libro*/
     private int numCopie = 1; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
     
     private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
     
-    //private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); *!<Oggetto della funzione GSON per la creazione dei file JSON*/
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
 
     /**
      * @brief Costruttore di base
@@ -33,12 +31,25 @@ public class Libro {
      * @param annoPubblicazione Anno di publicazione del libro
      * @param ISBN Codice identificativo unico del libro
      */
-    public Libro(String titolo, String autore, int annoPubblicazione,int ISBN) {
+    public Libro(String titolo, String autore, int annoPubblicazione,long ISBN) {
         this.titolo = titolo;
         this.autore = autore;
         this.annoPubblicazione = annoPubblicazione;
         this.ISBN = ISBN;
     }
+    public String getTitolo() { return titolo; }
+    public String getAutore() { return autore; }
+    public int getAnnoPubblicazione() { return annoPubblicazione; }
+    public long getIsbn() { return ISBN; }
+    
+    @Override
+    public String toString() {
+        return String.format(
+            "Titolo: %s| Autore: %s | Anno: %d | ISBN: %d | Copie: %d",
+            titolo, autore, annoPubblicazione, ISBN, numCopie
+        );
+    }
+
     
     /**
      * @brief Aggiorna il database dei libri creando un nuovo elemento
@@ -46,7 +57,7 @@ public class Libro {
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void inserisciLibro() throws IOException {
-
+        
         File file = new File(NAME);
         
         //Leggo il database
@@ -114,7 +125,35 @@ public class Libro {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
-    public void modificaDatiLibro(){};
+    public void modificaDatiLibro( String newTitle) throws IOException{
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return;
+        }
+        
+        int i = ricercaLibro();
+        
+        if ( i != -1) {
+            JsonObject obj = bookArray.get(i).getAsJsonObject();
+            obj.addProperty("titolo", newTitle);
+            
+            try (FileWriter writer = new FileWriter(file)) {
+                database.toJson(label, writer);
+            }
+            System.out.println("Libro modificato");
+        }
+        else System.out.println("Libro non risulta nel nostro database");
+    };
 
     /**
      * @brief Aggiorna il database dei libri rimuovendo un elemento
