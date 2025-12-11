@@ -1,4 +1,4 @@
-package Biblioteca;
+package Biblioteca.Model;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;

@@ -1,4 +1,4 @@
-package Biblioteca;
+package Biblioteca.Model;
 
 //import javafx.application.Application;
 //import javafx.fxml.FXMLLoader;
@@ -51,6 +51,7 @@ public class App extends Application {
             return; // esce se non riesce a creare il database
         }
         */
+        
        
         //Homepage
         VBox root = new VBox(10);

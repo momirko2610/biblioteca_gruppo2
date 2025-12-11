@@ -1,4 +1,6 @@
-package Biblioteca;
+package Biblioteca.Model;
+
+
 
 /**
  * @brief Classe che gestisce il database dei prestiti

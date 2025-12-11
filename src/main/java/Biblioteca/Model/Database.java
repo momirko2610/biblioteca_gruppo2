@@ -1,4 +1,4 @@
-package Biblioteca;
+package Biblioteca.Model;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -46,7 +46,6 @@ public class Database {
             try (FileWriter writer = new FileWriter(NAME)) {
                 database.toJson(label, writer); /*!<Scrive sul file*/
             }
-
         }
     }
     //Implementa leggiDatabaseLibri, leggiDatabaseStudenti, leggiDatabasePrestiti  
