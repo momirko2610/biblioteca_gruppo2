@@ -1,4 +1,6 @@
-package Biblioteca;
+package Biblioteca.Model;
+
+
 
 import com.google.gson.*;
 import java.io.*;

@@ -1,4 +1,6 @@
-package Biblioteca;
+package Biblioteca.Model;
+
+
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -22,7 +24,7 @@ public class Libro {
     
     private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
     
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); *!<Oggetto della funzione GSON per la creazione dei file JSON*/
+    //private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); *!<Oggetto della funzione GSON per la creazione dei file JSON*/
 
     /**
      * @brief Costruttore di base
