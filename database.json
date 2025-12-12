@@ -1,6 +1,46 @@
 {
-  "libri": [],
-  "studenti": [],
+  "libri": [
+    {
+      "titolo": "Frankestein",
+      "autore": "Mary Shelly",
+      "annoPubblicazione": 1800,
+      "ISBN": 123456789,
+      "numCopie": 2
+    },
+    {
+      "titolo": "i sogni perduti",
+      "autore": "chiara de vito",
+      "annoPubblicazione": 2025,
+      "ISBN": 11012001,
+      "numCopie": 1
+    }
+  ],
+  "studenti": [
+    {
+      "nome": "TIzio",
+      "cognome": "Caio",
+      "matricola": "xxx1234xxx",
+      "e_mail": "xxxxxxxx"
+    },
+    {
+      "nome": "Achille",
+      "cognome": "lauro",
+      "matricola": 612708782,
+      "e_mail": "a.romano219@studenti.unisa.it"
+    },
+    {
+      "nome": "Sabrina",
+      "cognome": "Soriano",
+      "matricola": 612709851,
+      "e_mail": "s.soriano7@studenti.unisa.it"
+    },
+    {
+      "nome": "sssssssss",
+      "cognome": "sssssssssssss",
+      "matricola": "01",
+      "e_mail": "ffffffff"
+    }
+  ],
   "prestiti": [],
   "bibliotecari": [
     {

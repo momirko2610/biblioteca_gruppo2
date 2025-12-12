@@ -58,8 +58,18 @@ public class App extends Application {
         
         //Opzione inserisci libri
         Button enterStudent = new Button("Inserisci Studente");
+        //Opzione inserisci libri
+        Button enterBook = new Button("Inserisci Libro");
         //Opzione cerca un libro specifico
-        Button findStudent = new Button("Cerca Studente");
+        Button findStudentNum = new Button("Cerca Studente Matricola");
+        //Opzione cerca un libro specifico
+        Button findStudentSur = new Button("Cerca Studente Cognome");
+        //Opzione cerca un libro specifico
+        Button findBook = new Button("Cerca Libro ISBN");
+        //Opzione cerca un libro specifico
+        Button findBookT = new Button("Cerca Libro Titolo");
+        //Opzione cerca un libro specifico
+        Button findBookA = new Button("Cerca Libro Autore (nome e  cognome)");
         //Opzione visualizza l'elenco di tutti i libri presenti nel database
         Button listStudent = new Button("Visualizza Lista Studenti");
         //Opzione elimina un libro presente nel database
@@ -70,7 +80,7 @@ public class App extends Application {
         Button loginLibrarian = new Button("Login Bibliotecario");
         
         //Aggiunge all'home page solo il bottone inserisci libri
-        root.getChildren().addAll(enterStudent, findStudent, listStudent, deleteStudent, modifyStudent, loginLibrarian);
+        root.getChildren().addAll(enterStudent, enterBook, findStudentNum, findStudentSur, listStudent, deleteStudent, modifyStudent, loginLibrarian, findBook, findBookT, findBookA);
      
         //Quando premo il bottone inserisci libro
         enterStudent.setOnAction(e -> {
@@ -103,7 +113,7 @@ public class App extends Application {
             confirm.setOnAction(event -> {
                 String nome = tf1.getText();
                 String cognome = tf2.getText();
-                int matricola = Integer.valueOf(tf3.getText());
+                String matricola = tf3.getText();
                 String e_mail = tf4.getText();
 
                 Studente studente = new Studente(nome, cognome, matricola, e_mail);
@@ -119,45 +129,45 @@ public class App extends Application {
              //Aggiungo gli elementi alla schermata
             root.getChildren().addAll(instruction, instruction1, tf1, instruction2, tf2, instruction3, tf3, instruction4, tf4, confirm);
         });
-        
-        //Quando premo il bottone cerca libro
-        findStudent.setOnAction(e -> {
+        //Quando premo il bottone inserisci libro
+        enterBook.setOnAction(e -> {
             //Pulisco la schermata
             root.getChildren().clear();
             
             //Creo le label
-            Label instruction = new Label("Inserisci i dati dello studente e premi Conferma:");
-            Label instruction1 = new Label("NOME:");
-            Label instruction2 = new Label("COGNOME:");
-            Label instruction3 = new Label("MATRICOLA:");
-            Label instruction4 = new Label("E_MAIL:");
+            Label instruction = new Label("Inserisci i dati del libro e premi Conferma:");
+            Label instruction1 = new Label("TITOLO:");
+            Label instruction2 = new Label("AUTORE:");
+            Label instruction3 = new Label("ANNO DI PUBBLICAZIONE:");
+            Label instruction4 = new Label("ISBN:");
             
             //Creo i campi per inserire i valori
             TextField tf1 = new TextField();
-            tf1.setPromptText("Scrivi nome...");
+            tf1.setPromptText("Scrivi titolo...");
         
             TextField tf2 = new TextField();
-            tf2.setPromptText("Scrivi cognome...");
+            tf2.setPromptText("Scrivi autore...");
             
             TextField tf3 = new TextField();
-            tf3.setPromptText("Scrivi matricola...");
+            tf3.setPromptText("Scrivi anno di pubblicazione...");
         
             TextField tf4 = new TextField();
-            tf4.setPromptText("Scrivi e_mail...");
+            tf4.setPromptText("Scrivi ISBN...");
 
             Button confirm = new Button("Conferma");
             
             //Quando premo conferma
             confirm.setOnAction(event -> {
-                String nome = tf1.getText();
-                String cognome = tf2.getText();
-                int matricola = Integer.valueOf(tf3.getText());
-                String e_mail = tf4.getText();
+                String titolo = tf1.getText();
+                String autore = tf2.getText();
+                int annoPub = Integer.parseInt(tf3.getText());
+                long ISBN = Long.parseLong(tf4.getText());
 
-                Studente studente = new Studente(nome, cognome, matricola, e_mail);
+                Libro libro = new Libro(titolo, autore, annoPub, ISBN);
 
                 try {
-                    studente.stampaStudente();
+                    libro.inserisciLibro();
+                    System.out.println("Libro inserito!");
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
@@ -165,8 +175,164 @@ public class App extends Application {
             
              //Aggiungo gli elementi alla schermata
             root.getChildren().addAll(instruction, instruction1, tf1, instruction2, tf2, instruction3, tf3, instruction4, tf4, confirm);
+        });
+        
+        //Quando premo il bottone cerca libro
+        findStudentNum.setOnAction(e -> {
+            //Pulisco la schermata
+            root.getChildren().clear();
+            
+            //Creo le label
+            Label instruction = new Label("Inserisci la matricola dello studente e premi Conferma:");
+            Label instruction1 = new Label("MATRICOLA:");
+            
+            //Creo i campi per inserire i valori
+            TextField tf1 = new TextField();
+            tf1.setPromptText("Scrivi matricola...");
+        
+            Button confirm = new Button("Conferma");
+            
+            //Quando premo conferma
+            confirm.setOnAction(event -> {
+                String matricola = tf1.getText();
+                
+                try {
+                    Studente.cercaStudenteMatricola(matricola);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            });
+            
+             //Aggiungo gli elementi alla schermata
+            root.getChildren().addAll(instruction, instruction1, tf1, confirm);
             
         });
+        
+        //Quando premo il bottone cerca libro
+        findStudentSur.setOnAction(e -> {
+            //Pulisco la schermata
+            root.getChildren().clear();
+            
+            //Creo le label
+            Label instruction = new Label("Inserisci il cognome dello studente e premi Conferma:");
+            Label instruction1 = new Label("COGNOME:");
+            
+            //Creo i campi per inserire i valori
+            TextField tf1 = new TextField();
+            tf1.setPromptText("Scrivi cognome...");
+        
+            Button confirm = new Button("Conferma");
+            
+            //Quando premo conferma
+            confirm.setOnAction(event -> {
+                String cognome = tf1.getText();
+                
+                try {
+                    Studente.cercaStudenteCognome(cognome);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            });
+            
+             //Aggiungo gli elementi alla schermata
+            root.getChildren().addAll(instruction, instruction1, tf1, confirm);
+            
+        });
+        
+        //Quando premo il bottone cerca libro
+        findBook.setOnAction(e -> {
+            //Pulisco la schermata
+            root.getChildren().clear();
+            
+            //Creo le label
+            Label instruction = new Label("Inserisci l'ISBN dello studente e premi Conferma:");
+            Label instruction1 = new Label("ISBN:");
+            
+            //Creo i campi per inserire i valori
+            TextField tf1 = new TextField();
+            tf1.setPromptText("Scrivi ISBN...");
+        
+            Button confirm = new Button("Conferma");
+            
+            //Quando premo conferma
+            confirm.setOnAction(event -> {
+                Long ISBN = Long.parseLong(tf1.getText());
+                
+                try {
+                    Libro.cercaLibroISBN(ISBN);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            });
+            
+             //Aggiungo gli elementi alla schermata
+            root.getChildren().addAll(instruction, instruction1, tf1, confirm);
+            
+        });
+        
+        
+        //Quando premo il bottone cerca libro
+        findBookT.setOnAction(e -> {
+            //Pulisco la schermata
+            root.getChildren().clear();
+            
+            //Creo le label
+            Label instruction = new Label("Inserisci il Titolo e premi Conferma:");
+            Label instruction1 = new Label("Titolo:");
+            
+            //Creo i campi per inserire i valori
+            TextField tf1 = new TextField();
+            tf1.setPromptText("Scrivi Titolo...");
+        
+            Button confirm = new Button("Conferma");
+            
+            //Quando premo conferma
+            confirm.setOnAction(event -> {
+                String titolo = tf1.getText();
+                
+                try {
+                    Libro.cercaLibroTitolo(titolo);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            });
+            
+             //Aggiungo gli elementi alla schermata
+            root.getChildren().addAll(instruction, instruction1, tf1, confirm);
+            
+        });
+        
+        //Quando premo il bottone cerca libro
+        findBookA.setOnAction(e -> {
+            //Pulisco la schermata
+            root.getChildren().clear();
+            
+            //Creo le label
+            Label instruction = new Label("Inserisci l'autore e premi Conferma:");
+            Label instruction1 = new Label("Autore:");
+            
+            //Creo i campi per inserire i valori
+            TextField tf1 = new TextField();
+            tf1.setPromptText("Scrivi Autore...");
+        
+            Button confirm = new Button("Conferma");
+            
+            //Quando premo conferma
+            confirm.setOnAction(event -> {
+                String autore = tf1.getText();
+                
+                try {
+                    Libro.cercaLibroAutore(autore);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            });
+            
+             //Aggiungo gli elementi alla schermata
+            root.getChildren().addAll(instruction, instruction1, tf1, confirm);
+            
+        });
+
         
         //Quando premo il bottone visualizza lista libri
         listStudent.setOnAction(e -> {
