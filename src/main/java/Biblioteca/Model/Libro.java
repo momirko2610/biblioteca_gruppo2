@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * @brief Classe che gestisce il database dei libri
+ * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
- * @author Sabrina Soriano
  */
 public class Libro {
     private final String titolo; /*!<Titolo del libro*/

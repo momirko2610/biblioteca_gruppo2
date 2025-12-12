@@ -14,10 +14,10 @@ import java.util.List;
 
 /**
  * @brief Classe che gestisce il database degli studenti
+ * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
- * @author Sabrina Soriano
  */
 public class Studente {
     private String nome; /*!<Nome dello studente*/

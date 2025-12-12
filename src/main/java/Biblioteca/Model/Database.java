@@ -9,10 +9,10 @@ import java.util.List;
 
 /**
  * @brief Classe che gestisce la creazione dei database
+ * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
- * @author Sabrina Soriano
  */
 
 public class Database {

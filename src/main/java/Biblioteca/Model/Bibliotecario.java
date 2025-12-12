@@ -15,10 +15,10 @@ import java.util.List;
 
 /**
  * @brief Classe che gestisce il login dei bibliotecari
+ * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
- * @author Sabrina Soriano
  */
 public class Bibliotecario {
     private final String e_mail; /*!<Email dell'account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo loginBibliotecario*/
