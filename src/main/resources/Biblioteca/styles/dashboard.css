@@ -4,36 +4,47 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 11-dic-2025, 16.58.22
+    Created on : 11-dic-2025, 12.58.22
     Author     : achil
 */
-.body {
-    
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #757575;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 5;
+    -fx-border-color: transparent;
 }
 
-.menu {
-    
+.menu-button:hover {
+    -fx-background-color: #f0f4ff;
+    -fx-text-fill: #2264E5;
+}
+
+
+.menu-button-active {
+    -fx-background-color: #e3efff;
+    -fx-text-fill: #2264E5; 
+    -fx-border-color: #2264E5;
+    -fx-border-width: 0 0 0 5;
 }
 
 .buttons {
-    -fx-background-color:linear-gradient(to bottom, #4B85FA, #2264e5);
-    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-background-radius: 8px;
+    
     -fx-background-color: 
         #2264E5,
         linear-gradient(to bottom, #4B85FA 0%, #2264E5 10%),
         #2264E5;
-        
-    /* Definisce quanto ogni layer è "spinto dentro". 
-       0px = Bordo esterno
-       1px = Highlight
-       2px = Corpo principale
-    */
     -fx-background-insets: 0, 1, 2;
-    
-    /* Ombra Esterna (Drop Shadow) */
     -fx-effect: dropshadow(three-pass-box, rgba(34, 100, 229, 0.25), 5, 0, 0, 3);
 }
-
 .buttons:hover {
     -fx-background-color: 
         #1c54c7,
@@ -41,9 +52,37 @@ and open the template in the editor.
         #1c54c7;
 }
 .buttons:pressed {
-    /* Effetto premuto: riduce gli insets e sposta l'elemento */
     -fx-background-insets: 0, 0, 0;
     -fx-background-color: #1a50be;
     -fx-translate-y: 1;
-    -fx-effect: none; /* Rimuove l'ombra esterna quando premuto */
+}
+
+.table .column-header {
+    -fx-background-color: rgba(193, 220, 252, 0.25);
+    -fx-border-color: rgba(0,0,0,0.1);
+    -fx-border-width: 0 1 1 0;
+    -fx-padding:5px;
+}
+
+.table .column-header .label {
+    -fx-text-fill: #2264E5;
+    -fx-font-weight: bold;
+}
+
+.table .table-row-cell {
+    -fx-border-color: rgba(0, 0, 0, 0.1); 
+    -fx-border-width: 0 0 1 0;
+}
+
+
+.table .table-cell {
+    -fx-border-color: rgba(0, 0, 0, 0.1); 
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 5px;
+}
+
+
+.sidebar {
+    -fx-border-color: rgba(0, 0, 0, 0.1); 
+    -fx-border-width: 0 1 0 0; 
 }

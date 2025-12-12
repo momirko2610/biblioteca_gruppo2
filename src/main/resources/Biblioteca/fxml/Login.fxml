@@ -20,7 +20,7 @@
                <children>
                   <ImageView fitHeight="116.0" fitWidth="118.0" layoutX="239.0" pickOnBounds="true" preserveRatio="true" smooth="true">
                      <image>
-                        <Image url="@../images/logo_standard.png" />
+                        <Image url="@../images/logo_standard.png" requestedWidth="200.0" requestedHeight="200.0"/>
                      </image>
                   </ImageView>
                   <AnchorPane layoutX="170.0" layoutY="114.0" styleClass="menu">
