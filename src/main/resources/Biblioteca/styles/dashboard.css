@@ -1,7 +1,49 @@
 /*
- * Empty Stylesheet file.
- */
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-dic-2025, 16.58.22
+    Author     : achil
+*/
+.body {
+    
+}
 
-.mainFxmlClass {
+.menu {
+    
+}
 
+.buttons {
+    -fx-background-color:linear-gradient(to bottom, #4B85FA, #2264e5);
+    -fx-cursor:hand;
+    -fx-background-color: 
+        #2264E5,
+        linear-gradient(to bottom, #4B85FA 0%, #2264E5 10%),
+        #2264E5;
+        
+    /* Definisce quanto ogni layer è "spinto dentro". 
+       0px = Bordo esterno
+       1px = Highlight
+       2px = Corpo principale
+    */
+    -fx-background-insets: 0, 1, 2;
+    
+    /* Ombra Esterna (Drop Shadow) */
+    -fx-effect: dropshadow(three-pass-box, rgba(34, 100, 229, 0.25), 5, 0, 0, 3);
+}
+
+.buttons:hover {
+    -fx-background-color: 
+        #1c54c7,
+        linear-gradient(to bottom, #5a8ffb 0%, #1c54c7 10%),
+        #1c54c7;
+}
+.buttons:pressed {
+    /* Effetto premuto: riduce gli insets e sposta l'elemento */
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-color: #1a50be;
+    -fx-translate-y: 1;
+    -fx-effect: none; /* Rimuove l'ombra esterna quando premuto */
 }
