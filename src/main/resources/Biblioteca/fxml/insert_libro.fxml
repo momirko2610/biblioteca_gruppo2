@@ -6,55 +6,58 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" styleClass="delete" stylesheets="@../styles/popup.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="450.0" maxWidth="400" prefHeight="450.0" prefWidth="400.0" styleClass="delete" stylesheets="@../styles/popup.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="400.0" maxWidth="320.0" spacing="20.0" styleClass="menu">
+      <AnchorPane>
          <children>
-            <Text fx:id="label" fill="#2264e5" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuovo Libro">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <TextField fx:id="titolo" prefHeight="40.0" promptText="Titolo" />
-            <TextField fx:id="autori" prefHeight="40.0" promptText="Autori: Nome Cognome, Nome Cognome..." />
-            <TextField fx:id="isbn" prefHeight="40.0" promptText="ISBN" />
-            <TextField fx:id="nCopie" prefHeight="40.0" promptText="Numero di Copie Disponibili" />
-            <DatePicker fx:id="data" prefHeight="40.0" prefWidth="360.0" />
+            <VBox alignment="TOP_CENTER" prefHeight="350.0" prefWidth="360.0" spacing="20.0" styleClass="menu">
+                <children>
+                   <Text fx:id="label" fill="#2264e5" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuovo Libro">
+                      <font>
+                         <Font name="System Bold" size="24.0" />
+                      </font>
+                   </Text>
+                   <TextField fx:id="titolo" prefHeight="40.0" promptText="Titolo" />
+                   <TextField fx:id="autori" prefHeight="40.0" promptText="Autori: Nome Cognome, Nome Cognome..." />
+                   <TextField fx:id="isbn" prefHeight="40.0" promptText="ISBN" />
+                   <TextField fx:id="nCopie" prefHeight="40.0" promptText="Numero di Copie Disponibili" />
+                  <DatePicker maxWidth="1.7976931348623157E308" prefHeight="40.0" />
+                </children>
+               <padding>
+                  <Insets left="40.0" top="20.0" />
+               </padding>
+             </VBox>
+
+            <HBox spacing="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <Button fx:id="conferma" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="button-blue" text="Conferma" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="annulla" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="button-blue" text="Annulla" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-         <StackPane.margin>
-            <Insets bottom="100.0" left="40.0" right="40.0" top="20.0" />
-         </StackPane.margin>
-      </VBox>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="100.0">
-         <children>
-            <Button fx:id="conferma" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="button-blue" text="Conferma" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/check.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="annulla" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="button-blue" text="Annulla" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/close.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-         <StackPane.margin>
-            <Insets top="330.0" />
-         </StackPane.margin>
-      </HBox>
+      </AnchorPane>
    </children>
 </StackPane>
