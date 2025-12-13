@@ -216,12 +216,14 @@ public class Libro {
     }
 
     /**
+     * @param ISBN
+     * @throws java.io.IOException
      * @brief Cerca un elemento dal database dei libri
      * @pre N/A
      * @post L’utente (sia bibliotecariə che studente) visualizza il libro selezionato
      * @return posizione del libro nel database o -1 in caso di libro non presente
      */
-    private static int ricercaLibroISBN(Long ISBN) throws IOException {
+    public static int ricercaLibroISBN(Long ISBN) throws IOException {
         File file = new File(NAME);
         //Leggo il database
         JsonObject label;
