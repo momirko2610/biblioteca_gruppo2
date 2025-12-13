@@ -177,10 +177,10 @@ public class Controller {
         Studente s;
 
 
-        if (s.cercaStudenteMatricola(text) != -1) {
+        if (s.ricercaStudenteMatricola(text) != -1) {
             //TROVATO TRAMITE MATRICOLA
 
-        } else if (s.cercaStudenteCognome(text) != -1) {
+        } else if (s.ricercaStudenteCognome(text) == null) {
             //TROVATO TRAMITE COGNOME
             
         } else {
