@@ -5,13 +5,10 @@
  */
 package Biblioteca.Controller;
 
-import Biblioteca.Model.App;
-import java.io.IOException;
-import javafx.fxml.FXML;
 /**
  *
  * @author achil
  */
-public class Controller {
+public class ControllerPopupStudenti {
     
 }
