@@ -149,7 +149,7 @@ public class Controller {
         String text;
         text=searchBook_TextField.getText();
         Long search = Long.valueOf(text);
-        Libro l;
+        Libro l=null;
 
 
         if (l.ricercaLibroISBN(search) != -1) {
@@ -171,10 +171,10 @@ public class Controller {
 
 
     @FXML
-    private void onSearchStudent() {
+    private void onSearchStudent() throws IOException {
         String text;
         text=searchStudent_TextField.getText();
-        Studente s;
+        Studente s=null;
 
 
         if (s.ricercaStudenteMatricola(text) != -1) {
