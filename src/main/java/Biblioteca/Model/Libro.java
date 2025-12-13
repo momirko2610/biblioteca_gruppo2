@@ -208,130 +208,12 @@ public class Libro {
      * @post L’utente (sia bibliotecariə che studente) visualizza la lista completa dei libri (disponibili e non) in ordine alfabetico
      */
     public static void visualizzazioneListaLibri() throws IOException {
-        File file = new File(NAME);
+        List<Libro> libri = Database.leggiDatabaseLibri();
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-        }
-        
-        for (int i = 0; i < bookArray.size(); i++) {
-            JsonObject obj = bookArray.get(i).getAsJsonObject();
-            System.out.println(obj.toString());
-        }
-    };
-
-    /**
-     * @brief Mostra l'elemento cercato dal database dei libri
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
-     */
-    public static void cercaLibroISBN(Long ISBN)throws IOException{
-        File file = new File(NAME);
-        
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return;
-        }
-        
-        int i = Libro.ricercaLibroISBN(ISBN);
-        
-        if ( i != -1) {
-            JsonObject obj = bookArray.get(i).getAsJsonObject();
-            System.out.println(obj.toString());
-        }
-        else System.out.println("Libro non risulta nel nostro database");
-    };
-    /**
-     * @param titolo
-     * @throws java.io.IOException
-     * @brief Mostra il libro cercato per titolo
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
-     */
-    public static void cercaLibroTitolo(String titolo)throws IOException{
-        File file = new File(NAME);
-        
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return;
-        }
-        int flag = 0;
-        
-        for (int i = 0; i < bookArray.size(); i++) {
-            JsonObject obj = bookArray.get(i).getAsJsonObject();
-            if (obj.get("titolo").getAsString().compareTo(titolo) > 0) return;
-            else if (obj.get("titolo").getAsString().equalsIgnoreCase(titolo)) {
-                flag = 1;
-                System.out.println(obj.toString());
-            }
-            
-           
-        }
-        if (flag == 0) {
-            System.out.println("Libro non risulta nel nostro database");
-        }    
-    };
-    /**
-     * @param titolo
-     * @throws java.io.IOException
-     * @brief Mostra il libro cercato per titolo
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
-     */
-    public static void cercaLibroAutore(String autore)throws IOException{
-        File file = new File(NAME);
-        
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return;
-        }
-        
-        int flag = 0;
-        for (int i = 0; i < bookArray.size(); i++) {
-            JsonObject obj = bookArray.get(i).getAsJsonObject();
-            if (obj.get("autore").getAsString().equalsIgnoreCase(autore)) {
-                flag = 1;
-                System.out.println(obj.toString());
-            }
-           
-        }
-        
-        if (flag == 0) {
-            System.out.println("Libro non risulta nel nostro database");
-        }
-    };
+        libri.forEach(l -> {
+            System.out.println(l);
+        });
+    }
 
     /**
      * @brief Cerca un elemento dal database dei libri
@@ -360,4 +242,160 @@ public class Libro {
         
         return -1;
     }
+    /**
+     * @param titolo
+     * @return 
+     * @throws java.io.IOException
+     * @brief Mostra il libro cercato per titolo
+     * @pre Il libro è presente nel database
+     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     */
+    public static List<Libro> ricercaLibroTitolo(String titolo)throws IOException{
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return null;
+        }
+        
+        //Creo una lista di tipo List<Libro>
+        List<Libro> libri = new ArrayList<>();
+        
+        for (int i = 0; i < bookArray.size(); i++) {
+            JsonObject obj = bookArray.get(i).getAsJsonObject();
+            if (obj.get("titolo").getAsString().compareTo(titolo) > 0) break;
+            else if (obj.get("titolo").getAsString().equalsIgnoreCase(titolo)) {
+                Libro libro = database.fromJson(obj, Libro.class);
+                libri.add(libro);
+            }
+            
+           
+        }
+        return (libri);    
+    };
+    
+    /**
+     * @param autore
+     * @return 
+     * @throws java.io.IOException
+     * @brief Mostra il libro cercato per titolo
+     * @pre Il libro è presente nel database
+     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     */
+    public static List<Libro> ricercaLibroAutore(String autore)throws IOException{
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return null;
+        }
+        
+        //Creo una lista di tipo List<Libro>
+        List<Libro> libri = new ArrayList<>();
+        
+        for (int i = 0; i < bookArray.size(); i++) {
+            JsonObject obj = bookArray.get(i).getAsJsonObject();
+            if (obj.get("autore").getAsString().equalsIgnoreCase(autore)) {
+                Libro libro = database.fromJson(obj, Libro.class);
+                libri.add(libro);
+            }
+           
+        }
+        
+        return(libri);
+    };
+    
+    
+    
+    
+    
+    //DA ELIMINARE
+    /**
+     * @brief Mostra l'elemento cercato dal database dei libri
+     * @pre Il libro è presente nel database
+     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     */
+    /*
+    public static void cercaLibroISBN(Long ISBN)throws IOException{
+        File file = new File(NAME);
+        
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return;
+        }
+        
+        int i = Libro.ricercaLibroISBN(ISBN);
+        
+        if ( i != -1) {
+            JsonObject obj = bookArray.get(i).getAsJsonObject();
+            System.out.println(obj.toString());
+        }
+        else System.out.println("Libro non risulta nel nostro database");
+    };
+    */
+    
+    //DA ELIMINARE
+    /**
+     * @param titolo
+     * @throws java.io.IOException
+     * @brief Mostra il libro cercato per titolo
+     * @pre Il libro è presente nel database
+     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     */
+    /*
+    public static void cercaLibroTitolo(String titolo)throws IOException{
+        List<Libro> libri = Libro.ricercaLibroTitolo(titolo);
+        
+        for (Libro l : libri) {
+             System.out.println(l);
+        }
+    };
+    */
+    
+    //DA ELIMINARE
+    /**
+     * @param autore
+     * @throws java.io.IOException
+     * @brief Mostra il libro cercato per titolo
+     * @pre Il libro è presente nel database
+     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     */
+    /*
+    public static void cercaLibroAutore(String autore)throws IOException{
+        List<Libro> libri = Libro.ricercaLibroAutore(autore);
+        
+        if (libri.isEmpty()) {
+            System.out.println("Il libro non esiste nel nostro database");
+            return;
+        }
+        
+        libri.forEach(l -> {
+            System.out.println(l);
+        });
+    };
+    */
 }

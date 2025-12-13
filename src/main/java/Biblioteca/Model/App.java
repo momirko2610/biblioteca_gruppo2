@@ -56,31 +56,21 @@ public class App extends Application {
         //Homepage
         VBox root = new VBox(10);
         
-        //Opzione inserisci libri
+       
         Button enterStudent = new Button("Inserisci Studente");
-        //Opzione inserisci libri
         Button enterBook = new Button("Inserisci Libro");
-        //Opzione cerca un libro specifico
-        Button findStudentNum = new Button("Cerca Studente Matricola");
-        //Opzione cerca un libro specifico
-        Button findStudentSur = new Button("Cerca Studente Cognome");
-        //Opzione cerca un libro specifico
-        Button findBook = new Button("Cerca Libro ISBN");
-        //Opzione cerca un libro specifico
-        Button findBookT = new Button("Cerca Libro Titolo");
-        //Opzione cerca un libro specifico
-        Button findBookA = new Button("Cerca Libro Autore (nome e  cognome)");
-        //Opzione visualizza l'elenco di tutti i libri presenti nel database
+//        Button findStudentNum = new Button("Cerca Studente Matricola");
+//        Button findStudentSur = new Button("Cerca Studente Cognome");
+//        Button findBook = new Button("Cerca Libro ISBN");
+//        Button findBookT = new Button("Cerca Libro Titolo");
+//        Button findBookA = new Button("Cerca Libro Autore (nome e  cognome)");
         Button listStudent = new Button("Visualizza Lista Studenti");
-        //Opzione elimina un libro presente nel database
         Button deleteStudent = new Button("Elimina Studente");
-        //Opzione modifica un libro presente nel database
         Button modifyStudent = new Button("Modifica Studente");
-        //Opzione modifica un libro presente nel database
         Button loginLibrarian = new Button("Login Bibliotecario");
         
         //Aggiunge all'home page solo il bottone inserisci libri
-        root.getChildren().addAll(enterStudent, enterBook, findStudentNum, findStudentSur, listStudent, deleteStudent, modifyStudent, loginLibrarian, findBook, findBookT, findBookA);
+        root.getChildren().addAll(enterStudent, enterBook, listStudent, deleteStudent, modifyStudent, loginLibrarian);
      
         //Quando premo il bottone inserisci libro
         enterStudent.setOnAction(e -> {
@@ -177,6 +167,7 @@ public class App extends Application {
             root.getChildren().addAll(instruction, instruction1, tf1, instruction2, tf2, instruction3, tf3, instruction4, tf4, confirm);
         });
         
+        /*
         //Quando premo il bottone cerca libro
         findStudentNum.setOnAction(e -> {
             //Pulisco la schermata
@@ -207,7 +198,8 @@ public class App extends Application {
             root.getChildren().addAll(instruction, instruction1, tf1, confirm);
             
         });
-        
+        */
+        /*
         //Quando premo il bottone cerca libro
         findStudentSur.setOnAction(e -> {
             //Pulisco la schermata
@@ -238,7 +230,8 @@ public class App extends Application {
             root.getChildren().addAll(instruction, instruction1, tf1, confirm);
             
         });
-        
+        */
+        /*
         //Quando premo il bottone cerca libro
         findBook.setOnAction(e -> {
             //Pulisco la schermata
@@ -269,8 +262,8 @@ public class App extends Application {
             root.getChildren().addAll(instruction, instruction1, tf1, confirm);
             
         });
-        
-        
+        */
+        /*
         //Quando premo il bottone cerca libro
         findBookT.setOnAction(e -> {
             //Pulisco la schermata
@@ -301,7 +294,8 @@ public class App extends Application {
             root.getChildren().addAll(instruction, instruction1, tf1, confirm);
             
         });
-        
+        */
+        /*
         //Quando premo il bottone cerca libro
         findBookA.setOnAction(e -> {
             //Pulisco la schermata
@@ -332,9 +326,9 @@ public class App extends Application {
             root.getChildren().addAll(instruction, instruction1, tf1, confirm);
             
         });
-
+        */
         
-        //Quando premo il bottone visualizza lista libri
+        //Quando premo il bottone visualizza lista studenti
         listStudent.setOnAction(e -> {
 
             try {

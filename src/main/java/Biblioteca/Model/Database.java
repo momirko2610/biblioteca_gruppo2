@@ -86,7 +86,7 @@ public class Database {
             //Copio i libri in un array libri
             JsonElement studentArray = label.get("studenti");
             
-            //Creo una lista di tipo List<Libro>
+            //Creo una lista di tipo List<Studente>
             Type studentList = new TypeToken<List<Studente>>() {}.getType();
             
             //Converto JsonElement in List<Studente>
