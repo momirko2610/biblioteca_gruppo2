@@ -140,11 +140,79 @@ public class Database {
 
     } catch (JsonSyntaxException | JsonIOException e) {
         System.err.println("Errore nel formato del JSON o delle Date:");
-        e.printStackTrace(); // <--- GUARDA QUESTO NELLA CONSOLE
+        e.printStackTrace(); 
         return new ArrayList<>();
     } catch (Exception e) {
         e.printStackTrace();
         return new ArrayList<>();
     }
    }
+   
+   /**
+     * @param array
+     * @param file
+     * @param label
+     * @throws java.io.IOException
+     * @brief ordina i libri presenti nel database per titolo
+     * @pre N/A
+     * @post Database libri ordinato
+     */
+    public static void ordinaDatabaseLibro(JsonArray array, File file, JsonObject label) throws IOException {
+        if (array == null) return;
+        List<JsonObject> bookList = new ArrayList<>();
+        for (JsonElement element : array) {
+            bookList.add(element.getAsJsonObject());
+        }
+        
+        //Ordino la lista in base al titolo
+        bookList.sort((a, b) -> a.get("titolo").getAsString().compareToIgnoreCase(b.get("titolo").getAsString()));
+        //Inserisco i libri in un Array ordinato
+        JsonArray sortedArray = new JsonArray();
+        for (JsonObject book : bookList) {
+            sortedArray.add(book);
+        }
+            
+        //Aggiorno l'Array
+        label.add("libri", sortedArray);
+
+        //Salvo
+        try (FileWriter writer = new FileWriter(file)) {
+            database.toJson(label, writer);
+        }
+       
+    }
+    
+    /**
+     * @param array
+     * @param file
+     * @param label
+     * @throws java.io.IOException
+     * @brief ordina gli studenti presenti nel database per cognome
+     * @pre N/A
+     * @post Database studenti ordinato
+     */
+    public static void ordinaDatabaseStudente(JsonArray array, File file, JsonObject label) throws IOException {
+        if (array == null) return;
+        List<JsonObject> studentList = new ArrayList<>();
+        for (JsonElement element : array) {
+            studentList.add(element.getAsJsonObject());
+        }
+        
+        //Ordino la lista in base al titolo
+        studentList.sort((a, b) -> a.get("cognome").getAsString().compareToIgnoreCase(b.get("cognome").getAsString()));
+        //Inserisco i libri in un Array ordinato
+        JsonArray sortedArray = new JsonArray();
+        for (JsonObject student : studentList) {
+            sortedArray.add(student);
+        }
+            
+        //Aggiorno l'Array
+        label.add("studenti", sortedArray);
+
+        //Salvo
+        try (FileWriter writer = new FileWriter(file)) {
+            database.toJson(label, writer);
+        }
+       
+    }
 }

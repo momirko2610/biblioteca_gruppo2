@@ -75,22 +75,19 @@ public class ControllerPopupStudenti {
             String cognome = TextFieldcognome.getText();
             String matricola = TextFieldmatricola.getText();
             String email = TextFieldemail.getText();
-             System.out.println("test");
-
-           
-            Studente s=new Studente(nome, cognome, matricola, email);
+            System.out.println("test");
             
             if (studenteCorrente == null) {
-                
+                Studente s=new Studente(nome, cognome, matricola, email);
                 s.inserisciDatiStudente();
                 
             } else {
                 
-                s.modificaDatiStudente(nome, cognome, matricola, email);
+                studenteCorrente.modificaDatiStudente(nome, cognome, matricola, email);
             }
 
             chiudi();
-                } catch (NumberFormatException e) {
+                }catch (NumberFormatException e) {
             mostraErrore("Devi compilare tutti i campi");
                 }catch (Exception e) {
             mostraErrore("Errore durante il salvataggio: " + e.getMessage());

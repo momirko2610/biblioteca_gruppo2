@@ -175,7 +175,7 @@ public String getMatricola() { return matricola; }
     }
     
     
-    
+    //FORSE INUTILE
     /**
      * @brief Mostra gli elementi presenti nel database dei libri
      * @pre Il Bibliotecariə deve essere autenticatə
@@ -264,6 +264,36 @@ public String getMatricola() { return matricola; }
         }
         else System.out.println("Prestito non risulta nel nostro database");
         
+    }
+    
+    /**
+     * @param ISBN
+     * @throws java.io.IOException
+     * @brief Cerca un elemento dal database dei libri
+     * @pre N/A
+     * @post L’utente (sia bibliotecariə che studente) visualizza il libro selezionato
+     * @return posizione del libro nel database o -1 in caso di libro non presente
+     */
+    public static int ricercaPrestitoISBN(Long ISBN) throws IOException {
+        File file = new File(NAME);
+        //Leggo il database
+        JsonObject label;
+        try (FileReader reader = new FileReader(file)) {
+            label = database.fromJson(reader, JsonObject.class);
+        }
+        
+        //Ottengo l'array dei libri
+        JsonArray loanArray = label.getAsJsonArray("prestiti");
+        if (loanArray == null) return -2;
+        
+        for (int i = 0; i < loanArray.size(); i++) {
+            JsonObject obj = loanArray.get(i).getAsJsonObject();
+            if (obj.get("ISBN").getAsLong() == ISBN) {
+                return i;
+            }
+        }
+        
+        return -1;
     }
      
 

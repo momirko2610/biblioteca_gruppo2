@@ -93,28 +93,7 @@ public class Studente {
             newStudent.addProperty("e_mail", this.e_mail);
             studentArray.add(newStudent);
         
-            //Inserisco tutti gli studenti in una lista di studenti
-            List<JsonObject> studentList = new ArrayList<>();
-            for (JsonElement element : studentArray) {
-                studentList.add(element.getAsJsonObject());
-            }
-        
-            //Ordino la lista in base al cognome
-            studentList.sort((a, b) -> a.get("cognome").getAsString().compareToIgnoreCase(b.get("cognome").getAsString()));
-
-            //Inserisco gli studenti in un Array ordinato
-            JsonArray sortedArray = new JsonArray();
-            for (JsonObject book : studentList) {
-                sortedArray.add(book);
-            }
-          
-            //Aggiorno l'Array
-            label.add("studenti", sortedArray);
-
-            //Salvo
-            try (FileWriter writer = new FileWriter(file)) {
-                database.toJson(label, writer);
-            }
+            Database.ordinaDatabaseStudente(studentArray, file, label);
         }
     };
 
@@ -149,8 +128,14 @@ public class Studente {
         if ( i != -1) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
             if (!(newNome.isEmpty())) obj.addProperty("nome", newNome);
-            if (!(newCognome.isEmpty())) obj.addProperty("cognome", newCognome);
-            if (!(newMatricola.isEmpty())) obj.addProperty("matricola", newMatricola);
+            if (!(newCognome.isEmpty())) {
+                obj.addProperty("cognome", newCognome);
+                Database.ordinaDatabaseStudente(studentArray, file, label);
+            }
+            if (!(newMatricola.isEmpty())) {
+                obj.addProperty("matricola", newMatricola);
+                this.matricola = newMatricola;
+            }
             if (!(newE_mail.isEmpty())) obj.addProperty("e_mail", newE_mail);
             
             try (FileWriter writer = new FileWriter(file)) {

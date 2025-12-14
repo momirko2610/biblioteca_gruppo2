@@ -8,11 +8,11 @@
       "numCopie": 3
     },
     {
-      "titolo": "Ho sbagliato più di te",
-      "autore": "Nicola Palmieri",
-      "annoPubblicazione": 2023,
-      "ISBN": 3636637,
-      "numCopie": 9
+      "titolo": "giorni",
+      "autore": "x",
+      "annoPubblicazione": 1,
+      "ISBN": 1,
+      "numCopie": 1
     },
     {
       "titolo": "i sogni perduti",
@@ -20,6 +20,13 @@
       "annoPubblicazione": 2025,
       "ISBN": 11012001,
       "numCopie": 10
+    },
+    {
+      "titolo": "xxxxxxx",
+      "autore": "Nicola Palmieri",
+      "annoPubblicazione": "2023",
+      "ISBN": "3636637",
+      "numCopie": "9"
     }
   ],
   "studenti": [
@@ -30,22 +37,28 @@
       "e_mail": "xxxxxxxx"
     },
     {
+      "nome": "Chiara",
+      "cognome": "De Vito",
+      "matricola": "n13000223",
+      "e_mail": "a"
+    },
+    {
       "nome": "Ciro",
       "cognome": "Esposito",
       "matricola": "0909",
       "e_mail": "tizio"
     },
     {
-      "nome": "Achille",
-      "cognome": "lauro",
-      "matricola": 612708782,
-      "e_mail": "a.romano219@studenti.unisa.it"
-    },
-    {
       "nome": "Lucia",
       "cognome": "Lauro",
       "matricola": "xxxx",
       "e_mail": "xxxxx"
+    },
+    {
+      "nome": "Achille",
+      "cognome": "Romano",
+      "matricola": "612708782",
+      "e_mail": "a.romano219@studenti.unisa.it"
     },
     {
       "nome": "Sabrina",

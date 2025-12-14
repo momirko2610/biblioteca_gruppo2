@@ -79,15 +79,13 @@ public class ControllerPopupLibro {
             int copie = Integer.parseInt(nCopie.getText());
             int dataPubb = Integer.parseInt(data.getText());
 
-          
-            Libro l=new Libro(nuovoTitolo, nuoviAutori, dataPubb, new Long(nuovoIsbn));
             if (libroCorrente == null) {
-                
+                Libro l=new Libro(nuovoTitolo, nuoviAutori, dataPubb, new Long(nuovoIsbn));
                 l.inserisciLibro();
               
             } else {
                
-                l.modificaDatiLibro(nuovoTitolo, nuoviAutori, data.getText(), nuovoIsbn, nCopie.getText());
+                libroCorrente.modificaDatiLibro(nuovoTitolo, nuoviAutori, data.getText(), nuovoIsbn, nCopie.getText());
             }
 
             chiudi();

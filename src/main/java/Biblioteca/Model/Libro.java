@@ -17,7 +17,7 @@ public class Libro {
     private final String titolo; /*!<Titolo del libro*/
     private final String autore; /*!<Autore/i del libro*/
     private final int annoPubblicazione; /*!<Anno di publicazione del libro*/
-    private final long ISBN; /*!<Codice identificativo unico del libro*/
+    private long ISBN; /*!<Codice identificativo unico del libro*/
     private int numCopie = 1; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
     
     private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
@@ -91,28 +91,8 @@ public class Libro {
             newBook.addProperty("numCopie", this.numCopie);
             bookArray.add(newBook);
         
-            //Inserisco tutti i libri in una lista di libri
-            List<JsonObject> bookList = new ArrayList<>();
-            for (JsonElement element : bookArray) {
-                bookList.add(element.getAsJsonObject());
-            }
-        
-            //Ordino la lista in base al titolo
-            bookList.sort((a, b) -> a.get("titolo").getAsString().compareToIgnoreCase(b.get("titolo").getAsString()));
-
-            //Inserisco i libri in un Array ordinato
-            JsonArray sortedArray = new JsonArray();
-            for (JsonObject book : bookList) {
-                sortedArray.add(book);
-            }
-          
-            //Aggiorno l'Array
-            label.add("libri", sortedArray);
-
-            //Salvo
-            try (FileWriter writer = new FileWriter(file)) {
-                database.toJson(label, writer);
-            }
+            Database.ordinaDatabaseLibro(bookArray, file, label);
+            
             return;
         }
         try (FileWriter writer = new FileWriter(file)) {
@@ -152,10 +132,16 @@ public class Libro {
         
         if ( i != -1) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
-            if (!(newTitle.isEmpty())) obj.addProperty("titolo", newTitle);
+            if (!(newTitle.isEmpty())) {
+                obj.addProperty("titolo", newTitle);
+                Database.ordinaDatabaseLibro(bookArray, file, label);             
+            }
             if (!(newAuthor.isEmpty())) obj.addProperty("autore", newAuthor);
             if (!(newAnnoPubblicazione.isEmpty())) obj.addProperty("annoPubblicazione", newAnnoPubblicazione);
-            if (!(newISBN.isEmpty())) obj.addProperty("ISBN", newISBN);
+            if (!(newISBN.isEmpty())) {
+                obj.addProperty("ISBN", newISBN);
+                this.ISBN = Long.valueOf(newISBN);
+            }
             if (!(newNumCopie.isEmpty())) obj.addProperty("numCopie", newNumCopie);
                         
             try (FileWriter writer = new FileWriter(file)) {
@@ -174,6 +160,11 @@ public class Libro {
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void cancellazioneDatiLibro() throws IOException {
+        if (Prestito.ricercaPrestitoISBN(this.ISBN) != -1) {
+            System.out.println("Non puoi eliminare il libro, è in prestito");
+            return;
+        }
+        
         File file = new File(NAME);
         
         //Leggo il database
@@ -323,8 +314,6 @@ public class Libro {
         
         return(libri);
     };
-    
-    
     
     
     
