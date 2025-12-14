@@ -41,7 +41,7 @@ public class Libro {
     public String getAutore() { return autore; }
     public int getAnnoPubblicazione() { return annoPubblicazione; }
     public long getIsbn() { return ISBN; }
-    
+    public int getNumCopie() { return numCopie; }
     @Override
     public String toString() {
         return String.format(
@@ -183,6 +183,7 @@ public class Libro {
         }
         
         //Ottengo l'array dei libri
+        
         JsonArray bookArray = label.getAsJsonArray("libri");
         if (bookArray == null) {
             System.out.println("ERROR, database not found");

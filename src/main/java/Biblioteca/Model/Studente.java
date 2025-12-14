@@ -46,8 +46,8 @@ public class Studente {
     }
     public String getNome() { return nome; }
     public String getCognome() { return cognome; }
-    public String getmatricola() { return matricola; }
-    public String gete_mail() { return e_mail; }
+    public String getMatricola() { return matricola; }
+    public String getE_mail() { return e_mail; }
     
     @Override
     public String toString() {
@@ -341,3 +341,5 @@ public class Studente {
     };
     */
 }
+
+

@@ -5,7 +5,10 @@
  */
 package Biblioteca.Controller;
 
+import Biblioteca.Model.Libro;
+import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -15,30 +18,37 @@ import javafx.stage.Stage;
  *
  * @author achil
  */
+
 public class ControllerPopupLibro {
-    @FXML private Text label;
-    @FXML private TextField titolo;
-    @FXML private TextField autori;
-    @FXML private TextField isbn;
-    @FXML private TextField nCopie;
-    @FXML private DatePicker data;
-    @FXML private Button conferma;
-    @FXML private Button annulla;
+    @FXML 
+    private Text label;
+    @FXML 
+    private TextField titolo;
+    @FXML 
+    private TextField autori;
+    @FXML 
+    private TextField isbn;
+    @FXML 
+    private TextField nCopie;
+    @FXML 
+    private TextField data;
+    @FXML 
+    private Button conferma;
 
     private Libro libroCorrente; 
 
-    // --- SETUP INIZIALE ---
+
     public void setLibroDaModificare(Libro libro) {
         this.libroCorrente = libro;
 
         if (libro != null) {
-            //modifica campi
+         
             label.setText("Modifica Libro");
             titolo.setText(libro.getTitolo());
-            autori.setText(libro.getAutori());
-            isbn.setText(libro.getIsbn());
-            nCopie.setText(String.valueOf(libro.getCopie()));
-            data.setValue(libro.getDataPubblicazione());
+            autori.setText(libro.getAutore());
+            isbn.setText(Long.toString(libro.getIsbn()));
+            nCopie.setText(String.valueOf(libro.getNumCopie()));
+            data.setText(String.valueOf(libro.getAnnoPubblicazione()));
 
         } else {
             //nuovo libro
@@ -49,40 +59,41 @@ public class ControllerPopupLibro {
     @FXML
     public void initialize() {
         // abilita bottone conferma
-        conferma.disableProperty().bind(
+      /*  conferma.disableProperty().bind(
             titolo.textProperty().isEmpty()
             .or(autori.textProperty().isEmpty())
             .or(isbn.textProperty().isEmpty())
             .or(nCopie.textProperty().isEmpty())
             .or(data.valueProperty().isNull())
-        );
+        );*/
+      ;
     }
 
     @FXML
     private void salva() {
         try {
-            // 2. Recupero Dati
+           
             String nuovoTitolo = titolo.getText();
             String nuoviAutori = autori.getText();
             String nuovoIsbn = isbn.getText();
             int copie = Integer.parseInt(nCopie.getText());
-            LocalDate dataPubb = data.getValue();
+            int dataPubb = Integer.parseInt(data.getText());
 
-            // 3. Logica Database
+          
+            Libro l=new Libro(nuovoTitolo, nuoviAutori, dataPubb, new Long(nuovoIsbn));
             if (libroCorrente == null) {
-                // INSERT: Chiama il metodo per creare un nuovo libro nel DB
-                System.out.println("INSERT INTO Libri VALUES (" + nuovoIsbn + ", ...)");
-                // Esempio: Database.getInstance().inserisciLibro(new Libro(...));
+                
+                l.inserisciLibro();
+              
             } else {
-                // UPDATE: Aggiorna il libro esistente
-                System.out.println("UPDATE Libri SET titolo = " + nuovoTitolo + " WHERE isbn = " + libroCorrente.getIsbn());
-                // Esempio: Database.getInstance().aggiornaLibro(libroCorrente);
+               
+                l.modificaDatiLibro(nuovoTitolo, nuoviAutori, data.getText(), nuovoIsbn, nCopie.getText());
             }
 
             chiudi();
 
         } catch (NumberFormatException e) {
-            mostraErrore("Il numero di copie deve essere un numero intero!");
+            mostraErrore("Devi compilare tutti i campi");
         } catch (Exception e) {
             mostraErrore("Errore durante il salvataggio: " + e.getMessage());
         }
@@ -99,4 +110,5 @@ public class ControllerPopupLibro {
         alert.setContentText(msg);
         alert.show();
     }
+    
 }

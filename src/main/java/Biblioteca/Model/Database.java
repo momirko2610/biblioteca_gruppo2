@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +22,21 @@ public class Database {
     /**< Nome del database che verrà creato */
     private static final String NAME = "database.json";
     /**< Oggetto della funzione per la creazione dei file JSON */
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione per la creazione dei file JSON*/
-
-    //se il file database.json non esiste lo crea, altrimenti non fa nulla
+    private static final Gson database = new GsonBuilder()
+            .setPrettyPrinting().registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
+                @Override
+                public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
+                    return new JsonPrimitive(src.toString());
+                }
+            })
+           
+            .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+                @Override
+                public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                    return LocalDate.parse(json.getAsString());
+                }
+            })
+            .create(); 
     /**
      * @brief Metodo che crea il database se non esiste
      * * Controlla l'esistenza del file database.json. Se non esiste, ne crea uno nuovo
@@ -99,28 +113,38 @@ public class Database {
         }
     }
     
-    public static List<Prestito> leggiDatabasePrestiti () throws IOException {
-        
-        File file = new File(NAME);
-        
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            //Leggo il database
-            label = database.fromJson(reader, JsonObject.class);
-            
-            //Copio i libri in un array libri
-            JsonElement loanArray = label.get("prestiti");
-            
-            //Creo una lista di tipo List<Libro>
-            Type loanList = new TypeToken<List<Prestito>>() {}.getType();
-            
-            //Converto JsonElement in List<Studente>
-            return database.fromJson(loanArray, loanList);
-            
-        } 
-        catch (Exception exception) {
-            exception.printStackTrace();
-            return null;
-        }
+   public static List<Prestito> leggiDatabasePrestiti() throws IOException {
+    File file = new File(NAME);
+
+    // Se il file non esiste, ritorno lista vuota invece di null o crash
+    if (!file.exists()) {
+        return new ArrayList<>();
     }
+
+    try (FileReader reader = new FileReader(file)) {
+        // 1. Leggo tutto il JSON
+        JsonObject label = database.fromJson(reader, JsonObject.class);
+
+        // 2. Controllo se esiste la chiave "prestiti"
+        if (label == null || !label.has("prestiti")) {
+            return new ArrayList<>();
+        }
+
+        JsonElement loanArray = label.get("prestiti");
+
+        // 3. Converto
+        Type loanListType = new TypeToken<List<Prestito>>() {}.getType();
+        List<Prestito> lista = database.fromJson(loanArray, loanListType);
+
+        return lista != null ? lista : new ArrayList<>();
+
+    } catch (JsonSyntaxException | JsonIOException e) {
+        System.err.println("Errore nel formato del JSON o delle Date:");
+        e.printStackTrace(); // <--- GUARDA QUESTO NELLA CONSOLE
+        return new ArrayList<>();
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ArrayList<>();
+    }
+   }
 }

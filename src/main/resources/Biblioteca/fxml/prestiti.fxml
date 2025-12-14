@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.ControllerPrestiti">
    <children>
       <AnchorPane styleClass="dashboard">
          <children>
@@ -32,7 +31,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="220.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="240.0">
                      <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="menu-button" text="Libri">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#goToLibri" prefHeight="50.0" prefWidth="200.0" styleClass="menu-button" text="Libri">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -44,7 +43,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="menu-button" text="Studenti">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onMouseClicked="#goToStudenti" prefHeight="50.0" prefWidth="200.0" styleClass="menu-button" text="Studenti">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -83,20 +82,6 @@
                <children>
                   <HBox prefHeight="40.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="402.0" spacing="5.0" styleClass="search-box" HBox.hgrow="ALWAYS">
-                           <children>
-                              <TextField promptText="Cerca per matricola o ISBN..." HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" styleClass="search">
-                                 <graphic>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../icons/icons8-ricerca-50.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                        </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Button mnemonicParsing="false" styleClass="account">
@@ -117,12 +102,12 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" styleClass="button-blue" text="+ Nuovo Prestito" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0" />
-                  <TableView prefHeight="200.0" prefWidth="200.0" styleClass="table" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="160.0">
+                  <Button mnemonicParsing="false" onMouseClicked="#openPopupNuovoPrestito" prefHeight="35.0" prefWidth="160.0" styleClass="button-blue" text="+ Nuovo Prestito" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0" />
+                  <TableView fx:id="tablePrestiti" prefHeight="200.0" prefWidth="200.0" styleClass="table" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="160.0">
                     <columns>
-                      <TableColumn maxWidth="500.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="ISBN" />
-                      <TableColumn maxWidth="500.0" minWidth="120.0" prefWidth="-1.0" sortable="false" styleClass="search" text="Matricola" />
-                        <TableColumn maxWidth="500.0" minWidth="150.0" prefWidth="-1.0" text="Data di Restituzione" />
+                      <TableColumn fx:id="ISBN" maxWidth="500.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="ISBN" />
+                      <TableColumn fx:id="Matricola" maxWidth="500.0" minWidth="120.0" prefWidth="-1.0" sortable="false" styleClass="search" text="Matricola" />
+                        <TableColumn fx:id="Data" maxWidth="500.0" minWidth="150.0" prefWidth="-1.0" text="Data di Restituzione" />
                         <TableColumn fx:id="azioni" maxWidth="100.0" minWidth="75.0" prefWidth="-1.0" sortable="false" text="Restituito" />
                     </columns>
                      <columnResizePolicy>

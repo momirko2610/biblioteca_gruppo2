@@ -9,6 +9,7 @@ package Biblioteca.Controller;
  *
  * @author achil
  */
+/*
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -92,3 +93,4 @@ public class ControllerBtnAzioni {
         // Qui scriverai il codice per aprire il Dialog/Popup
     }
 }
+*/

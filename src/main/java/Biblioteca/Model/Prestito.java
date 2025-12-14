@@ -29,32 +29,30 @@ public class Prestito {
     private static final String NAME = "database.json"; /*!<Nome del database contenente i prestiti*/
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
     
+    private String matricola;
+    private long ISBN; 
     private LocalDate dataInizio;
     private LocalDate dataFinePrevista;
-    private Libro libro;
-    private String matricola;
-    private Studente studente;
-   
-   
     
-    /**
-     * @brief Costruttore di base
-     */
+
+    private transient Libro libro;    
+    private transient Studente studente;
+
+
     public Prestito(Studente studente, Libro libro, LocalDate dataInizio, LocalDate dataFinePrevista) {
-    
-        this.matricola = studente.getmatricola();
+        this.studente = studente;
         this.libro = libro;
+        this.matricola = studente.getMatricola();
+        this.ISBN = libro.getIsbn(); 
         this.dataInizio = dataInizio;
         this.dataFinePrevista = dataFinePrevista;
     }
 
-    public LocalDate getDataInizio() {
-        return dataInizio;
-    }
+public String getMatricola() { return matricola; }
+    public long getIsbn() { return ISBN; } 
+    public LocalDate getDataInizio() { return dataInizio; }
+    public LocalDate getDataFinePrevista() { return dataFinePrevista; }
 
-    public LocalDate getDataFinePrevista() {
-        return dataFinePrevista;
-    }
     
     
     
@@ -63,130 +61,121 @@ public class Prestito {
     
     
 
-    /**
+   /**
      * @param matricola
      * @param ISBN
      * @throws java.io.IOException
      * @brief Aggiorna il database dei prestiti creando un nuovo elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Lo studente riceve in prestito il libro
      */
-    public void registrazionePrestito(String matricola, long ISBN)  throws IOException {
-    
-        
-        
-       
-        
+    public void registrazionePrestito(String matricola, long ISBN) throws IOException {
+
         File file = new File(NAME);
-        
         JsonObject label;
+
+        // 1. Lettura sicura del Database
+        if (!file.exists()) {
+            System.out.println("Errore: Database non trovato.");
+            return;
+        }
+
         try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
+
+            try {
+                label = database.fromJson(reader, JsonObject.class);
+            } catch (JsonSyntaxException | JsonIOException e) {
+                label = new JsonObject();
+            }
         }
         
-                
+        if (label == null) label = new JsonObject();
+
         
-         
-                
-        //Lista  dei libri in formato libro da JSON
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            bookArray = new JsonArray();
+            label.add("libri", bookArray);
+        }
+
+
         Type listType = new TypeToken<ArrayList<Libro>>(){}.getType();
-        List<Libro>  bookList = database.fromJson(NAME, listType);
-        
+        List<Libro> bookList = database.fromJson(bookArray, listType);
+
+        if (bookList == null) bookList = new ArrayList<>();
+
         boolean flag = false;
-        
-        Libro libro;
-        
-        //Trovo il libro collegato all'ISBN
-        for (Iterator<Libro> it = bookList.iterator(); it.hasNext();) {     
-            libro = it.next();
-            if(Long.compare(ISBN, libro.getIsbn()) == 0){
+        Libro libroTrovato = null;
+        int indiceLibro = -1;
+
+        for (int i = 0; i < bookList.size(); i++) {
+            Libro l = bookList.get(i);
+
+            if (l.getIsbn() == ISBN) {
+                libroTrovato = l;
+                indiceLibro = i;
                 flag = true;
                 break;
             }
         }
-        if(flag == false){return;}   //Errore
-        
-        
-        if(checkCopieDisponibili(libro) == -1){
-            System.out.println("Libro non trovato!\n"); //Diventerà una label nell'interfaccia grafica
+
+        if (!flag || libroTrovato == null) {
+            System.out.println("Libro con ISBN " + ISBN + " non trovato!");
             return;
         }
-           
-        if(checkAccountStudente() == -1){
-             System.out.println("Studente non trovato!\n"); //Diventerà una label nell'interfaccia grafica
-             return;
-        }
-        
-        if(checkPrestitiAttiviStudente(matricola) == -1){
-             System.out.println("Ha troppi prestiti attivi!\n"); //Diventerà una label nell'interfaccia grafica
-             return;
-        }
-        
-        if(checkRitardoRestituzionePrestito() == -1){
-             System.out.println("Ha un prestito in ritardo!\n"); //Diventerà una label nell'interfaccia grafica
-             return;
-        }
-        
-        
-         //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {bookArray = new JsonArray();}
 
-        //Metto le copie a -1
-        int i = Libro.ricercaLibroISBN(ISBN);
-        
-        JsonObject obj = bookArray.get(i).getAsJsonObject();
-        
-        int copie = obj.get("numCopie").getAsInt() - 1;
-        
-        libro.modificaDatiLibro("", "", "", "", String.valueOf(copie));
-         
-        
-        //Array dei prestiti
+
+        if (libroTrovato.getNumCopie() <= 0) {
+             System.out.println("Copie terminate per questo libro!");
+             return;
+        }
+
+        if (checkAccountStudente() == -1) {
+            System.out.println("Studente non trovato!\n");
+            return;
+        }
+
+        if (checkPrestitiAttiviStudente(matricola) == -1) {
+            System.out.println("Ha troppi prestiti attivi!\n");
+            return;
+        }
+
+        if (checkRitardoRestituzionePrestito() == -1) {
+            System.out.println("Ha un prestito in ritardo!\n");
+            return;
+        }
+
+
+        JsonObject libroJson = bookArray.get(indiceLibro).getAsJsonObject();
+        int nuoveCopie = libroTrovato.getNumCopie() - 1;
+        libroJson.addProperty("numCopie", nuoveCopie); 
+       
         JsonArray prestitiArray = label.getAsJsonArray("prestiti");
-        if (prestitiArray == null) {prestitiArray = new JsonArray();}
-        
-        //Nuovo prestito
+        if (prestitiArray == null) {
+            prestitiArray = new JsonArray();
+            label.add("prestiti", prestitiArray);
+        }
+
         JsonObject newPrestito = new JsonObject();
         newPrestito.addProperty("matricola", this.matricola);
-        newPrestito.addProperty("titolo", libro.getTitolo());
-        newPrestito.addProperty("autore", libro.getAutore());
-        newPrestito.addProperty("annoPubblicazione", libro.getAnnoPubblicazione());
-        newPrestito.addProperty("ISBN", libro.getIsbn());
+        newPrestito.addProperty("titolo", libroTrovato.getTitolo()); 
+        newPrestito.addProperty("autore", libroTrovato.getAutore());
+        newPrestito.addProperty("annoPubblicazione", libroTrovato.getAnnoPubblicazione());
+        newPrestito.addProperty("ISBN", libroTrovato.getIsbn()); 
         newPrestito.addProperty("dataInizio", this.dataInizio.toString());
-        newPrestito.addProperty("dataFinePrevista", this.dataFinePrevista.toString());  
-          
-        //Aggiunta del prestito all'Array prestiti
-        prestitiArray.add(newPrestito);
-        
-        List<JsonObject> prestitiList = new ArrayList<>();
-            for (JsonElement element : prestitiArray) {
-                prestitiList.add(element.getAsJsonObject());
-            }
-            
-       
-            
-        //Ordino la lista in base alla data di restituzione prevista
-        
-        prestitiList.sort(Comparator.comparing(JsonObject -> getDataFinePrevista()));   //forse funziona, boh
-        
-        //Inserisco i prestiti in un Array ordinato
-            JsonArray sortedArray = new JsonArray();
-            for (JsonObject prestito : prestitiList) {
-                sortedArray.add(prestito);
-        }
-         //Aggiorno l'Array
-        label.add("prestiti", sortedArray);
+        newPrestito.addProperty("dataFinePrevista", this.dataFinePrevista.toString());
+        newPrestito.addProperty("dataRestituzioneEffettiva", ""); 
 
-        //Salvo
+        prestitiArray.add(newPrestito);
+
+      
         try (FileWriter writer = new FileWriter(file)) {
             database.toJson(label, writer);
         }
         
-       
-            
+        System.out.println("Prestito registrato con successo!");
     }
-
+    
+    
+    
     /**
      * @brief Mostra gli elementi presenti nel database dei libri
      * @pre Il Bibliotecariə deve essere autenticatə

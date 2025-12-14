@@ -3,16 +3,23 @@
     {
       "titolo": "Frankestein",
       "autore": "Mary Shelly",
-      "annoPubblicazione": 1800,
-      "ISBN": 123456789,
-      "numCopie": 2
+      "annoPubblicazione": "40",
+      "ISBN": "123456789",
+      "numCopie": 3
+    },
+    {
+      "titolo": "Ho sbagliato più di te",
+      "autore": "Nicola Palmieri",
+      "annoPubblicazione": 2023,
+      "ISBN": 3636637,
+      "numCopie": 9
     },
     {
       "titolo": "i sogni perduti",
       "autore": "chiara de vito",
       "annoPubblicazione": 2025,
       "ISBN": 11012001,
-      "numCopie": 1
+      "numCopie": 10
     }
   ],
   "studenti": [
@@ -21,6 +28,12 @@
       "cognome": "Caio",
       "matricola": "xxx1234xxx",
       "e_mail": "xxxxxxxx"
+    },
+    {
+      "nome": "Ciro",
+      "cognome": "Esposito",
+      "matricola": "0909",
+      "e_mail": "tizio"
     },
     {
       "nome": "Achille",
@@ -39,15 +52,20 @@
       "cognome": "Soriano",
       "matricola": 612709851,
       "e_mail": "s.soriano7@studenti.unisa.it"
-    },
-    {
-      "nome": "sssssssss",
-      "cognome": "sssssssssssss",
-      "matricola": "01",
-      "e_mail": "ffffffff"
     }
   ],
-  "prestiti": [],
+  "prestiti": [
+    {
+      "matricola": "612708782",
+      "titolo": "Ho sbagliato più di te",
+      "autore": "Nicola Palmieri",
+      "annoPubblicazione": 2023,
+      "ISBN": 3636637,
+      "dataInizio": "2025-12-14",
+      "dataFinePrevista": "2026-01-13",
+      "dataRestituzioneEffettiva": ""
+    }
+  ],
   "bibliotecari": [
     {
       "e_mail": "bibliotecario@unisa.it",

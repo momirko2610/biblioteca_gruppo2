@@ -1,39 +1,63 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca.Controller;
+
+import Biblioteca.Model.Libro;
+import Biblioteca.Model.Studente;
+import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
-/**
- *
- * @author achil
- */
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
 public class ControllerDelete {
 
-    private Object oggettoDaEliminare; // Generico: può essere Libro, Studente o Prestito
+    private Object oggettoDaEliminare; 
+
 
     public void setOggettoDaEliminare(Object obj) {
         this.oggettoDaEliminare = obj;
     }
 
     @FXML
-    private void conferma() {
+    private Button buttonConferma; 
+    
+    @FXML
+    public void conferma(MouseEvent event) { 
+        try {
+            if (this.oggettoDaEliminare instanceof Libro) {
+                Libro l = (Libro) this.oggettoDaEliminare;
+                l.cancellazioneDatiLibro();
+                System.out.println("Libro eliminato: " + l.getTitolo());
+            } 
+            else if (this.oggettoDaEliminare instanceof Studente) {
+                 Studente s = (Studente) this.oggettoDaEliminare;
+                 s.cancellazioneDatiStudente();
+            }
+            
+            
+            chiudi();
 
-        if (oggettoDaEliminare instanceof Libro) {
-            Libro l = (Libro) oggettoDaEliminare;
-
-        } 
-        else if (oggettoDaEliminare instanceof Studente) {
-             Studente l = (Studente) oggettoDaEliminare;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        chiudi();
     }
 
     @FXML
     private void chiudi() {
+        
+         if (buttonConferma != null) {
+             Stage stage = (Stage) buttonConferma.getScene().getWindow();
+             stage.close();
+         } else {
+             
+             System.out.println("Finestra chiusa (logica da implementare con fx:id)");
+             Button b = new Button(); 
+         }
+    }
+    
+    
+    @FXML
+    public void chiudiFinestra(MouseEvent event) {
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }
