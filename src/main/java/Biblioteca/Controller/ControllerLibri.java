@@ -5,7 +5,6 @@
  */
 package Biblioteca.Controller;
 
-import Biblioteca.Model.App;
 import Biblioteca.Model.Database;
 import Biblioteca.Model.Libro;
 import java.io.IOException;
@@ -14,21 +13,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 /**
  *
@@ -36,7 +30,6 @@ import javafx.util.Callback;
  */
 
 public class ControllerLibri {
-    private App model; 
 
     @FXML
     private TableView<Libro> tableViewBook;
@@ -57,21 +50,15 @@ public class ControllerLibri {
     @FXML
     private TableColumn<Libro, Integer> Copie_Disp;
     
-    @FXML
-    private TableColumn<Libro, Void> Azioni;
     
     @FXML
     private TextField searchBookTextField;
-    
    
+    @FXML private TableColumn<Libro, HBox> Azioni;  
 
     private ObservableList<Libro> listaLibri = FXCollections.observableArrayList(); 
 
     public ControllerLibri() {
-    }
-
-    public void setModel(App model) {
-        this.model = model;
     }
 
 
@@ -79,7 +66,6 @@ public class ControllerLibri {
     public void initialize() {
         configuraTabella();
         caricaDatiAllAvvio();
-        aggiungiBottoniAzioni();
     }
 
     private void configuraTabella() {
@@ -99,6 +85,8 @@ public class ControllerLibri {
         // Libro.java: public int getnumCopie() -> "numCopie"
         Copie_Disp.setCellValueFactory(new PropertyValueFactory<>("numCopie"));
         
+        Azioni.setCellValueFactory(new PropertyValueFactory<>("azioni"));
+        
         tableViewBook.setEditable(true);
     }
 
@@ -107,13 +95,25 @@ public class ControllerLibri {
           
             Database database = new Database();
     
-            List<Libro> libriSalvati = Database.leggiDatabaseLibri();
+            List<Libro> libriSalvati = database.leggiDatabaseLibri();
             
 
             if (libriSalvati != null && !libriSalvati.isEmpty()) {
-
+                
                 listaLibri = FXCollections.observableArrayList(libriSalvati);
+                
+                for (Libro libro : listaLibri) {
+                    
+                    HBox box = libro.getAzioni(); 
+                        
+                    Button Modifica = (Button) box.getChildren().get(0);
+                    Button Elimina = (Button) box.getChildren().get(1);
 
+                    Modifica.setOnAction(event -> { apriPopupModifica(libro); });
+
+                    Elimina.setOnAction(event -> { apriPopupElimina(libro); });
+                }
+                
                 tableViewBook.setItems(listaLibri);
                 
                 System.out.println("Tabella aggiornata con successo. Libri caricati: " + listaLibri.size());
@@ -172,21 +172,21 @@ public class ControllerLibri {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/prestiti.fxml"));
             Parent root = loader.load();
 
+            // recupera lo stage precedente, (in questo caso lo fa attraverso la table view, ma potrebbe farlo da qualsiasi altra cosa)
+            Stage stage = (Stage) tableViewBook.getScene().getWindow();
 
-            Stage stage = (Stage) searchBookTextField.getScene().getWindow();
-            stage.setScene(new Scene(root, 1920, 1080));
+            stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(600);
 
-            //Scene scene = new Scene(root);
-            //stage.setScene(scene);
-            
- 
-            stage.show();
-            
+            stage.setScene(new Scene(root));
 
+            stage.setTitle("Prestiti Attivi");
             stage.centerOnScreen();
 
+            stage.show();
+
         } catch (IOException e) {
-            System.err.println("Errore caricamento login: " + e.getMessage());
+            System.err.println("Errore nel caricamento della schermata prestiti: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -197,124 +197,21 @@ public class ControllerLibri {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/studenti.fxml"));
             Parent root = loader.load();
 
+            // recupera lo stage precedente, (in questo caso lo fa attraverso la tableview, ma potrebbe farlo da qualsiasi altra cosa)
+            Stage stage = (Stage) tableViewBook.getScene().getWindow();
 
-            Stage stage = (Stage) searchBookTextField.getScene().getWindow();
-            stage.setScene(new Scene(root, 1920, 1080));
+            stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(600);
 
-            //Scene scene = new Scene(root);
-            //stage.setScene(scene);
-            
-           
-            stage.show();
-            
+            stage.setScene(new Scene(root));
 
+            stage.setTitle("Prestiti Attivi");
             stage.centerOnScreen();
 
-        } catch (IOException e) {
-            System.err.println("Errore caricamento login: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    
-    
-    private void aggiungiBottoniAzioni() {
-        TableColumn<Libro, Void> colBtn = new TableColumn<>("Azioni");
-
-        Callback<TableColumn<Libro, Void>, TableCell<Libro, Void>> cellFactory = new Callback<TableColumn<Libro, Void>, TableCell<Libro, Void>>() {
-            @Override
-            public TableCell<Libro, Void> call(final TableColumn<Libro, Void> param) {
-                return new TableCell<Libro, Void>() {
-
-                    private final Button btnModifica = new Button(""); 
-                    private final Button btnElimina = new Button("");
-                    private final HBox pane = new HBox(9, btnModifica, btnElimina);
-
-                    {
-                        pane.setAlignment(Pos.CENTER);
-
-                     
-                        try {
-                         
-                            Image imgEdit = new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png"));
-                            ImageView viewEdit = new ImageView(imgEdit);
-                            viewEdit.setFitHeight(15);
-                            viewEdit.setFitWidth(15);
-                            btnModifica.setGraphic(viewEdit);
-
-                           
-                            Image imgDel = new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png"));
-                            ImageView viewDel = new ImageView(imgDel);
-                            viewDel.setFitHeight(15);
-                            viewDel.setFitWidth(15);
-                            btnElimina.setGraphic(viewDel);
-
-                        } catch (Exception e) {
-                           
-                            btnModifica.setText("Mod");
-                            btnElimina.setText("Eli");
-                        }
-
-                       
-                        btnModifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-                        btnElimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-                        
-                       
-                        btnModifica.setOnAction(event -> {
-                            Libro libroCorrente = getTableView().getItems().get(getIndex());
-                            if (libroCorrente != null) {
-                                apriPopupModifica(libroCorrente); 
-                            }
-                        });
-
-                       
-                        btnElimina.setOnAction(event -> {
-                            Libro libroCorrente = getTableView().getItems().get(getIndex());
-                            if (libroCorrente != null) {
-                                apriPopupElimina(libroCorrente);
-                            }
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(pane);
-                        }
-                    }
-                };
-            }
-        };
-
-        colBtn.setCellFactory(cellFactory);
-
-
-        tableViewBook.getColumns().add(colBtn);
-    }
-    
-    @FXML
-    private void openPopupDelete() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/libri.fxml"));
-            Parent root = loader.load();
-
-           
-            Stage stage = (Stage) searchBookTextField.getScene().getWindow();
-            stage.setScene(new Scene(root, 1920, 1080));
-
-            //Scene scene = new Scene(root);
-            //stage.setScene(scene);
-            
-           
             stage.show();
-            
-
-            stage.centerOnScreen();
 
         } catch (IOException e) {
-            System.err.println("Errore caricamento login: " + e.getMessage());
+            System.err.println("Errore nel caricamento della schermata studenti: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -322,80 +219,101 @@ public class ControllerLibri {
     @FXML
     private void openPopupLibro() {
         try {
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/insertLibro.fxml"));
-        Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/insertLibro.fxml"));
+            Parent root = loader.load();
 
-        Stage stage = new Stage();
-        stage.setTitle("Aggiungi Libro");
-        stage.setScene(new Scene(root));
-        
-        
-       
-        stage.initModality(Modality.APPLICATION_MODAL); 
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
 
-        stage.showAndWait();
+            stage.setTitle("Aggiungi Libro");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+            
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
 
+            caricaDatiAllAvvio(); 
 
-        caricaDatiAllAvvio(); 
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
-    
+    @FXML
     private void apriPopupModifica(Libro libro) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/insertLibro.fxml"));
             Parent root = loader.load();
 
-            
             ControllerPopupLibro controller = loader.getController();
-            
-            
             controller.setLibroDaModificare(libro);
 
             Stage stage = new Stage();
-            stage.setTitle("Modifica Libro");
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL); 
-            stage.showAndWait(); 
-
-
+            
+            stage.setTitle("Modifica Libro");
+            stage.centerOnScreen();
+            stage.setResizable(false); 
+            
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            
             caricaDatiAllAvvio();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void apriPopupElimina(Libro libro) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/delete.fxml"));
+            Parent root = loader.load();
 
-private void apriPopupElimina(Libro libro) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/delete.fxml"));
-        Parent root = loader.load();
+            ControllerDelete controller = loader.getController();       
+            controller.setOggettoDaEliminare(libro);
 
-        ControllerDelete controller = loader.getController();
-        
-       
-        controller.setOggettoDaEliminare(libro);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
 
-    
+            stage.setTitle("Elimina Libro");
+            stage.centerOnScreen();
+            stage.setResizable(false);
 
-        Stage stage = new Stage();
-        stage.setTitle("Elimina Libro");
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        
-    
-        stage.showAndWait();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
 
+            caricaDatiAllAvvio(); 
 
-        caricaDatiAllAvvio(); 
-
-    } catch (IOException e) {
-        System.err.println("Errore caricamento popup delete: " + e.getMessage());
-        e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Errore caricamento popup delete: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
+    @FXML
+        private void openPopupLogout() {
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/logout.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+
+                stage.setTitle("Logout");
+                stage.centerOnScreen();
+                stage.setResizable(false);
+
+                stage.initModality(Modality.APPLICATION_MODAL); // Blocca la finestra sotto     
+                stage.initOwner(tableViewBook.getScene().getWindow());
+
+                stage.showAndWait();
+
+
+            } catch (IOException e) {
+                System.err.println("Errore nel caricamento del popup di logout: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
-}

@@ -1,6 +1,5 @@
 package Biblioteca.Controller;
 
-import Biblioteca.Model.App;
 import Biblioteca.Model.Database;
 import Biblioteca.Model.Prestito;
 import java.io.IOException;
@@ -10,27 +9,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class ControllerPrestiti {
-    
-   
-    private App model; 
-
 
     @FXML
     private TableView<Prestito> tablePrestiti;
@@ -44,49 +33,51 @@ public class ControllerPrestiti {
     @FXML
     private TableColumn<Prestito, LocalDate> Data;
 
-    @FXML
-    private TableColumn<Prestito, Void> azioni;
+    @FXML private TableColumn<Prestito, HBox> Azioni; 
 
     private ObservableList<Prestito> listaPrestiti = FXCollections.observableArrayList(); 
 
     public ControllerPrestiti() {
     }
 
-    public void setModel(App model) {
-        this.model = model;
-    }
-
     @FXML
     public void initialize() {
         configuraTabella();
         caricaDatiAllAvvio();
-        aggiungiBottoniAzioni();
     }
 
     private void configuraTabella() {
         
         ISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         Matricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
-        Data.setCellValueFactory(new PropertyValueFactory<>("dataFinePrevista")); // O "dataFine" a seconda del tuo Model
+        Data.setCellValueFactory(new PropertyValueFactory<>("dataFinePrevista")); 
+        
+        Azioni.setCellValueFactory(new PropertyValueFactory<>("azioni"));
         
         tablePrestiti.setEditable(true);
     }
 
     void caricaDatiAllAvvio() {
-        try {
-           
+        try {  
             tablePrestiti.getItems().clear();
 
-           
             List<Prestito> prestitiSalvati = Database.leggiDatabasePrestiti(); 
             System.out.println(prestitiSalvati);
            
             if (prestitiSalvati != null && !prestitiSalvati.isEmpty()) {
-                
-               
+ 
                 listaPrestiti = FXCollections.observableArrayList(prestitiSalvati);
+
+                for (Prestito prestito : listaPrestiti) {
+                    
+                    HBox box = prestito.getAzioni(); 
+                        
+                    Button Ritorno = (Button) box.getChildren().get(0);
+
+                    Ritorno.setOnAction(event -> { terminaPrestito(prestito); });
+
+                }
                 
-              
                 tablePrestiti.setItems(listaPrestiti);
                 
                 System.out.println("Tabella prestiti aggiornata. Record caricati: " + listaPrestiti.size());
@@ -111,21 +102,21 @@ public class ControllerPrestiti {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/libri.fxml"));
             Parent root = loader.load();
 
-          
+            // recupera lo stage precedente, (in questo caso lo fa attraverso la tableview, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) tablePrestiti.getScene().getWindow();
-            stage.setScene(new Scene(root, 1920, 1080));
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            
-          
-            stage.show();
-            
-            
+            stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(600);
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Prestiti Attivi");
             stage.centerOnScreen();
 
+            stage.show();
+
         } catch (IOException e) {
-            System.err.println("Errore caricamento login: " + e.getMessage());
+            System.err.println("Errore nel caricamento della schermata libri: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -136,21 +127,21 @@ public class ControllerPrestiti {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/studenti.fxml"));
             Parent root = loader.load();
 
-  
+            // recupera lo stage precedente, (in questo caso lo fa attraverso la tableview, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) tablePrestiti.getScene().getWindow();
-            stage.setScene(new Scene(root, 1920, 1080));
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            
-            
-            stage.show();
-            
-           
+            stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(600);
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Prestiti Attivi");
             stage.centerOnScreen();
 
+            stage.show();
+
         } catch (IOException e) {
-            System.err.println("Errore caricamento login: " + e.getMessage());
+            System.err.println("Errore nel caricamento della schermata studenti: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -163,16 +154,16 @@ public class ControllerPrestiti {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/insertPrestito.fxml"));
             Parent root = loader.load();
 
-           
-           
-
             Stage stage = new Stage();
-            stage.setTitle("Nuovo Prestito");
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL); 
+
+            stage.setTitle("Aggiungi Prestito");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+            
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
-     
             caricaDatiAllAvvio(); 
 
         } catch (IOException e) {
@@ -180,59 +171,53 @@ public class ControllerPrestiti {
         }
     }
     
-    private void aggiungiBottoniAzioni() {
-       
-        Callback<TableColumn<Prestito, Void>, TableCell<Prestito, Void>> cellFactory = new Callback<TableColumn<Prestito, Void>, TableCell<Prestito, Void>>() {
-            @Override
-            public TableCell<Prestito, Void> call(final TableColumn<Prestito, Void> param) {
-                return new TableCell<Prestito, Void>() {
+    private void terminaPrestito(Prestito prestito) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/ritorno.fxml"));
+            Parent root = loader.load();
+            
+            ControllerRitorno controller = loader.getController();
+            
+            controller.setDatiRestituzione(prestito.getMatricola(), prestito.getIsbn());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
 
-                   
-                    private final Button btnRestituisci = new Button("Restituito"); 
-                    
-                    private final HBox pane = new HBox(10, btnRestituisci);
+            stage.setTitle("Logout");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+            
+            stage.initModality(Modality.APPLICATION_MODAL); // Blocca la finestra sotto          
+            stage.showAndWait();
 
-                    {
-                        pane.setAlignment(Pos.CENTER);
-
-                       
-                            Image imgCheck = new Image(getClass().getResourceAsStream("/Biblioteca/icons/check.png"));
-                            ImageView viewCheck = new ImageView(imgCheck);
-                            viewCheck.setFitHeight(18);
-                            viewCheck.setFitWidth(18);
-                            btnRestituisci.setGraphic(viewCheck);
-                            btnRestituisci.setTooltip(new javafx.scene.control.Tooltip("Termina Prestito (Restituisci)"));
-
-                      
-                        String style = "-fx-background-color: #DE1616; -fx-cursor: hand; -fx-text-color: white;";
-                        btnRestituisci.setStyle(style);
-                        
-                       
-                        btnRestituisci.setOnAction(event -> {
-                            Prestito prestito = getTableView().getItems().get(getIndex());
-                            terminaPrestito(prestito);
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(pane);
-                        }
-                    }
-                };
-            }
-        };
-
-        azioni.setCellFactory(cellFactory);
+            caricaDatiAllAvvio(); 
+            
+        } catch (IOException e) {
+            System.err.println("Errore nel caricamento del popup di logout: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
-    private void terminaPrestito(Prestito prestito) {
+    @FXML
+    private void openPopupLogout() {
+        try {
 
-       
-        ;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/logout.fxml"));
+            Parent root = loader.load();
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Logout");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+            
+            stage.initModality(Modality.APPLICATION_MODAL); // Blocca la finestra sotto          
+            stage.showAndWait();
+
+
+        } catch (IOException e) {
+            System.err.println("Errore nel caricamento del popup di logout: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

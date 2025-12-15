@@ -5,12 +5,10 @@
  */
 package Biblioteca.Controller;
 
-import Biblioteca.Model.Libro;
 import Biblioteca.Model.Studente;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -94,16 +92,16 @@ public class ControllerPopupStudenti {
         }
     }
 
-    @FXML
-    private void chiudi() {
-        Stage stage = (Stage) TextFieldnome.getScene().getWindow();
-        stage.close();
-    }
-
     private void mostraErrore(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(msg);
         alert.show();
+    }
+    
+    @FXML
+    public void chiudi() {
+        Stage stage = (Stage) label.getScene().getWindow();
+        stage.close();
     }
     
 }

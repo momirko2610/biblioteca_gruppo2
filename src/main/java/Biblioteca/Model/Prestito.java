@@ -13,6 +13,11 @@ import java.lang.reflect.Type;
 import static java.time.LocalDate.now;
 import java.util.Comparator;
 import java.util.Iterator;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 
 
@@ -37,6 +42,9 @@ public class Prestito {
 
     private transient Libro libro;    
     private transient Studente studente;
+    
+    // transient serve per non far salvare nel sile json l'hbox se no da errore
+    private transient HBox azioni;
 
 
     public Prestito(Studente studente, Libro libro, LocalDate dataInizio, LocalDate dataFinePrevista) {
@@ -46,6 +54,26 @@ public class Prestito {
         this.ISBN = libro.getIsbn(); 
         this.dataInizio = dataInizio;
         this.dataFinePrevista = dataFinePrevista;
+        
+        creaBottoni();
+    }
+    
+    private void creaBottoni(){
+        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
+        Button Ritorno = new Button("Restituito");
+        
+        Ritorno.setStyle("-fx-background-color: #2264E5; -fx-cursor: hand; -fx-text-fill: white;");
+
+        this.azioni = new HBox(10, Ritorno);
+        this.azioni.setAlignment(Pos.CENTER);
+    }
+    
+    public HBox getAzioni() {
+        // azioni è sempre nulla quando carico dal Database JSON
+        if (azioni == null) {
+            creaBottoni();
+        }
+        return azioni;
     }
 
     public String getMatricola() { return matricola; }
@@ -210,58 +238,74 @@ public class Prestito {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post N/A
      */
-    public void registrazioneRestituzione(String matricola, long ISBN) throws IOException{
+    public static void registrazioneRestituzione(String matricola, long ISBN) throws IOException {
    
         File file = new File(NAME);
         
-        //Leggo il database
+        // Leggo il database
         JsonObject label;
         try (FileReader reader = new FileReader(file)) {
             label = database.fromJson(reader, JsonObject.class);
         }
         
-        //Ottengo l'array dei prestiti
+        if (label == null) {
+            System.out.println("ERROR, database vuoto o corrotto");
+            return;
+        }
+        
+        // Ottengo l'array dei prestiti
         JsonArray prestitiArray = label.getAsJsonArray("prestiti");
         if (prestitiArray == null) {
-            System.out.println("ERROR, database not found");  //da implementare come interfaccia grafica
+            System.out.println("Nessun prestito attivo nel database.");
             return;
         }
 
-        
-        int i;
-        boolean flag = false;       //flag necessaria per capire se il prestito è presente
-        //Trova il prestito da rimuovere, se presente
-        for (i = 0; i < prestitiArray.size(); i++) {              
+        int indexDaRimuovere = -1;
+        boolean trovato = false;
+
+        // 1. Trova il prestito da rimuovere
+        for (int i = 0; i < prestitiArray.size(); i++) {              
             JsonObject obj = prestitiArray.get(i).getAsJsonObject();
-            if (obj.get("matricola").getAsString().equals(matricola) && obj.get("ISBN").getAsString().equals((Long.toString(ISBN)))){
-                flag = true;
+            
+            // Confronto Matricola (String) e ISBN (Long)
+            String matDB = obj.get("matricola").getAsString();
+            long isbnDB = obj.get("ISBN").getAsLong();
+
+            if (matDB.equals(matricola) && isbnDB == ISBN) {
+                indexDaRimuovere = i;
+                trovato = true;
                 break;
             }            
         }
         
-        if (flag) {
-            //Ottengo l'array dei libri
+        if (trovato) {
+            // 2. Aggiorna le copie del libro (Aumenta di 1)
             JsonArray bookArray = label.getAsJsonArray("libri");
-            if (bookArray == null) {bookArray = new JsonArray();}
+            if (bookArray != null) {
+                // Cerchiamo il libro nell'array dei libri
+                for (int k = 0; k < bookArray.size(); k++) {
+                    JsonObject bookObj = bookArray.get(k).getAsJsonObject();
+                    if (bookObj.get("ISBN").getAsLong() == ISBN) {
+                        // Abbiamo trovato il libro: incrementiamo le copie
+                        int copieAttuali = bookObj.get("numCopie").getAsInt();
+                        bookObj.addProperty("numCopie", copieAttuali + 1);
+                        System.out.println("Copie libro aggiornate: " + (copieAttuali + 1));
+                        break;
+                    }
+                }
+            }
 
-            //Metto le copie a -1
-            int j = Libro.ricercaLibroISBN(ISBN);   //indice del libro da restituire
-
-            JsonObject obj = bookArray.get(j).getAsJsonObject();
-
-            int copie = obj.get("numCopie").getAsInt() + 1;
-
-            libro.modificaDatiLibro("", "", "", "", String.valueOf(copie));     //aumento 
-
-            //Elimino il prestito dal database
-            prestitiArray.remove(i);
+            // 3. Rimuovi il prestito e Salva
+            prestitiArray.remove(indexDaRimuovere);
+            
             try (FileWriter writer = new FileWriter(file)) {
                 database.toJson(label, writer);
             }
-            System.out.println("Prestito eliminato");
+            System.out.println("Prestito eliminato e database salvato.");
         }
-        else System.out.println("Prestito non risulta nel nostro database");
-        
+        else {
+            System.out.println("Errore: Prestito non trovato nel database.");
+        }
     }
     
     /**

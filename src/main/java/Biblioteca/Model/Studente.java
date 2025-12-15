@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 /**
  * @brief Classe che gestisce il database degli studenti
@@ -31,7 +36,8 @@ public class Studente {
     private static final File FILE = new File(NAME); //File del database
     /**< Oggetto della funzione per la creazione dei file JSON */
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
-
+    
+    private transient HBox azioni;
     /**
      * @brief Costruttore di base
      * @param nome nome dello studente
@@ -44,7 +50,49 @@ public class Studente {
         this.cognome = cognome;
         this.matricola = matricola;
         this.e_mail = e_mail;
+        
+        creaBottoni();
     }
+    
+    private void creaBottoni(){
+        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
+        Button Modifica = new Button();
+        Button Elimina = new Button();
+        Button Info = new Button();
+        
+        ImageView viewModifica = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png")));
+        ImageView viewElimina = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png")));
+        ImageView viewInfo = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/info.png")));
+        
+        viewModifica.setFitHeight(15);
+        viewModifica.setFitWidth(15);
+            
+        viewElimina.setFitHeight(15);
+        viewElimina.setFitWidth(15);
+        
+        viewInfo.setFitHeight(15);
+        viewInfo.setFitWidth(15);
+        
+        Modifica.setGraphic(viewModifica);
+        Elimina.setGraphic(viewElimina);
+        Info.setGraphic(viewInfo);
+        
+        Modifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Elimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Info.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+
+        this.azioni = new HBox(10, Modifica, Elimina, Info);
+        this.azioni.setAlignment(Pos.CENTER);
+    }
+    
+    public HBox getAzioni() {
+        // azioni è sempre nulla quando carico dal Database JSON
+        if (azioni == null) {
+            creaBottoni();
+        }
+        return azioni;
+    }
+    
     public String getNome() { return nome; }
     public String getCognome() { return cognome; }
     public String getMatricola() { return matricola; }

@@ -34,30 +34,17 @@ public class ControllerDelete {
             }
             
             
-            chiudi();
+            annulla();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void chiudi() {
-        
-         if (buttonConferma != null) {
-             Stage stage = (Stage) buttonConferma.getScene().getWindow();
-             stage.close();
-         } else {
-             
-             System.out.println("Finestra chiusa (logica da implementare con fx:id)");
-             Button b = new Button(); 
-         }
-    }
     
     
     @FXML
-    public void chiudiFinestra(MouseEvent event) {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+    public void annulla() {
+        Stage stage = (Stage) buttonConferma.getScene().getWindow();
         stage.close();
     }
 }

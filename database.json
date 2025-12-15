@@ -3,9 +3,9 @@
     {
       "titolo": "a",
       "autore": "aa",
-      "annoPubblicazione": 1,
-      "ISBN": 123,
-      "numCopie": 0
+      "annoPubblicazione": "3",
+      "ISBN": "123",
+      "numCopie": "0"
     },
     {
       "titolo": "a",
@@ -48,7 +48,7 @@
       "nome": "TIzio",
       "cognome": "Caio",
       "matricola": "xxx1234xxx",
-      "e_mail": "xxxxxxxx"
+      "e_mail": "456t"
     },
     {
       "nome": "Chiara",
@@ -61,12 +61,6 @@
       "cognome": "Esposito",
       "matricola": "0909",
       "e_mail": "tizio"
-    },
-    {
-      "nome": "Lucia",
-      "cognome": "Lauro",
-      "matricola": "xxxx",
-      "e_mail": "xxxxx"
     },
     {
       "nome": "Achille",
@@ -82,16 +76,6 @@
     }
   ],
   "prestiti": [
-    {
-      "matricola": "xxx1234xxx",
-      "titolo": "giorni",
-      "autore": "x",
-      "annoPubblicazione": 1,
-      "ISBN": 1,
-      "dataInizio": "2025-12-15",
-      "dataFinePrevista": "2026-01-05",
-      "dataRestituzioneEffettiva": ""
-    },
     {
       "matricola": "612708782",
       "titolo": "Ho sbagliato più di te",
@@ -118,6 +102,16 @@
       "autore": "aa",
       "annoPubblicazione": 1,
       "ISBN": 123,
+      "dataInizio": "2025-12-15",
+      "dataFinePrevista": "2026-01-14",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "n13000223",
+      "titolo": "giorni",
+      "autore": "x",
+      "annoPubblicazione": 1,
+      "ISBN": 1,
       "dataInizio": "2025-12-15",
       "dataFinePrevista": "2026-01-14",
       "dataRestituzioneEffettiva": ""

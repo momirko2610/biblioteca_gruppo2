@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +16,7 @@
    <children>
       <AnchorPane>
          <children>
-            <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0">
+            <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0">
                <children>
                   <Text fx:id="label" fill="#2264e5" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuovo Studente">
                      <font>
@@ -29,13 +30,23 @@
                </children>
             </VBox>
 
-            <HBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <HBox alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                <children>
-                  <Button fx:id="conferma" mnemonicParsing="false" onMouseClicked="#salva" prefHeight="40.0" prefWidth="150.0" styleClass="button-blue" text="Conferma" textFill="WHITE">
+                  <Button fx:id="conferma" mnemonicParsing="false" onMouseClicked="#salva" prefHeight="40.0" prefWidth="130.0" styleClass="button-blue" text="Conferma" textFill="WHITE">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  
+                  <Button mnemonicParsing="false" onMouseClicked="#chiudi" prefHeight="40.0" prefWidth="130.0" styleClass="button-blue" text="Annulla" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/close.png" />
                            </image>
                         </ImageView>
                      </graphic>

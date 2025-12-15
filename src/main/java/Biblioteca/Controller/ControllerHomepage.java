@@ -1,33 +1,22 @@
 package Biblioteca.Controller;
 
-import Biblioteca.Model.App;
 import Biblioteca.Model.Database;
-import static Biblioteca.Model.Database.leggiDatabaseLibri;
 import Biblioteca.Model.Libro;
-import static Biblioteca.Model.Libro.ricercaLibroAutore;
-import static Biblioteca.Model.Libro.ricercaLibroISBN;
-import static Biblioteca.Model.Libro.ricercaLibroTitolo;
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ControllerHomepage {
-
-    
-    private App model; 
 
     @FXML
     private TableView<Libro> tableViewBook;
@@ -51,20 +40,9 @@ public class ControllerHomepage {
     @FXML
     private TextField searchBookTextField;
     
-   
-    
-
     private ObservableList<Libro> listaLibri = FXCollections.observableArrayList(); 
-
-
-    public ControllerHomepage() {
-    }
-
-   
-    public void setModel(App model) {
-        this.model = model;
-    }
-
+    
+    public ControllerHomepage() {}
    
     @FXML
     public void initialize() {
@@ -73,7 +51,6 @@ public class ControllerHomepage {
     }
 
     private void configuraTabella() {
-        
         // Libro.java: public long getIsbn() -> "isbn"
         ISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         
@@ -94,36 +71,27 @@ public class ControllerHomepage {
 
     public void caricaDatiAllAvvio() {
         try {
-           
             Database database = new Database();
-            
-            
             List<Libro> libriSalvati = database.leggiDatabaseLibri();
             
-           
-            if (libriSalvati != null && !libriSalvati.isEmpty()) {
-                
+            if (libriSalvati != null && !libriSalvati.isEmpty()) {     
                 listaLibri = FXCollections.observableArrayList(libriSalvati);
-                
-                
+
                 tableViewBook.setItems(listaLibri);
                 
                 System.out.println("Tabella aggiornata con successo. Libri caricati: " + listaLibri.size());
+                
             } else {
                 System.out.println("Nessun libro trovato nel database JSON.");
             }
-
         } catch (IOException e) {
             System.err.println("Errore critico nel caricamento del database: " + e.getMessage());
-            e.printStackTrace();
         }
     }
     
-     @FXML
-    private void onSearchBook() {
-        
+    @FXML
+    private void onSearchBook() { 
         String searchText = searchBookTextField.getText();
-        
         
         if (searchText == null || searchText.trim().isEmpty()) {
             tableViewBook.setItems(listaLibri);
@@ -132,13 +100,10 @@ public class ControllerHomepage {
         
         String lowerCaseFilter = searchText.toLowerCase();
         
-        
         ObservableList<Libro> risultati = FXCollections.observableArrayList();
         
         if (listaLibri != null) {
-            
-            for (Libro libro : listaLibri) {
-                
+            for (Libro libro : listaLibri) { 
                 String titolo = (libro.getTitolo() != null) ? libro.getTitolo().toLowerCase() : "";
                 String autore = (libro.getAutore() != null) ? libro.getAutore().toLowerCase() : "";
                 String isbn = String.valueOf(libro.getIsbn());
@@ -151,37 +116,32 @@ public class ControllerHomepage {
                     risultati.add(libro);
                 }
             }
-            }
-        
-
-        
+        } 
         tableViewBook.setItems(risultati);
-        
     }
+    
     @FXML
     private void goToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/libri.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/login.fxml"));
             Parent root = loader.load();
 
-            
-            Stage stage = (Stage) searchBookTextField.getScene().getWindow();
-            stage.setScene(new Scene(root, 1920, 1080));
+            // recupera lo stage precedente, (in questo caso lo fa attraverso la tableviw, ma potrebbe farlo da qualsiasi altra cosa)
+            Stage stage = (Stage) tableViewBook.getScene().getWindow();
 
-            //Scene scene = new Scene(root);
-            //stage.setScene(scene);
-            
-            
-            stage.show();
-            
-            
+            stage.setMinWidth(450);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(550);
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Login");
             stage.centerOnScreen();
 
+            stage.show();
+
         } catch (IOException e) {
-            System.err.println("Errore caricamento login: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Errore nel caricamento della schermata login: " + e.getMessage());
         }
     }
-
-
 }

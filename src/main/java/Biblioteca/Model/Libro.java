@@ -6,6 +6,11 @@ import com.google.gson.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 /**
  * @brief Classe che gestisce il database dei libri
  * @author Sabrina Soriano
@@ -23,6 +28,8 @@ public class Libro {
     private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
     private static final File FILE = new File(NAME); //File del database
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
+    // transient serve per non far salvare nel sile json l'hbox se no da errore
+    private transient HBox azioni;
 
     /**
      * @brief Costruttore di base
@@ -36,7 +43,43 @@ public class Libro {
         this.autore = autore;
         this.annoPubblicazione = annoPubblicazione;
         this.ISBN = ISBN;
+        
+        creaBottoni();
+
     }
+    
+    private void creaBottoni(){
+        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
+        Button Modifica = new Button();
+        Button Elimina = new Button();
+        
+        ImageView viewModifica = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png")));
+        ImageView viewElimina = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png")));
+        
+        viewModifica.setFitHeight(15);
+        viewModifica.setFitWidth(15);
+            
+        viewElimina.setFitHeight(15);
+        viewElimina.setFitWidth(15);
+
+        Modifica.setGraphic(viewModifica);
+        Elimina.setGraphic(viewElimina);
+        
+        Modifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Elimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+
+        this.azioni = new HBox(10, Modifica, Elimina);
+        this.azioni.setAlignment(Pos.CENTER);
+    }
+    
+    public HBox getAzioni() {
+        // azioni è sempre nulla quando carico dal Database JSON
+        if (azioni == null) {
+            creaBottoni();
+        }
+        return azioni;
+    }
+
     public String getTitolo() { return titolo; }
     public String getAutore() { return autore; }
     public int getAnnoPubblicazione() { return annoPubblicazione; }

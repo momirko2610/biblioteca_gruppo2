@@ -27,11 +27,17 @@ import javafx.stage.Stage;
 public class App extends Application {
     
 public void start(Stage stage) throws Exception {
-        URL urlRisorsa = getClass().getResource("/Biblioteca/fxml/homepage.fxml");
-        System.out.println("URL risorsa:"+ urlRisorsa);
-        Parent root    = FXMLLoader.load(urlRisorsa);
-        stage.setScene(new Scene(root, 1920, 1080));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/homepage.fxml"));
+        Parent root = loader.load();
+        
+        stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+        stage.setMinHeight(600);
+        
+        stage.setScene(new Scene(root));
+        
         stage.setTitle("GestoreBiblioteca");
+        stage.centerOnScreen();
+        
         stage.show();
     }
 

@@ -2,10 +2,8 @@ package Biblioteca.Controller;
 
 import Biblioteca.Model.Bibliotecario; 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,33 +27,29 @@ public class ControllerLogin {
     private Label errore; 
 
     @FXML
-    public void initialize() {
-        ;
-    }
+    public void initialize() {}
 
     @FXML
-    private void onLoginClick(ActionEvent event) {
-       
+    private void onLoginClick() { 
         String emailInserita = TextFieldEmail.getText();
         String passwordInserita = TextFieldPassword.getText();
+        
+        if (emailInserita.isEmpty() || passwordInserita.isEmpty()) {
+            errore.setText("Inserisci email e/o password.");
+            return;
+        }
 
         try {
-           
-            Bibliotecario bibliotecario = new Bibliotecario(emailInserita, passwordInserita);
-
-           
+            Bibliotecario bibliotecario = new Bibliotecario(emailInserita, passwordInserita); 
             int esito = bibliotecario.loginBibliotecario();
-
+            
             if (esito == 1) {
-               
                 errore.setText(""); 
                 System.out.println("Login effettuato con successo!");
-                
-                goToHomepage(event); 
+                goToLibri(); 
 
             } else {
-               
-                errore.setText("Email o password non corrette!");
+                errore.setText("Email o password errate!");
             }
 
         } catch (IOException e) {
@@ -64,14 +58,51 @@ public class ControllerLogin {
         }
     }
 
-   
-    private void goToHomepage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/homepage.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        stage.centerOnScreen();
+   @FXML
+    private void goToLibri() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/libri.fxml"));
+            Parent root = loader.load();
+
+            // recupera lo stage precedente, (in questo caso lo fa attraverso il textfield, ma potrebbe farlo da qualsiasi altra cosa)
+            Stage stage = (Stage) TextFieldEmail.getScene().getWindow();
+
+            stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(600);
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Catalogo Libri");
+            stage.centerOnScreen();
+
+            stage.show();
+
+        } catch (IOException e) {
+            System.err.println("Errore nel caricamento della schermata homepage: " + e.getMessage());
+        }
+    }
+    
+    @FXML
+    private void goToHomepage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/homepage.fxml"));
+            Parent root = loader.load();
+
+            // recupera lo stage precedente, (in questo caso lo fa attraverso il textfield, ma potrebbe farlo da qualsiasi altra cosa)
+            Stage stage = (Stage) TextFieldEmail.getScene().getWindow();
+
+            stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
+            stage.setMinHeight(600);
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Homepage");
+            stage.centerOnScreen();
+
+            stage.show();
+
+        } catch (IOException e) {
+            System.err.println("Errore nel caricamento della schermata homepage: " + e.getMessage());
+        }
     }
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.ControllerPrestiti">
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="600.0" minWidth="900.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.ControllerPrestiti">
    <children>
       <AnchorPane styleClass="dashboard">
          <children>
@@ -84,7 +84,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" styleClass="account">
+                              <Button mnemonicParsing="false" onMouseClicked="#openPopupLogout" styleClass="account">
                                  <graphic>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -105,10 +105,10 @@
                   <Button mnemonicParsing="false" onMouseClicked="#openPopupNuovoPrestito" prefHeight="35.0" prefWidth="160.0" styleClass="button-blue" text="+ Nuovo Prestito" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0" />
                   <TableView fx:id="tablePrestiti" prefHeight="200.0" prefWidth="200.0" styleClass="table" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="160.0">
                     <columns>
-                      <TableColumn fx:id="ISBN" maxWidth="500.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="ISBN" />
-                      <TableColumn fx:id="Matricola" maxWidth="500.0" minWidth="120.0" prefWidth="-1.0" sortable="false" styleClass="search" text="Matricola" />
-                        <TableColumn fx:id="Data" maxWidth="500.0" minWidth="150.0" prefWidth="-1.0" text="Data di Restituzione" />
-                        <TableColumn fx:id="azioni" maxWidth="100.0" minWidth="75.0" prefWidth="-1.0" sortable="false" text="Restituito" />
+                      <TableColumn fx:id="ISBN" maxWidth="600.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="ISBN" />
+                      <TableColumn fx:id="Matricola" maxWidth="600.0" minWidth="120.0" prefWidth="-1.0" sortable="false" styleClass="search" text="Matricola" />
+                      <TableColumn fx:id="Data" maxWidth="600.0" minWidth="100.0" prefWidth="-1.0" text="Data di Restituzione" />
+                      <TableColumn fx:id="Azioni" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Azioni" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

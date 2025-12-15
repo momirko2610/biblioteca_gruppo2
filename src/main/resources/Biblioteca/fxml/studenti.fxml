@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.ControllerStudenti">
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="600.0" minWidth="900.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biblioteca.Controller.ControllerStudenti">
    <children>
       <AnchorPane styleClass="dashboard">
          <children>
@@ -86,7 +86,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="402.0" spacing="5.0" styleClass="search-box" HBox.hgrow="ALWAYS">
                            <children>
                               <TextField fx:id="searchStudentTextField" promptText="Cerca per nome, cognome o matricola..." HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" styleClass="search">
+                              <Button mnemonicParsing="false" onMouseClicked="#onSearchStudent" styleClass="search">
                                  <graphic>
                                     <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -99,9 +99,9 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" styleClass="account">
+                              <Button mnemonicParsing="false" onMouseClicked="#openPopupLogout" styleClass="account">
                                  <graphic>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#openPopupLogout" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/icons8-utente-100.png" />
                                        </image>
@@ -120,10 +120,11 @@
                   <Button mnemonicParsing="false" onMouseClicked="#openPopupStudente" prefHeight="35.0" prefWidth="160.0" styleClass="button-blue" text="+ Nuovo Studente" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0" />
                   <TableView fx:id="tableViewStudenti" prefHeight="200.0" prefWidth="200.0" styleClass="table" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="160.0">
                     <columns>
-                      <TableColumn fx:id="Nome" maxWidth="500.0" minWidth="120.0" prefWidth="200.0" text="Nome" />
-                      <TableColumn fx:id="Cognome" maxWidth="500.0" minWidth="130.0" prefWidth="200.0" styleClass="search" text="Cognome" />
-                        <TableColumn fx:id="Matricola" maxWidth="300.0" minWidth="120.0" prefWidth="120.0" sortable="false" text="Matricola" />
-                        <TableColumn fx:id="Email" maxWidth="800.0" minWidth="200.0" prefWidth="300.0" sortable="false" text="Email" />
+                      <TableColumn fx:id="Nome" maxWidth="450.0" minWidth="100.0" prefWidth="-1.0" text="Nome" />
+                      <TableColumn fx:id="Cognome" maxWidth="450.0" minWidth="100.0" prefWidth="-1.0" styleClass="search" text="Cognome" />
+                        <TableColumn fx:id="Matricola" maxWidth="220.0" minWidth="120.0" prefWidth="-1.0" sortable="false" text="Matricola" />
+                        <TableColumn fx:id="Email" maxWidth="700.0" minWidth="200.0" prefWidth="-1.0" sortable="false" text="Email" />
+                        <TableColumn fx:id="Azioni" maxWidth="150.0" minWidth="150.0" prefWidth="-1.0" sortable="false" text="Azioni" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
