@@ -111,7 +111,7 @@ public class Libro {
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
-        if ( i != -1) {
+        if ( i >= 0) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
             obj.addProperty("numCopie", this.numCopie);
 
@@ -166,7 +166,7 @@ public class Libro {
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
-        if ( i != -1) {
+        if ( i >= 0) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
             if (!(newTitle.isEmpty())) {
                 obj.addProperty("titolo", newTitle);
@@ -196,7 +196,7 @@ public class Libro {
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public int cancellazioneDatiLibro() throws IOException {
-        if (Prestito.ricercaPrestitoISBN(this.ISBN) != -1) {
+        if (Prestito.ricercaPrestitoISBN(this.ISBN) >= 0) {
             System.out.println("Non puoi eliminare il libro, è in prestito");
             return -1;
         }
@@ -211,7 +211,7 @@ public class Libro {
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
-        if ( i != -1) {
+        if ( i >= 0) {
             bookArray.remove(i);
             Database.salva(FILE, label);
             System.out.println("Libro eliminato");

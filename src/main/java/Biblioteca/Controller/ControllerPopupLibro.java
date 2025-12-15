@@ -6,6 +6,7 @@
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Libro;
+import Biblioteca.Model.Studente;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
@@ -15,15 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
- *  @author Mirko Montella
- *  @author Achille Romano
- *  @author Sabrina Soriano
- *  @author Ciro Senese
+ * @author achil
  */
 
 public class ControllerPopupLibro {
@@ -82,7 +82,7 @@ public class ControllerPopupLibro {
     @FXML
     private void salva() {
         try {
-           int esito = 1;
+           int esito;
             String nuovoTitolo = titolo.getText();
             String nuoviAutori = autori.getText();
             String nuovoIsbn = isbn.getText();

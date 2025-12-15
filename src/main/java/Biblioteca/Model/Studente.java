@@ -121,7 +121,7 @@ public class Studente {
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
         
-        if ( i != -1) {
+        if ( i >= 0) {
             System.out.println("Matricola già inserita nel database");
             return -1;
         }
@@ -161,7 +161,7 @@ public class Studente {
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
         
-        if ( i != -1) {
+        if ( i >= 0) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
             if (!(newNome.isEmpty())) obj.addProperty("nome", newNome);
             if (!(newCognome.isEmpty())) {
@@ -201,7 +201,7 @@ public class Studente {
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
         
-        if ( i != -1) {
+        if ( i >= 0) {
             studentArray.remove(i);
             Database.salva(FILE, label);
             System.out.println("Studente eliminato dal database");

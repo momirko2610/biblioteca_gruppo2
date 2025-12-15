@@ -20,10 +20,7 @@ import javafx.stage.Stage;
 
 /**
  *
- *  @author Mirko Montella
- *  @author Achille Romano
- *  @author Sabrina Soriano
- *  @author Ciro Senese
+ * @author achil
  */
 
 public class ControllerPopupStudenti {
@@ -78,7 +75,7 @@ public class ControllerPopupStudenti {
     private void salva() {
         System.out.println("1");
         try {
-           int esito = 1;
+           int esito;
             String nome = TextFieldnome.getText();
             String cognome = TextFieldcognome.getText();
             String matricola = TextFieldmatricola.getText();

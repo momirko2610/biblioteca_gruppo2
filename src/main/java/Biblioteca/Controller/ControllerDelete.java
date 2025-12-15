@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Libro;
@@ -15,15 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-/**
- *
- *  @author Mirko Montella
- *  @author Achille Romano
- *  @author Sabrina Soriano
- *  @author Ciro Senese
- */
+import javafx.stage.StageStyle;
 
 public class ControllerDelete {
 
@@ -43,7 +32,7 @@ public class ControllerDelete {
     @FXML
     public void conferma(MouseEvent event) { 
         try {
-            int esito = 1;
+            int esito;
             if (this.oggettoDaEliminare instanceof Libro) {
                 Libro l = (Libro) this.oggettoDaEliminare;
                 esito = l.cancellazioneDatiLibro();
@@ -63,9 +52,9 @@ public class ControllerDelete {
                 Studente s = (Studente) this.oggettoDaEliminare;
                 esito = s.cancellazioneDatiStudente();
                  
-                if (esito == 1) {
+                if (esito == -2) {
                     errore.setText("Studente non risulta nel nostro database"); 
-                } else if (esito == 9){
+                } else if (esito == -3){
                     errore.setText("ERROR, database not found");
                 } else if (esito == 0) {
                     annulla();
