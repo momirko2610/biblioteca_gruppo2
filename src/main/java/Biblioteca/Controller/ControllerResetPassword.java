@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Bibliotecario;
@@ -6,7 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+/**
+ *
+ *  @author Mirko Montella
+ *  @author Achille Romano
+ *  @author Sabrina Soriano
+ *  @author Ciro Senese
+ */
 public class ControllerResetPassword {
 
     @FXML 

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Bibliotecario; 
@@ -11,6 +16,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+/**
+ *
+ *  @author Mirko Montella
+ *  @author Achille Romano
+ *  @author Sabrina Soriano
+ *  @author Ciro Senese
+ */
 
 public class ControllerLogin {
 
@@ -47,7 +60,7 @@ public class ControllerLogin {
 
             if (esito == 1) {
                 errore.setText("");
-                tentativiFalliti = 0; // Resetta contatore
+                tentativiFalliti = 0;
                 System.out.println("Login effettuato con successo!");
                 goToLibri(bibliotecario); 
 
@@ -69,7 +82,6 @@ public class ControllerLogin {
                         e.printStackTrace();
                     }
                 } else {
-                    // Mostra quanti tentativi mancano
                     errore.setText("Email o password errate! (" + tentativiFalliti + "/3)");
                 }
             }

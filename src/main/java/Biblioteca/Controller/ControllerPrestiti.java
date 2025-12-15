@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Bibliotecario;
@@ -19,7 +24,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+/**
+ *
+ *  @author Mirko Montella
+ *  @author Achille Romano
+ *  @author Sabrina Soriano
+ *  @author Ciro Senese
+ */
 public class ControllerPrestiti {
 
     @FXML

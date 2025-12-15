@@ -27,7 +27,10 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author achil
+ *  @author Mirko Montella
+ *  @author Achille Romano
+ *  @author Sabrina Soriano
+ *  @author Ciro Senese
  */
 
 public class ControllerLibri {
@@ -76,7 +79,7 @@ public class ControllerLibri {
         
         searchBookTextField.setOnKeyPressed(event -> {
             if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
-                onSearchBook(); // Esegui la ricerca
+                onSearchBook();
             }
         });
     }

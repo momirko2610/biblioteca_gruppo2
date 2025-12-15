@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Libro;
@@ -10,9 +15,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
+/**
+ *
+ *  @author Mirko Montella
+ *  @author Achille Romano
+ *  @author Sabrina Soriano
+ *  @author Ciro Senese
+ */
 
 public class ControllerDelete {
 

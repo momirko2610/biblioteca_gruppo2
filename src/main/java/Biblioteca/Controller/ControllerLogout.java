@@ -15,7 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 /**
  *
- * @author achil
+ *  @author Mirko Montella
+ *  @author Achille Romano
+ *  @author Sabrina Soriano
+ *  @author Ciro Senese
  */
 public class ControllerLogout {
 
