@@ -54,16 +54,56 @@ public class Studente {
         creaBottoni();
     }
     
-    public String getNome() { return nome; }
-    public String getCognome() { return cognome; }
-    public String getMatricola() { return matricola; }
-    public String getE_mail() { return e_mail; }
+    private void creaBottoni(){
+        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
+        Button Modifica = new Button();
+        Button Elimina = new Button();
+        Button Info = new Button();
+        
+        ImageView viewModifica = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png")));
+        ImageView viewElimina = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png")));
+        ImageView viewInfo = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/info.png")));
+        
+        viewModifica.setFitHeight(15);
+        viewModifica.setFitWidth(15);
+            
+        viewElimina.setFitHeight(15);
+        viewElimina.setFitWidth(15);
+        
+        viewInfo.setFitHeight(15);
+        viewInfo.setFitWidth(15);
+        
+        Modifica.setGraphic(viewModifica);
+        Elimina.setGraphic(viewElimina);
+        Info.setGraphic(viewInfo);
+        
+        Modifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Elimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Info.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+
+        this.azioni = new HBox(10, Modifica, Elimina, Info);
+        this.azioni.setAlignment(Pos.CENTER);
+    }
+    
     public HBox getAzioni() {
         // azioni è sempre nulla quando carico dal Database JSON
         if (azioni == null) {
             creaBottoni();
         }
         return azioni;
+    }
+    
+    public String getNome() { return nome; }
+    public String getCognome() { return cognome; }
+    public String getMatricola() { return matricola; }
+    public String getE_mail() { return e_mail; }
+    
+    @Override
+    public String toString() {
+        return String.format(
+            "Nome: %s| Cognome: %s | Matricola: %s | e_mail: %s",
+            nome, cognome, matricola, e_mail
+        );
     }
 
     /**
@@ -72,7 +112,7 @@ public class Studente {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
-    public void inserisciDatiStudente() throws IOException {
+    public int inserisciDatiStudente() throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
         
         JsonArray studentArray = Studente.getArrayStudenti(label);
@@ -83,7 +123,7 @@ public class Studente {
         
         if ( i != -1) {
             System.out.println("Matricola già inserita nel database");
-            return;
+            return -1;
         }
         
         else {
@@ -97,6 +137,7 @@ public class Studente {
         
             Database.ordinaDatabaseStudente(studentArray, FILE, label);
         }
+        return 0;
     };
 
     /**
@@ -109,13 +150,13 @@ public class Studente {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
-    public void modificaDatiStudente(String newNome, String newCognome, String newMatricola, String newE_mail) throws IOException{
+    public int modificaDatiStudente(String newNome, String newCognome, String newMatricola, String newE_mail) throws IOException{
         JsonObject label = Database.leggiDatabase(FILE);
         
         JsonArray studentArray = Studente.getArrayStudenti(label);
         if (studentArray == null) {
             System.out.println("ERROR, database not found");
-            return;
+            return -3;
         }
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
@@ -136,8 +177,10 @@ public class Studente {
             Database.salva(FILE, label);
             System.out.println("Studente modificato:");
             System.out.println(obj.toString());
+            
+            return 0;
         }
-        else System.out.println("Studente non risulta nel nostro database");
+        else System.out.println("Studente non risulta nel nostro database"); return -2;
     };
 
     /**
@@ -146,14 +189,14 @@ public class Studente {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
-    public void cancellazioneDatiStudente () throws IOException {
+    public int cancellazioneDatiStudente () throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
         
         JsonArray studentArray = Studente.getArrayStudenti(label);
         
         if (studentArray == null) {
             System.out.println("ERROR, database not found");
-            return;
+            return -3;
         }
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
@@ -162,8 +205,9 @@ public class Studente {
             studentArray.remove(i);
             Database.salva(FILE, label);
             System.out.println("Studente eliminato dal database");
+            return 0;
         }
-        else System.out.println("Studente non risulta nel nostro database");
+        else System.out.println("Studente non risulta nel nostro database"); return -2;
     };
 
     /**
@@ -242,42 +286,6 @@ public class Studente {
             return null;
         }
         return studentArray;
-    }
-    
-    /**
-     * @brief crea bottini interfaccia grafica studenti
-     * @pre N/A
-     * @post bottoni
-     */
-    private void creaBottoni(){
-        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
-        Button Modifica = new Button();
-        Button Elimina = new Button();
-        Button Info = new Button();
-        
-        ImageView viewModifica = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png")));
-        ImageView viewElimina = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png")));
-        ImageView viewInfo = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/info.png")));
-        
-        viewModifica.setFitHeight(15);
-        viewModifica.setFitWidth(15);
-            
-        viewElimina.setFitHeight(15);
-        viewElimina.setFitWidth(15);
-        
-        viewInfo.setFitHeight(15);
-        viewInfo.setFitWidth(15);
-        
-        Modifica.setGraphic(viewModifica);
-        Elimina.setGraphic(viewElimina);
-        Info.setGraphic(viewInfo);
-        
-        Modifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-        Elimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-        Info.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-
-        this.azioni = new HBox(10, Modifica, Elimina, Info);
-        this.azioni.setAlignment(Pos.CENTER);
     }
     
 }

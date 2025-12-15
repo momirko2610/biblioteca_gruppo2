@@ -48,6 +48,12 @@ public class ControllerHomepage {
     public void initialize() {
         configuraTabella();
         caricaDatiAllAvvio();
+        
+        searchBookTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+                onSearchBook(); // Esegui la ricerca
+            }
+        });
     }
 
     private void configuraTabella() {

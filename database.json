@@ -1,18 +1,18 @@
 {
   "libri": [
     {
-      "titolo": "a",
-      "autore": "aa",
-      "annoPubblicazione": "2",
-      "ISBN": "1234",
-      "numCopie": "4"
-    },
-    {
       "titolo": "Frankestein",
       "autore": "Mary Shelly",
       "annoPubblicazione": "40",
       "ISBN": "123456789",
       "numCopie": 2
+    },
+    {
+      "titolo": "frrads",
+      "autore": "dsfd",
+      "annoPubblicazione": 4,
+      "ISBN": 44,
+      "numCopie": 4
     },
     {
       "titolo": "giorni",
@@ -29,11 +29,11 @@
       "numCopie": 10
     },
     {
-      "titolo": "Ingegneria del software",
-      "autore": "pedro pascal",
-      "annoPubblicazione": "1",
-      "ISBN": "1231",
-      "numCopie": "1"
+      "titolo": "jndff",
+      "autore": "sdg",
+      "ISBN": 1234567890123,
+      "annoPubblicazione": 1212,
+      "numCopie": 2
     },
     {
       "titolo": "xxxxxxx",
@@ -118,7 +118,7 @@
     },
     {
       "e_mail": "ciro@unisa.it",
-      "password": "1122334455"
+      "password": "123456789"
     }
   ]
 }

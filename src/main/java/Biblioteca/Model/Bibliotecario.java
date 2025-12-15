@@ -37,6 +37,7 @@ public class Bibliotecario {
         this.e_mail = e_mail;
         this.password = password;
     }
+    public String getEmail() { return this.e_mail;}
     /**
      * @return 
      * @throws java.io.FileNotFoundException
@@ -86,11 +87,8 @@ public class Bibliotecario {
             JsonObject obj = librarianArray.get(i).getAsJsonObject();
             if (obj.get("e_mail").getAsString().equalsIgnoreCase(this.e_mail)) {
                 obj.addProperty("password", password);
+                Database.salva(FILE, label);
                 return 1;
-            }
-            else {
-                System.out.println("Credenziali non valide, riprova");
-                return 0;
             }
         }
         return -1;
@@ -114,6 +112,9 @@ public class Bibliotecario {
                 }
                 String password = builder.toString();
                 obj.addProperty("password", password);
+                
+                Database.salva(FILE, label);
+                
                 return password;
             }
         }

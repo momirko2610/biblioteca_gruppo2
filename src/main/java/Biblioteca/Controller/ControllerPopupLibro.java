@@ -6,12 +6,20 @@
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Libro;
+import Biblioteca.Model.Studente;
+import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -34,6 +42,8 @@ public class ControllerPopupLibro {
     private TextField data;
     @FXML 
     private Button conferma;
+    @FXML
+    private Label errore; 
 
     private Libro libroCorrente; 
 
@@ -72,7 +82,7 @@ public class ControllerPopupLibro {
     @FXML
     private void salva() {
         try {
-           
+           int esito = 1;
             String nuovoTitolo = titolo.getText();
             String nuoviAutori = autori.getText();
             String nuovoIsbn = isbn.getText();
@@ -81,17 +91,33 @@ public class ControllerPopupLibro {
 
             if (libroCorrente == null) {
                 Libro l=new Libro(nuovoTitolo, nuoviAutori, dataPubb, new Long(nuovoIsbn), copie);
-                l.inserisciLibro();
+                esito = l.inserisciLibro();
+                
+                if (esito == -1) {
+                    errore.setText("Formato ISBN incorretto, deve essere un numero di 13 cifre");
+                } else if (esito == -2) {
+                    errore.setText("Formato Anno incorretto, deve essere un numero di 4 cifre");
+                }
+                else if (esito == 0) {
+                    chiudi();
+                    apriPopupSuccesso(l, "inserito");
+                }
               
             } else {
-               
-                libroCorrente.modificaDatiLibro(nuovoTitolo, nuoviAutori, data.getText(), nuovoIsbn, nCopie.getText());
+                esito = libroCorrente.modificaDatiLibro(nuovoTitolo, nuoviAutori, data.getText(), nuovoIsbn, nCopie.getText());
+
+                if (esito == -2){
+                    errore.setText("Libro non risulta nel nostro database");
+                } else if (esito == -3){
+                    errore.setText("ERROR, database not found");
+                } else if (esito == 0) {
+                    chiudi();
+                    apriPopupSuccesso(libroCorrente, "modificato");
+                }
             }
 
-            chiudi();
-
         } catch (NumberFormatException e) {
-            mostraErrore("Devi compilare tutti i campi");
+            errore.setText("Devi compilare tutti i campi in modo corretto: isbn, numero copie e anno sono dei numerici");
         } catch (Exception e) {
             mostraErrore("Errore durante il salvataggio: " + e.getMessage());
         }
@@ -107,6 +133,26 @@ public class ControllerPopupLibro {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(msg);
         alert.show();
+    }
+    
+    private void apriPopupSuccesso(Libro libroSalvato, String azione) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/successo.fxml"));
+            Parent root = loader.load();
+            
+            ControllerSuccesso controller = loader.getController();
+            controller.setMessaggio(String.format("Libro: %s %s correttamente!", libroSalvato.getTitolo(), azione));
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Impossibile aprire il popup di successo.");
+        }
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package Biblioteca.Controller;
 
+import Biblioteca.Model.Bibliotecario;
 import Biblioteca.Model.Database;
 import Biblioteca.Model.Libro;
 import java.io.IOException;
@@ -57,6 +58,12 @@ public class ControllerLibri {
     @FXML private TableColumn<Libro, HBox> Azioni;  
 
     private ObservableList<Libro> listaLibri = FXCollections.observableArrayList(); 
+    
+    private Bibliotecario bibliotecarioLoggato;
+
+    public void setBibliotecario(Bibliotecario bibliotecario) {
+        this.bibliotecarioLoggato = bibliotecario;
+    }
 
     public ControllerLibri() {
     }
@@ -66,6 +73,12 @@ public class ControllerLibri {
     public void initialize() {
         configuraTabella();
         caricaDatiAllAvvio();
+        
+        searchBookTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+                onSearchBook(); // Esegui la ricerca
+            }
+        });
     }
 
     private void configuraTabella() {
@@ -316,4 +329,26 @@ public class ControllerLibri {
                 e.printStackTrace();
             }
         }
+        @FXML
+        private void apriResetPassword() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/resetPassword.fxml"));
+            Parent root = loader.load();
+
+            ControllerResetPassword controller = loader.getController();
+            controller.setDatiUtente(this.bibliotecarioLoggato.getEmail()); 
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            
+            stage.setTitle("Reset Password");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+                
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+}

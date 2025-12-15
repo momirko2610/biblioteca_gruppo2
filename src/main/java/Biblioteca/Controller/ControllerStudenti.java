@@ -5,6 +5,7 @@
  */
 package Biblioteca.Controller;
 
+import Biblioteca.Model.Bibliotecario;
 import Biblioteca.Model.Database;
 import Biblioteca.Model.Studente;
 import java.io.IOException;
@@ -55,7 +56,12 @@ public class ControllerStudenti {
     
 
     private ObservableList<Studente> listaStudente= FXCollections.observableArrayList(); 
-
+    
+    private Bibliotecario bibliotecarioLoggato;
+    
+    public void setBibliotecario(Bibliotecario bibliotecario) {
+        this.bibliotecarioLoggato = bibliotecario;
+    }
    
     public ControllerStudenti() {
     }
@@ -65,6 +71,12 @@ public class ControllerStudenti {
     public void initialize() {
         configuraTabella();
         caricaDatiAllAvvio();
+        
+        searchStudentTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+                onSearchStudent(); // Esegui la ricerca
+            }
+        });
     }
 
     private void configuraTabella() {
@@ -336,6 +348,29 @@ public class ControllerStudenti {
 
         } catch (IOException e) {
             System.err.println("Errore nel caricamento del popup di logout: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+        private void apriResetPassword() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/resetPassword.fxml"));
+            Parent root = loader.load();
+
+            ControllerResetPassword controller = loader.getController();
+            controller.setDatiUtente(this.bibliotecarioLoggato.getEmail()); 
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            
+            stage.setTitle("Logout");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+                
+            stage.show();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

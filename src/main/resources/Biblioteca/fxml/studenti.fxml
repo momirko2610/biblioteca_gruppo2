@@ -99,6 +99,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#apriResetPassword" prefHeight="30.0" text="Reset Password" />
                               <Button mnemonicParsing="false" onMouseClicked="#openPopupLogout" styleClass="account">
                                  <graphic>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#openPopupLogout" pickOnBounds="true" preserveRatio="true">

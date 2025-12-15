@@ -84,6 +84,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#apriResetPassword" prefHeight="30.0" text="Reset Password" />
                               <Button mnemonicParsing="false" onMouseClicked="#openPopupLogout" styleClass="account">
                                  <graphic>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -114,6 +115,11 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  <Label fx:id="errore" textFill="#d92020" wrapText="true">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

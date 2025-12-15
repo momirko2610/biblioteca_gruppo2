@@ -25,6 +25,8 @@ public class ControllerLogin {
     
     @FXML
     private Label errore; 
+    
+    private int tentativiFalliti = 0;
 
     @FXML
     public void initialize() {}
@@ -40,32 +42,55 @@ public class ControllerLogin {
         }
 
         try {
-            Bibliotecario bibliotecario = new Bibliotecario(emailInserita, passwordInserita); 
+            Bibliotecario bibliotecario = new Bibliotecario(emailInserita, passwordInserita);
             int esito = bibliotecario.loginBibliotecario();
-            
+
             if (esito == 1) {
-                errore.setText(""); 
+                errore.setText("");
+                tentativiFalliti = 0; // Resetta contatore
                 System.out.println("Login effettuato con successo!");
-                goToLibri(); 
+                goToLibri(bibliotecario); 
 
             } else {
-                errore.setText("Email o password errate!");
+                tentativiFalliti++;
+                errore.setText(String.format("Hai %d tentativi prima del rest forzato della password!", 3-tentativiFalliti));
+                if (tentativiFalliti >= 3) {
+                    try {
+                        String nuovaPassword = bibliotecario.resetPassword();
+                        
+                        if (nuovaPassword != null) {
+                            errore.setText("Troppi tentativi! Password resettata: " + nuovaPassword);
+                            tentativiFalliti = 0; 
+                        } else {
+                            errore.setText("Errore: Email non trovata per il reset.");
+                        }
+                    } catch (Exception e) {
+                        errore.setText("Errore durante il reset della password.");
+                        e.printStackTrace();
+                    }
+                } else {
+                    // Mostra quanti tentativi mancano
+                    errore.setText("Email o password errate! (" + tentativiFalliti + "/3)");
+                }
             }
 
         } catch (IOException e) {
-            System.err.println("Errore nella lettura del database: " + e.getMessage());
+            System.err.println("Errore database: " + e.getMessage());
             errore.setText("Errore di connessione al database.");
         }
     }
 
    @FXML
-    private void goToLibri() {
+    private void goToLibri(Bibliotecario bibliotecarioLoggato) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/libri.fxml"));
             Parent root = loader.load();
 
             // recupera lo stage precedente, (in questo caso lo fa attraverso il textfield, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) TextFieldEmail.getScene().getWindow();
+            
+            ControllerLibri controller = loader.getController();
+            controller.setBibliotecario(bibliotecarioLoggato);
 
             stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
             stage.setMinHeight(600);
