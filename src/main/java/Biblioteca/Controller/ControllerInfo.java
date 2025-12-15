@@ -30,7 +30,8 @@ public class ControllerInfo {
     private Studente studenteSelezionato;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        Database.creaDatabase();
         ISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         
         DataPrestito.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));

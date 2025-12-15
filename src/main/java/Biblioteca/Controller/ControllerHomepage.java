@@ -45,7 +45,8 @@ public class ControllerHomepage {
     public ControllerHomepage() {}
    
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        Database.creaDatabase();
         configuraTabella();
         caricaDatiAllAvvio();
         
@@ -77,8 +78,8 @@ public class ControllerHomepage {
 
     public void caricaDatiAllAvvio() {
         try {
-            Database database = new Database();
-            List<Libro> libriSalvati = database.leggiDatabaseLibri();
+            
+            List<Libro> libriSalvati = Database.leggiDatabaseLibri();
             
             if (libriSalvati != null && !libriSalvati.isEmpty()) {     
                 listaLibri = FXCollections.observableArrayList(libriSalvati);

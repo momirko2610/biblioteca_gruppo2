@@ -38,7 +38,8 @@ public class ControllerPopupPrestiti {
     private List<Studente> listaStudentiCompleta;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        Database.creaDatabase();
         label.setText("Nuovo Prestito");
         datePickerRestituzione.setValue(LocalDate.now().plusDays(30));
         

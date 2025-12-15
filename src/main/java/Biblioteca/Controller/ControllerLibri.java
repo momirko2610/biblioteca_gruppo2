@@ -70,7 +70,8 @@ public class ControllerLibri {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        Database.creaDatabase();
         configuraTabella();
         caricaDatiAllAvvio();
         
@@ -104,11 +105,8 @@ public class ControllerLibri {
     }
 
     void caricaDatiAllAvvio() {
-        try {
-          
-            Database database = new Database();
-    
-            List<Libro> libriSalvati = database.leggiDatabaseLibri();
+        try {    
+            List<Libro> libriSalvati = Database.leggiDatabaseLibri();
             
 
             if (libriSalvati != null && !libriSalvati.isEmpty()) {
