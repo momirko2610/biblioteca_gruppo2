@@ -62,8 +62,14 @@ public class Database {
             label.add("libri", new JsonArray());
             label.add("studenti", new JsonArray());
             label.add("prestiti", new JsonArray());
-            label.add("bibliotecari", new JsonArray());
+            JsonArray lib = new JsonArray();
 
+            JsonObject librarian = new JsonObject();
+            librarian.addProperty("e_mail", "bibliotecario@unisa.it");
+            librarian.addProperty("password", "123456789");
+
+            lib.add(librarian);
+            label.add("bibliotecari", lib);
             //Scriviamo sul database
             try (FileWriter writer = new FileWriter(NAME)) {
                 database.toJson(label, writer); /*!<Scrive sul file*/
