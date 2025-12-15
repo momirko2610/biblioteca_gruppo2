@@ -28,6 +28,7 @@ public class Studente {
     private String e_mail; /*!<e-mail dello studente*/
     /**< Nome del database che verrà creato */
     private static final String NAME = "database.json";
+    private static final File FILE = new File(NAME); //File del database
     /**< Oggetto della funzione per la creazione dei file JSON */
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
 
@@ -64,17 +65,10 @@ public class Studente {
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
     public void inserisciDatiStudente() throws IOException {
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        File file = new File(NAME);
+        JsonArray studentArray = Studente.getArrayStudenti(label);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array degli studenti
-        JsonArray studentArray = label.getAsJsonArray("studenti");
         if (studentArray == null) studentArray = new JsonArray();
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
@@ -93,7 +87,7 @@ public class Studente {
             newStudent.addProperty("e_mail", this.e_mail);
             studentArray.add(newStudent);
         
-            Database.ordinaDatabaseStudente(studentArray, file, label);
+            Database.ordinaDatabaseStudente(studentArray, FILE, label);
         }
     };
 
@@ -108,16 +102,9 @@ public class Studente {
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
     public void modificaDatiStudente(String newNome, String newCognome, String newMatricola, String newE_mail) throws IOException{
-        File file = new File(NAME);
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray studentArray = label.getAsJsonArray("studenti");
+        JsonArray studentArray = Studente.getArrayStudenti(label);
         if (studentArray == null) {
             System.out.println("ERROR, database not found");
             return;
@@ -130,7 +117,7 @@ public class Studente {
             if (!(newNome.isEmpty())) obj.addProperty("nome", newNome);
             if (!(newCognome.isEmpty())) {
                 obj.addProperty("cognome", newCognome);
-                Database.ordinaDatabaseStudente(studentArray, file, label);
+                Database.ordinaDatabaseStudente(studentArray, FILE, label);
             }
             if (!(newMatricola.isEmpty())) {
                 obj.addProperty("matricola", newMatricola);
@@ -138,11 +125,9 @@ public class Studente {
             }
             if (!(newE_mail.isEmpty())) obj.addProperty("e_mail", newE_mail);
             
-            try (FileWriter writer = new FileWriter(file)) {
-                database.toJson(label, writer);
-            }
-        System.out.println("Studente modificato:");
-        System.out.println(obj.toString());
+            Database.salva(FILE, label);
+            System.out.println("Studente modificato:");
+            System.out.println(obj.toString());
         }
         else System.out.println("Studente non risulta nel nostro database");
     };
@@ -154,16 +139,10 @@ public class Studente {
      * @post Il database contenente l’elenco degli studenti è aggiornato.
      */
     public void cancellazioneDatiStudente () throws IOException {
-        File file = new File(NAME);
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonArray studentArray = Studente.getArrayStudenti(label);
         
-        //Ottengo l'array degli student
-        JsonArray studentArray = label.getAsJsonArray("studenti");
         if (studentArray == null) {
             System.out.println("ERROR, database not found");
             return;
@@ -173,14 +152,13 @@ public class Studente {
         
         if ( i != -1) {
             studentArray.remove(i);
-            try (FileWriter writer = new FileWriter(file)) {
-                database.toJson(label, writer);
-            }
+            Database.salva(FILE, label);
             System.out.println("Studente eliminato dal database");
         }
         else System.out.println("Studente non risulta nel nostro database");
     };
 
+    //DA ELIMINARE
     /**
      * @throws java.io.IOException
      * @brief Mostra gli elementi presenti nel database degli studentui
@@ -211,16 +189,11 @@ public class Studente {
      * @return posizione del libro nel database o -1 in caso di libro non presente
      */
     public static int ricercaStudenteMatricola(String matricola) throws IOException{
-        File file = new File(NAME);
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Ottengo l'array degli studenti
-        JsonArray studentArray = label.getAsJsonArray("studenti");
-        if (studentArray == null) return -1;
+        JsonArray studentArray = Studente.getArrayStudenti(label);
+        
+        if (studentArray == null) return -2;
         
         for (int i = 0; i < studentArray.size(); i++) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
@@ -241,16 +214,10 @@ public class Studente {
      * @post il bibliotecariə visualizza le informazioni dello studente cercato
      */
     public static List<Studente> ricercaStudenteCognome(String cognome) throws IOException{
-        File file = new File(NAME);
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonArray studentArray = Studente.getArrayStudenti(label);
         
-        //Ottengo l'array degli studenti
-        JsonArray studentArray = label.getAsJsonArray("studenti");
         if (studentArray == null) {
             System.out.println("ERROR, database not found");
             return null;
@@ -273,6 +240,23 @@ public class Studente {
         return(studenti);
         
     };
+    
+     /**
+     * @throws java.io.IOException
+     * @brief salva in un JsonArray gli studenti contenuti nel database
+     * @pre deve esistere un JsonObject contente gli studenti salvati nel database
+     * @post Ottengo l'array degli studenti
+     */
+    
+    private static JsonArray getArrayStudenti(JsonObject label) {
+        //Ottengo l'array dei studenti
+        JsonArray studentArray = label.getAsJsonArray("studenti");
+        if (studentArray == null) {
+            System.out.println("ERROR, database not found");
+            return null;
+        }
+        return studentArray;
+    }
     
     // DA ELIMINARE
     /**

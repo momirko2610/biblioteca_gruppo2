@@ -21,7 +21,7 @@ public class Libro {
     private int numCopie = 1; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
     
     private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
-    
+    private static final File FILE = new File(NAME); //File del database
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
 
     /**
@@ -49,7 +49,7 @@ public class Libro {
             titolo, autore, annoPubblicazione, ISBN, numCopie
         );
     }
-
+    
     
     /**
      * @throws java.io.IOException
@@ -58,17 +58,10 @@ public class Libro {
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void inserisciLibro() throws IOException {
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        File file = new File(NAME);
+        JsonArray bookArray = Libro.getArrayLibri(label);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
         if (bookArray == null) bookArray = new JsonArray();
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
@@ -91,13 +84,11 @@ public class Libro {
             newBook.addProperty("numCopie", this.numCopie);
             bookArray.add(newBook);
         
-            Database.ordinaDatabaseLibro(bookArray, file, label);
+            Database.ordinaDatabaseLibro(bookArray, FILE, label);
             
             return;
         }
-        try (FileWriter writer = new FileWriter(file)) {
-        database.toJson(label, writer);
-        }
+        Database.salva(FILE, label);
     }
 
 
@@ -113,20 +104,11 @@ public class Libro {
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
     public void modificaDatiLibro( String newTitle, String newAuthor, String newAnnoPubblicazione, String newISBN, String newNumCopie) throws IOException{
-        File file = new File(NAME);
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonArray bookArray = Libro.getArrayLibri(label);
         
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return;
-        }
+        if (bookArray == null) return;
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
@@ -134,7 +116,7 @@ public class Libro {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
             if (!(newTitle.isEmpty())) {
                 obj.addProperty("titolo", newTitle);
-                Database.ordinaDatabaseLibro(bookArray, file, label);             
+                Database.ordinaDatabaseLibro(bookArray, FILE, label);             
             }
             if (!(newAuthor.isEmpty())) obj.addProperty("autore", newAuthor);
             if (!(newAnnoPubblicazione.isEmpty())) obj.addProperty("annoPubblicazione", newAnnoPubblicazione);
@@ -144,9 +126,8 @@ public class Libro {
             }
             if (!(newNumCopie.isEmpty())) obj.addProperty("numCopie", newNumCopie);
                         
-            try (FileWriter writer = new FileWriter(file)) {
-                database.toJson(label, writer);
-            }
+            Database.salva(FILE, label);
+            
         System.out.println("Libro modificato:");
         System.out.println(obj.toString());
         }
@@ -164,18 +145,10 @@ public class Libro {
             System.out.println("Non puoi eliminare il libro, è in prestito");
             return;
         }
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        File file = new File(NAME);
+        JsonArray bookArray = Libro.getArrayLibri(label);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        
-        JsonArray bookArray = label.getAsJsonArray("libri");
         if (bookArray == null) {
             System.out.println("ERROR, database not found");
             return;
@@ -185,14 +158,13 @@ public class Libro {
         
         if ( i != -1) {
             bookArray.remove(i);
-            try (FileWriter writer = new FileWriter(file)) {
-                database.toJson(label, writer);
-            }
+            Database.salva(FILE, label);
             System.out.println("Libro eliminato");
         }
         else System.out.println("Libro non risulta nel nostro database");
     };
 
+    //DA ELIMINARE
     /**
      * @throws java.io.IOException
      * @brief Mostra gli elementi presenti nel database dei libri
@@ -216,16 +188,12 @@ public class Libro {
      * @return posizione del libro nel database o -1 in caso di libro non presente
      */
     public static int ricercaLibroISBN(Long ISBN) throws IOException {
-        File file = new File(NAME);
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
         
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) return -1;
+        JsonObject label = Database.leggiDatabase(FILE);
+        
+        JsonArray bookArray = Libro.getArrayLibri(label);
+        
+        if (bookArray == null) return -2;
         
         for (int i = 0; i < bookArray.size(); i++) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
@@ -245,16 +213,11 @@ public class Libro {
      * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
      */
     public static List<Libro> ricercaLibroTitolo(String titolo)throws IOException{
-        File file = new File(NAME);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
+        JsonArray bookArray = Libro.getArrayLibri(label);
+        
         if (bookArray == null) {
             System.out.println("ERROR, database not found");
             return null;
@@ -285,16 +248,11 @@ public class Libro {
      * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
      */
     public static List<Libro> ricercaLibroAutore(String autore)throws IOException{
-        File file = new File(NAME);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
+        JsonArray bookArray = Libro.getArrayLibri(label);
+        
         if (bookArray == null) {
             System.out.println("ERROR, database not found");
             return null;
@@ -314,6 +272,23 @@ public class Libro {
         
         return(libri);
     };
+    
+     /**
+     * @throws java.io.IOException
+     * @brief salva in un JsonArray i libri contenuti nel database
+     * @pre deve esistere un JsonObject contente i libri salvati nel database
+     * @post Ottengo l'array dei libri
+     */
+    
+    private static JsonArray getArrayLibri(JsonObject label) {
+        //Ottengo l'array dei libri
+        JsonArray bookArray = label.getAsJsonArray("libri");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return null;
+        }
+        return bookArray;
+    }
     
     
     

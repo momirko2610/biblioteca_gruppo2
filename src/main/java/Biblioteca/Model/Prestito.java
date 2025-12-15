@@ -48,7 +48,7 @@ public class Prestito {
         this.dataFinePrevista = dataFinePrevista;
     }
 
-public String getMatricola() { return matricola; }
+    public String getMatricola() { return matricola; }
     public long getIsbn() { return ISBN; } 
     public LocalDate getDataInizio() { return dataInizio; }
     public LocalDate getDataFinePrevista() { return dataFinePrevista; }
@@ -167,9 +167,7 @@ public String getMatricola() { return matricola; }
         prestitiArray.add(newPrestito);
 
       
-        try (FileWriter writer = new FileWriter(file)) {
-            database.toJson(label, writer);
-        }
+        Database.ordinaDatabasePrestito(prestitiArray, file, label);
         
         System.out.println("Prestito registrato con successo!");
     }

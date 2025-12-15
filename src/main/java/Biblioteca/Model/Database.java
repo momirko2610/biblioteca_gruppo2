@@ -212,7 +212,66 @@ public class Database {
         //Salvo
         try (FileWriter writer = new FileWriter(file)) {
             database.toJson(label, writer);
+        } 
+    }
+    
+    /**
+     * @param array
+     * @param file
+     * @param label
+     * @throws java.io.IOException
+     * @brief ordina i prestiti presenti nel database per data prevista di consegna
+     * @pre N/A
+     * @post Database prestiti ordinato
+     */
+    public static void ordinaDatabasePrestito(JsonArray array, File file, JsonObject label) throws IOException {
+        if (array == null) return;
+        List<JsonObject> loanList = new ArrayList<>();
+        for (JsonElement element : array) {
+            loanList.add(element.getAsJsonObject());
         }
-       
+        
+        //Ordino la lista in base al titolo
+        loanList.sort((a, b) -> a.get("dataFinePrevista").getAsString().compareToIgnoreCase(b.get("dataFinePrevista").getAsString()));
+        //Inserisco i libri in un Array ordinato
+        JsonArray sortedArray = new JsonArray();
+        for (JsonObject loan : loanList) {
+            sortedArray.add(loan);
+        }
+            
+        //Aggiorno l'Array
+        label.add("prestiti", sortedArray);
+
+        //Salvo
+        try (FileWriter writer = new FileWriter(file)) {
+            database.toJson(label, writer);
+        } 
+    }
+    
+    /**
+     * @throws java.io.IOException
+     * @brief salva in un JsonObject i libri contenuti nel database
+     * @pre deve esistere un database
+     * @post JsonObject con i libri contenuti nel database
+     */
+    
+    public static JsonObject leggiDatabase(File file) throws IOException{
+        //Ritorno un file JsonObject contenente i libri salvati nel database
+        try (FileReader reader = new FileReader(file)) {
+            return (database.fromJson(reader, JsonObject.class));
+        }
+    }
+    
+     /**
+     * @throws java.io.IOException
+     * @brief salva dati sul database
+     * @pre presenza database
+     * @post database aggiornato
+     */
+    
+    public static void salva(File file, JsonObject label) throws IOException {
+        try (FileWriter writer = new FileWriter(file)) {
+            database.toJson(label, writer);
+        }
     }
 }

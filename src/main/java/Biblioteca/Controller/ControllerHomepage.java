@@ -168,8 +168,8 @@ public class ControllerHomepage {
             Stage stage = (Stage) searchBookTextField.getScene().getWindow();
             stage.setScene(new Scene(root, 1920, 1080));
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            //Scene scene = new Scene(root);
+            //stage.setScene(scene);
             
             
             stage.show();
