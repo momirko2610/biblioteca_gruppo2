@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Database;
@@ -15,35 +10,23 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-/**
- *
- *  @author Mirko Montella
- *  @author Achille Romano
- *  @author Sabrina Soriano
- *  @author Ciro Senese
- */
+
 public class ControllerPopupPrestiti {
 
-    @FXML
-    private Text label;
+    @FXML private Text label;
+    @FXML private ComboBox<String> comboLibri; 
+    @FXML private ComboBox<String> comboStudenti; 
+    @FXML private DatePicker datePickerRestituzione;
+    @FXML private Button conferma;
     
-    @FXML
-    private ComboBox<String> comboLibri; 
-    
-    @FXML
-    private ComboBox<String> comboStudenti; 
-    
-    @FXML
-    private DatePicker datePickerRestituzione;
-    
-    @FXML
-    private Button conferma;
+    // Assicurati che nel file FXML ci sia <Label fx:id="errore" ... />
+    @FXML private Label errore; 
 
     private List<Libro> listaLibriCompleta;
     private List<Studente> listaStudentiCompleta;
@@ -53,100 +36,95 @@ public class ControllerPopupPrestiti {
         Database.creaDatabase();
         label.setText("Nuovo Prestito");
         datePickerRestituzione.setValue(LocalDate.now().plusDays(30));
-        
         caricaDatiNelleComboBox();
     }
 
     private void caricaDatiNelleComboBox() {
+        // ... (Codice di caricamento combobox identico a prima) ...
         try {
-           
-            System.out.println("Tentativo caricamento libri...");
             listaLibriCompleta = Database.leggiDatabaseLibri(); 
-            
             ObservableList<String> opzioniLibri = FXCollections.observableArrayList();
-            
-            if (listaLibriCompleta != null && !listaLibriCompleta.isEmpty()) {
-                System.out.println("Libri trovati: " + listaLibriCompleta.size());
+            if (listaLibriCompleta != null) {
                 for (Libro l : listaLibriCompleta) {
-                   
-                    if (l != null) {
-                        opzioniLibri.add(l.getIsbn() + " - " + l.getTitolo());
-                    }
+                    if (l != null) opzioniLibri.add(l.getIsbn() + " - " + l.getTitolo());
                 }
-            } else {
-                System.err.println("ATTENZIONE: Lista libri è NULL o VUOTA.");
             }
             comboLibri.setItems(opzioniLibri);
 
-           
-            System.out.println("Tentativo caricamento studenti...");
             listaStudentiCompleta = Database.leggiDatabaseStudenti(); 
-            
             ObservableList<String> opzioniStudenti = FXCollections.observableArrayList();
-            
-            if (listaStudentiCompleta != null && !listaStudentiCompleta.isEmpty()) {
-                System.out.println("Studenti trovati: " + listaStudentiCompleta.size());
+            if (listaStudentiCompleta != null) {
                 for (Studente s : listaStudentiCompleta) {
-                    if (s != null) {
-                        opzioniStudenti.add(s.getMatricola() + " - " + s.getCognome());
-                    }
+                    if (s != null) opzioniStudenti.add(s.getMatricola() + " - " + s.getCognome());
                 }
-            } else {
-                System.err.println("ATTENZIONE: Lista studenti è NULL o VUOTA.");
             }
             comboStudenti.setItems(opzioniStudenti);
 
-        } catch (IOException e) {
-            mostraErrore("Errore I/O nel caricamento dati: " + e.getMessage());
-            e.printStackTrace();
         } catch (Exception e) {
-            mostraErrore("Errore generico: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML
     private void salva() {
+        // Resetta errore precedente
+        if (errore != null) errore.setText("");
+
         try {
             String selezioneLibro = comboLibri.getValue();
             String selezioneStudente = comboStudenti.getValue();
             LocalDate dataFine = datePickerRestituzione.getValue();
 
             if (selezioneLibro == null || selezioneStudente == null) {
-                mostraErrore("Devi selezionare un Libro e uno Studente!");
+                if (errore != null) errore.setText("Seleziona Libro e Studente!");
                 return;
             }
-            
             if (dataFine == null || dataFine.isBefore(LocalDate.now())) {
-                mostraErrore("Data di restituzione non valida!");
+                if (errore != null) errore.setText("Data restituzione non valida!");
                 return;
             }
 
-    
             long isbnSelezionato = Long.parseLong(selezioneLibro.split(" - ")[0].trim());
             String matricolaSelezionata = selezioneStudente.split(" - ")[0].trim();
 
             Libro libroScelto = listaLibriCompleta.stream()
-                    .filter(l -> l.getIsbn() == isbnSelezionato)
-                    .findFirst().orElse(null);
-
+                    .filter(l -> l.getIsbn() == isbnSelezionato).findFirst().orElse(null);
             Studente studenteScelto = listaStudentiCompleta.stream()
-                    .filter(s -> s.getMatricola().equalsIgnoreCase(matricolaSelezionata))
-                    .findFirst().orElse(null);
-            
+                    .filter(s -> s.getMatricola().equalsIgnoreCase(matricolaSelezionata)).findFirst().orElse(null);
+
             if (libroScelto == null || studenteScelto == null) {
-                mostraErrore("Errore: oggetto non trovato nella lista.");
+                if (errore != null) errore.setText("Dati non trovati.");
                 return;
             }
 
             Prestito nuovoPrestito = new Prestito(studenteScelto, libroScelto, LocalDate.now(), dataFine);
             
-            nuovoPrestito.registrazionePrestito(matricolaSelezionata, isbnSelezionato);
+            // --- CHIAMATA AL MODEL ---
+            int esito = nuovoPrestito.registrazionePrestito(matricolaSelezionata, isbnSelezionato);
 
-            chiudi();
+            // --- GESTIONE ERRORI TIPO CONTROLLER LIBRO ---
+            if (esito == 0) {
+                chiudi();
+            } 
+            else if (errore != null) { // Controllo null safety per la label
+                if (esito == -1) {
+                    errore.setText("Studente non trovato.");
+                } else if (esito == -2) {
+                    errore.setText("Limite prestiti (3) raggiunto.");
+                } else if (esito == -3) {
+                    errore.setText("Lo studente ha prestiti in ritardo.");
+                } else if (esito == -4) {
+                    // QUESTO È IL NUOVO ERRORE PER checkCopieDisponibili
+                    errore.setText("Copie esaurite per questo libro!");
+                } else if (esito == -5) {
+                    errore.setText("Libro non trovato nel DB.");
+                } else {
+                    errore.setText("Errore generico durante il salvataggio.");
+                }
+            }
 
         } catch (Exception e) {
-            mostraErrore("Errore durante il salvataggio: " + e.getMessage());
+            if (errore != null) errore.setText("Eccezione: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -155,11 +133,5 @@ public class ControllerPopupPrestiti {
     private void chiudi() {
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();
-    }
-
-    private void mostraErrore(String msg) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText(msg);
-        alert.show();
     }
 }

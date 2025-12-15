@@ -5,7 +5,7 @@
       "autore": "Thomas H. Cormen",
       "ISBN": 9788838665158,
       "annoPubblicazione": 2023,
-      "numCopie": 4
+      "numCopie": 2
     },
     {
       "titolo": "Manuale di diritto privato",
@@ -33,7 +33,7 @@
       "autore": "William H. Brown",
       "ISBN": 9788879598880,
       "annoPubblicazione": 2019,
-      "numCopie": 1
+      "numCopie": 0
     }
   ],
   "studenti": [
@@ -97,6 +97,36 @@
       "ISBN": 9788879598880,
       "dataInizio": "2025-12-12",
       "dataFinePrevista": "2026-01-11",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "0512101234",
+      "titolo": "Introduzione agli algoritmi e strutture dati",
+      "autore": "Thomas H. Cormen",
+      "annoPubblicazione": 2023,
+      "ISBN": 9788838665158,
+      "dataInizio": "2025-12-15",
+      "dataFinePrevista": "2026-01-14",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "0512103456",
+      "titolo": "Chimica organica",
+      "autore": "William H. Brown",
+      "annoPubblicazione": 2019,
+      "ISBN": 9788879598880,
+      "dataInizio": "2025-12-15",
+      "dataFinePrevista": "2026-01-14",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "0512103456",
+      "titolo": "Introduzione agli algoritmi e strutture dati",
+      "autore": "Thomas H. Cormen",
+      "annoPubblicazione": 2023,
+      "ISBN": 9788838665158,
+      "dataInizio": "2025-12-15",
+      "dataFinePrevista": "2026-01-14",
       "dataRestituzioneEffettiva": ""
     }
   ],
