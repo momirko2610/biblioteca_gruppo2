@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @brief Classe che gestisce il login dei bibliotecari
@@ -25,7 +26,7 @@ public class Bibliotecario {
     private final String password; /*!<password dell'account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo loginBibliotecario*/
 
     private static final String NAME = "database.json"; /*!<Nome del database da cui verranno confrontati i dati*/
-
+    private static final File FILE = new File(NAME); //File del database
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
     /**
      * @brief Costruttore di base
@@ -44,24 +45,47 @@ public class Bibliotecario {
      * @post Il bibliotecariə ha accesso a tutte le funzionalità
      */
     public int loginBibliotecario() throws FileNotFoundException, IOException {
-        File file = new File(NAME);
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        //Ottengo l'array dei libri
-        JsonArray librarianArray = label.getAsJsonArray("bibliotecari");
+        JsonArray librarianArray = Bibliotecario.getArrayBibliotecari(label);
+        
         if (librarianArray == null) {
             System.out.println("ERROR, database not found");
-            return -1;
+            return -2;
         }
         
         for (int i = 0; i < librarianArray.size(); i++) {
             JsonObject obj = librarianArray.get(i).getAsJsonObject();
             if (obj.get("e_mail").getAsString().equalsIgnoreCase(this.e_mail) && obj.get("password").getAsString().equalsIgnoreCase(this.password) ) {
                 System.out.println("Credenziali valide");
+                return 1;
+            }
+        }
+        return -1;
+    };
+    
+    /**
+     * @param password
+     * @return 
+     * @throws java.io.FileNotFoundException
+     * @brief Il bibliotecario più cambiare la password per effettuare il login
+     * @pre N/A
+     * @post Nuova password
+     */
+    public int cambiaPassword(String password) throws FileNotFoundException, IOException {
+        JsonObject label = Database.leggiDatabase(FILE);
+        
+        JsonArray librarianArray = Bibliotecario.getArrayBibliotecari(label);
+        
+        if (librarianArray == null) {
+            System.out.println("ERROR, database not found");
+            return -2;
+        }
+        
+        for (int i = 0; i < librarianArray.size(); i++) {
+            JsonObject obj = librarianArray.get(i).getAsJsonObject();
+            if (obj.get("e_mail").getAsString().equalsIgnoreCase(this.e_mail)) {
+                obj.addProperty("password", password);
                 return 1;
             }
             else {
@@ -72,33 +96,44 @@ public class Bibliotecario {
         return -1;
     };
     
-    /*
-    public static void inserisciDatiBibliotecario() throws IOException {
+    public String resetPassword() throws FileNotFoundException, IOException{
+        JsonObject label = Database.leggiDatabase(FILE);
         
-        File file = new File(NAME);
+        JsonArray librarianArray = Bibliotecario.getArrayBibliotecari(label);
         
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
+        if (librarianArray == null) System.out.println("ERROR, database not found");
         
-        //Ottengo l'array degli studenti
-        JsonArray librarianArray = label.getAsJsonArray("bibliotecari");
-        if (librarianArray == null) librarianArray = new JsonArray();
-        
-        //Aggiungo nuovo studente
-        JsonObject newLibrarian = new JsonObject();
-        newLibrarian.addProperty("e_mail", "bibliotecario@unisa.it");
-        newLibrarian.addProperty("password", "123456789");
-        librarianArray.add(newLibrarian);
-       
-        //Salvo
-        try (FileWriter writer = new FileWriter(file)) {
-            database.toJson(label, writer);
-        }
-        
-    };
-    */
+        for (int i = 0; i < librarianArray.size(); i++) {
+            JsonObject obj = librarianArray.get(i).getAsJsonObject();
+            if (obj.get("e_mail").getAsString().equalsIgnoreCase(this.e_mail)) {
+                Random random = new Random();
+                StringBuilder builder = new StringBuilder(8);
 
+                for (int j = 0; i < 8; i++) {
+                    builder.append(random.nextInt(10));
+                }
+                String password = builder.toString();
+                obj.addProperty("password", password);
+                return password;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * @throws java.io.IOException
+     * @brief salva in un JsonArray i dati dei bibliotecari contenuti nel database
+     * @pre deve esistere un JsonObject contente i dati dei bibliotecari salvati nel database
+     * @post Ottengo l'array con i dati dei bibliotecari
+     */
+    
+    private static JsonArray getArrayBibliotecari(JsonObject label) {
+        //Ottengo l'array dei bibliotecari
+        JsonArray bookArray = label.getAsJsonArray("bibliotecari");
+        if (bookArray == null) {
+            System.out.println("ERROR, database not found");
+            return null;
+        }
+        return bookArray;
+    }
 }

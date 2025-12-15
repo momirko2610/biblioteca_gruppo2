@@ -23,7 +23,7 @@ public class Libro {
     private final String autore; /*!<Autore/i del libro*/
     private final int annoPubblicazione; /*!<Anno di publicazione del libro*/
     private long ISBN; /*!<Codice identificativo unico del libro*/
-    private int numCopie = 1; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
+    private int numCopie; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
     
     private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
     private static final File FILE = new File(NAME); //File del database
@@ -32,17 +32,19 @@ public class Libro {
     private transient HBox azioni;
 
     /**
+     * @param numCopie
      * @brief Costruttore di base
      * @param titolo Titolo del libro
      * @param autore Autore/i del libro
      * @param annoPubblicazione Anno di publicazione del libro
      * @param ISBN Codice identificativo unico del libro
      */
-    public Libro(String titolo, String autore, int annoPubblicazione,long ISBN) {
+    public Libro(String titolo, String autore, int annoPubblicazione,long ISBN, int numCopie) {
         this.titolo = titolo;
         this.autore = autore;
         this.annoPubblicazione = annoPubblicazione;
         this.ISBN = ISBN;
+        this.numCopie = numCopie;
         
         creaBottoni();
 
@@ -111,8 +113,7 @@ public class Libro {
         
         if ( i != -1) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
-            int copie = obj.get("numCopie").getAsInt();
-            obj.addProperty("numCopie", copie + 1);
+            obj.addProperty("numCopie", this.numCopie);
 
             // aggiorna array
             bookArray.set(i, obj);
@@ -206,21 +207,6 @@ public class Libro {
         }
         else System.out.println("Libro non risulta nel nostro database");
     };
-
-    //DA ELIMINARE
-    /**
-     * @throws java.io.IOException
-     * @brief Mostra gli elementi presenti nel database dei libri
-     * @pre N/A
-     * @post L’utente (sia bibliotecariə che studente) visualizza la lista completa dei libri (disponibili e non) in ordine alfabetico
-     */
-    public static void visualizzazioneListaLibri() throws IOException {
-        List<Libro> libri = Database.leggiDatabaseLibri();
-        
-        libri.forEach(l -> {
-            System.out.println(l);
-        });
-    }
 
     /**
      * @param ISBN
@@ -323,7 +309,7 @@ public class Libro {
      * @post Ottengo l'array dei libri
      */
     
-    private static JsonArray getArrayLibri(JsonObject label) {
+    public static JsonArray getArrayLibri(JsonObject label) {
         //Ottengo l'array dei libri
         JsonArray bookArray = label.getAsJsonArray("libri");
         if (bookArray == null) {
@@ -332,80 +318,4 @@ public class Libro {
         }
         return bookArray;
     }
-    
-    
-    
-    //DA ELIMINARE
-    /**
-     * @brief Mostra l'elemento cercato dal database dei libri
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
-     */
-    /*
-    public static void cercaLibroISBN(Long ISBN)throws IOException{
-        File file = new File(NAME);
-        
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei libri
-        JsonArray bookArray = label.getAsJsonArray("libri");
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return;
-        }
-        
-        int i = Libro.ricercaLibroISBN(ISBN);
-        
-        if ( i != -1) {
-            JsonObject obj = bookArray.get(i).getAsJsonObject();
-            System.out.println(obj.toString());
-        }
-        else System.out.println("Libro non risulta nel nostro database");
-    };
-    */
-    
-    //DA ELIMINARE
-    /**
-     * @param titolo
-     * @throws java.io.IOException
-     * @brief Mostra il libro cercato per titolo
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
-     */
-    /*
-    public static void cercaLibroTitolo(String titolo)throws IOException{
-        List<Libro> libri = Libro.ricercaLibroTitolo(titolo);
-        
-        for (Libro l : libri) {
-             System.out.println(l);
-        }
-    };
-    */
-    
-    //DA ELIMINARE
-    /**
-     * @param autore
-     * @throws java.io.IOException
-     * @brief Mostra il libro cercato per titolo
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
-     */
-    /*
-    public static void cercaLibroAutore(String autore)throws IOException{
-        List<Libro> libri = Libro.ricercaLibroAutore(autore);
-        
-        if (libri.isEmpty()) {
-            System.out.println("Il libro non esiste nel nostro database");
-            return;
-        }
-        
-        libri.forEach(l -> {
-            System.out.println(l);
-        });
-    };
-    */
 }

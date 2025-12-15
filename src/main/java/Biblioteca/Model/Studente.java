@@ -206,28 +206,6 @@ public class Studente {
         else System.out.println("Studente non risulta nel nostro database");
     };
 
-    //DA ELIMINARE
-    /**
-     * @throws java.io.IOException
-     * @brief Mostra gli elementi presenti nel database degli studentui
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Bibliotecariə visualizza la lista completa degli studenti in ordine alfabetico
-     */
-    public static void visualizzazioneElencoStudenti() throws IOException {
-        List<Studente> studenti = Database.leggiDatabaseStudenti();
-        
-        studenti.forEach(l -> {
-            System.out.println(l);
-        });
-    };
-
-    /**
-     * @brief Permette allo studente di prenotare un libro da ritirare in biblioteca
-     * @pre N/A
-     * @post Prenota un libro da ritirare in biblioteca
-     */
-    public void prenotazioneLibro (){};
-
     /**
      * @param matricola
      * @throws java.io.IOException
@@ -306,57 +284,6 @@ public class Studente {
         return studentArray;
     }
     
-    // DA ELIMINARE
-    /**
-     * @throws java.io.IOException
-     * @brief Mostra l'elemento cercato (per cognome) dal database degli studenti
-     * @pre lo studente è presente nel database
-     * @post il bibliotecariə visualizza le informazioni dello studente cercato
-     */
-    /*
-    public static void cercaStudenteCognome(String cognome) throws IOException{
-        List<Studente> studenti = Studente.ricercaStudenteCognome(cognome);
-        
-        for (Studente s : studenti) {
-            System.out.println(s);
-        }
-
-    };
-    */
-    
-    //DA ELIMINARE
-    /**
-     * @throws java.io.IOException
-     * @brief Mostra l'elemento cercato (per matricola) dal database degli studenti
-     * @pre lo studente è presente nel database
-     * @post il bibliotecariə visualizza le informazioni dello studente cercato
-     */
-    /*
-    public static void cercaStudenteMatricola(String matricola) throws IOException{
-        File file = new File(NAME);
-        
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array degli studenti
-        JsonArray studentArray = label.getAsJsonArray("studenti");
-        if (studentArray == null) {
-            System.out.println("ERROR, database not found");
-            return;
-        }
-        
-        int i = ricercaStudenteMatricola(matricola);
-        
-        if ( i != -1) {
-            JsonObject obj = studentArray.get(i).getAsJsonObject();
-            System.out.println(obj.toString());
-        }
-        else System.out.println("Studente non risulta nel nostro database");
-    };
-    */
 }
 
 

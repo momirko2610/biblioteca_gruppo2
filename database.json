@@ -3,29 +3,22 @@
     {
       "titolo": "a",
       "autore": "aa",
-      "annoPubblicazione": "3",
-      "ISBN": "123",
-      "numCopie": "0"
-    },
-    {
-      "titolo": "a",
-      "autore": "aa",
-      "annoPubblicazione": 2,
-      "ISBN": 2,
-      "numCopie": 1
+      "annoPubblicazione": "2",
+      "ISBN": "1234",
+      "numCopie": "4"
     },
     {
       "titolo": "Frankestein",
       "autore": "Mary Shelly",
       "annoPubblicazione": "40",
       "ISBN": "123456789",
-      "numCopie": 3
+      "numCopie": 2
     },
     {
       "titolo": "giorni",
       "autore": "x",
-      "annoPubblicazione": 1,
-      "ISBN": 1,
+      "annoPubblicazione": "1",
+      "ISBN": "1",
       "numCopie": 11
     },
     {
@@ -34,6 +27,13 @@
       "annoPubblicazione": 2025,
       "ISBN": 11012001,
       "numCopie": 10
+    },
+    {
+      "titolo": "Ingegneria del software",
+      "autore": "pedro pascal",
+      "annoPubblicazione": "1",
+      "ISBN": "1231",
+      "numCopie": "1"
     },
     {
       "titolo": "xxxxxxx",
@@ -45,16 +45,10 @@
   ],
   "studenti": [
     {
-      "nome": "TIzio",
-      "cognome": "Caio",
-      "matricola": "xxx1234xxx",
-      "e_mail": "456t"
-    },
-    {
       "nome": "Chiara",
       "cognome": "De Vito",
       "matricola": "n13000223",
-      "e_mail": "a"
+      "e_mail": "c.devito01@studenti.unisa.it"
     },
     {
       "nome": "Ciro",
@@ -77,6 +71,26 @@
   ],
   "prestiti": [
     {
+      "matricola": "n13000223",
+      "titolo": "Frankestein",
+      "autore": "Mary Shelly",
+      "annoPubblicazione": 40,
+      "ISBN": 123456789,
+      "dataInizio": "2025-12-15",
+      "dataFinePrevista": "2026-01-07",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "612709851",
+      "titolo": "giorni",
+      "autore": "x",
+      "annoPubblicazione": 1,
+      "ISBN": 1,
+      "dataInizio": "2025-12-15",
+      "dataFinePrevista": "2026-01-09",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
       "matricola": "612708782",
       "titolo": "Ho sbagliato più di te",
       "autore": "Nicola Palmieri",
@@ -95,32 +109,16 @@
       "dataInizio": "2025-12-15",
       "dataFinePrevista": "2026-01-14",
       "dataRestituzioneEffettiva": ""
-    },
-    {
-      "matricola": "n13000223",
-      "titolo": "a",
-      "autore": "aa",
-      "annoPubblicazione": 1,
-      "ISBN": 123,
-      "dataInizio": "2025-12-15",
-      "dataFinePrevista": "2026-01-14",
-      "dataRestituzioneEffettiva": ""
-    },
-    {
-      "matricola": "n13000223",
-      "titolo": "giorni",
-      "autore": "x",
-      "annoPubblicazione": 1,
-      "ISBN": 1,
-      "dataInizio": "2025-12-15",
-      "dataFinePrevista": "2026-01-14",
-      "dataRestituzioneEffettiva": ""
     }
   ],
   "bibliotecari": [
     {
       "e_mail": "bibliotecario@unisa.it",
       "password": "123456789"
+    },
+    {
+      "e_mail": "ciro@unisa.it",
+      "password": "1122334455"
     }
   ]
 }

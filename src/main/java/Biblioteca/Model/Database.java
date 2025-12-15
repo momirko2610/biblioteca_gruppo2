@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
+
 
 /**
  * @brief Classe che gestisce la creazione dei database
@@ -36,7 +38,13 @@ public class Database {
                     return LocalDate.parse(json.getAsString());
                 }
             })
-            .create(); 
+            .create();
+    private static final Comparator<JsonObject> CONF_TITOLO = (a, b) -> a.get("titolo").getAsString().compareToIgnoreCase(b.get("titolo").getAsString());
+
+    private static final Comparator<JsonObject> CONF_COGNOME = (a, b) -> a.get("cognome").getAsString().compareToIgnoreCase(b.get("cognome").getAsString());
+
+    private static final Comparator<JsonObject> CONF_DATA_PRESTITO = (a, b) -> a.get("dataFinePrevista").getAsString().compareToIgnoreCase(b.get("dataFinePrevista").getAsString());
+
     /**
      * @brief Metodo che crea il database se non esiste
      * * Controlla l'esistenza del file database.json. Se non esiste, ne crea uno nuovo
@@ -165,7 +173,7 @@ public class Database {
         }
         
         //Ordino la lista in base al titolo
-        bookList.sort((a, b) -> a.get("titolo").getAsString().compareToIgnoreCase(b.get("titolo").getAsString()));
+        bookList.sort(CONF_TITOLO);
         //Inserisco i libri in un Array ordinato
         JsonArray sortedArray = new JsonArray();
         for (JsonObject book : bookList) {
@@ -199,7 +207,7 @@ public class Database {
         }
         
         //Ordino la lista in base al titolo
-        studentList.sort((a, b) -> a.get("cognome").getAsString().compareToIgnoreCase(b.get("cognome").getAsString()));
+        studentList.sort(CONF_COGNOME);
         //Inserisco i libri in un Array ordinato
         JsonArray sortedArray = new JsonArray();
         for (JsonObject student : studentList) {
@@ -232,7 +240,7 @@ public class Database {
         }
         
         //Ordino la lista in base al titolo
-        loanList.sort((a, b) -> a.get("dataFinePrevista").getAsString().compareToIgnoreCase(b.get("dataFinePrevista").getAsString()));
+        loanList.sort(CONF_DATA_PRESTITO);
         //Inserisco i libri in un Array ordinato
         JsonArray sortedArray = new JsonArray();
         for (JsonObject loan : loanList) {
@@ -275,3 +283,4 @@ public class Database {
         }
     }
 }
+

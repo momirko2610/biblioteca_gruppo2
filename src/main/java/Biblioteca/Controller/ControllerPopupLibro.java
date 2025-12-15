@@ -80,7 +80,7 @@ public class ControllerPopupLibro {
             int dataPubb = Integer.parseInt(data.getText());
 
             if (libroCorrente == null) {
-                Libro l=new Libro(nuovoTitolo, nuoviAutori, dataPubb, new Long(nuovoIsbn));
+                Libro l=new Libro(nuovoTitolo, nuoviAutori, dataPubb, new Long(nuovoIsbn), copie);
                 l.inserisciLibro();
               
             } else {

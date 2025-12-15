@@ -200,36 +200,6 @@ public class Prestito {
         System.out.println("Prestito registrato con successo!");
     }
     
-    
-    //FORSE INUTILE
-    /**
-     * @brief Mostra gli elementi presenti nel database dei libri
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Bibliotecariə visualizza la lista completa dei libri in prestito in ordine alfabetico
-     */
-    public void visualizzazioneElencoPrestiti() throws IOException{
-    
-        File file = new File(NAME);
-        
-        //Leggo il database
-        JsonObject label;
-        try (FileReader reader = new FileReader(file)) {
-            label = database.fromJson(reader, JsonObject.class);
-        }
-        
-        //Ottengo l'array dei prestiti
-        JsonArray prestitiArray = label.getAsJsonArray("prestiti");
-        if (prestitiArray == null) {
-            System.out.println("ERROR, database not found");  //da implementare come interfaccia grafica
-        }
-        
-        for (int i = 0; i < prestitiArray.size(); i++) {
-            JsonObject obj = prestitiArray.get(i).getAsJsonObject();
-            System.out.println(obj.toString());
-        }
-    
-    }
-
     /**
      * @param matricola
      * @param ISBN
