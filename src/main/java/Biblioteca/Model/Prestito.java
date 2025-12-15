@@ -29,11 +29,7 @@ import javafx.scene.layout.HBox;
  * @author Sabrina Soriano
  */
 public class Prestito {
-    
-    
-    private static final String NAME = "database.json"; /*!<Nome del database contenente i prestiti*/
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
-    
+        
     private String matricola;
     private long ISBN; 
     private LocalDate dataInizio;
@@ -42,7 +38,9 @@ public class Prestito {
 
     private transient Libro libro;    
     private transient Studente studente;
-    
+
+    private static final String NAME = "database.json"; /*!<Nome del database contenente i prestiti*/
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
     // transient serve per non far salvare nel sile json l'hbox se no da errore
     private transient HBox azioni;
 
@@ -57,38 +55,19 @@ public class Prestito {
         
         creaBottoni();
     }
-    
-    private void creaBottoni(){
-        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
-        Button Ritorno = new Button("Restituito");
-        
-        Ritorno.setStyle("-fx-background-color: #2264E5; -fx-cursor: hand; -fx-text-fill: white;");
 
-        this.azioni = new HBox(10, Ritorno);
-        this.azioni.setAlignment(Pos.CENTER);
-    }
-    
+    public String getMatricola() { return matricola; }
+    public long getIsbn() { return ISBN; } 
+    public LocalDate getDataInizio() { return dataInizio; }
+    public LocalDate getDataFinePrevista() { return dataFinePrevista; }
     public HBox getAzioni() {
         // azioni è sempre nulla quando carico dal Database JSON
         if (azioni == null) {
             creaBottoni();
         }
         return azioni;
-    }
-
-    public String getMatricola() { return matricola; }
-    public long getIsbn() { return ISBN; } 
-    public LocalDate getDataInizio() { return dataInizio; }
-    public LocalDate getDataFinePrevista() { return dataFinePrevista; }
-
+    }    
     
-    
-    
-    
-    
-    
-    
-
    /**
      * @param matricola
      * @param ISBN
@@ -404,8 +383,16 @@ public class Prestito {
         }
         return -1;
     }
+    
+    
+    private void creaBottoni(){
+        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
+        Button Ritorno = new Button("Restituito");
+        
+        Ritorno.setStyle("-fx-background-color: #2264E5; -fx-cursor: hand; -fx-text-fill: white;");
+
+        this.azioni = new HBox(10, Ritorno);
+        this.azioni.setAlignment(Pos.CENTER);
+    }
+    
 }
-
-
-
-

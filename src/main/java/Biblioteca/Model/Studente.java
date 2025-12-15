@@ -54,56 +54,16 @@ public class Studente {
         creaBottoni();
     }
     
-    private void creaBottoni(){
-        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
-        Button Modifica = new Button();
-        Button Elimina = new Button();
-        Button Info = new Button();
-        
-        ImageView viewModifica = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png")));
-        ImageView viewElimina = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png")));
-        ImageView viewInfo = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/info.png")));
-        
-        viewModifica.setFitHeight(15);
-        viewModifica.setFitWidth(15);
-            
-        viewElimina.setFitHeight(15);
-        viewElimina.setFitWidth(15);
-        
-        viewInfo.setFitHeight(15);
-        viewInfo.setFitWidth(15);
-        
-        Modifica.setGraphic(viewModifica);
-        Elimina.setGraphic(viewElimina);
-        Info.setGraphic(viewInfo);
-        
-        Modifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-        Elimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-        Info.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-
-        this.azioni = new HBox(10, Modifica, Elimina, Info);
-        this.azioni.setAlignment(Pos.CENTER);
-    }
-    
+    public String getNome() { return nome; }
+    public String getCognome() { return cognome; }
+    public String getMatricola() { return matricola; }
+    public String getE_mail() { return e_mail; }
     public HBox getAzioni() {
         // azioni è sempre nulla quando carico dal Database JSON
         if (azioni == null) {
             creaBottoni();
         }
         return azioni;
-    }
-    
-    public String getNome() { return nome; }
-    public String getCognome() { return cognome; }
-    public String getMatricola() { return matricola; }
-    public String getE_mail() { return e_mail; }
-    
-    @Override
-    public String toString() {
-        return String.format(
-            "Nome: %s| Cognome: %s | Matricola: %s | e_mail: %s",
-            nome, cognome, matricola, e_mail
-        );
     }
 
     /**
@@ -282,6 +242,42 @@ public class Studente {
             return null;
         }
         return studentArray;
+    }
+    
+    /**
+     * @brief crea bottini interfaccia grafica studenti
+     * @pre N/A
+     * @post bottoni
+     */
+    private void creaBottoni(){
+        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
+        Button Modifica = new Button();
+        Button Elimina = new Button();
+        Button Info = new Button();
+        
+        ImageView viewModifica = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/pencil-fiiled.png")));
+        ImageView viewElimina = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/trash-filled.png")));
+        ImageView viewInfo = new ImageView(new Image(getClass().getResourceAsStream("/Biblioteca/icons/info.png")));
+        
+        viewModifica.setFitHeight(15);
+        viewModifica.setFitWidth(15);
+            
+        viewElimina.setFitHeight(15);
+        viewElimina.setFitWidth(15);
+        
+        viewInfo.setFitHeight(15);
+        viewInfo.setFitWidth(15);
+        
+        Modifica.setGraphic(viewModifica);
+        Elimina.setGraphic(viewElimina);
+        Info.setGraphic(viewInfo);
+        
+        Modifica.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Elimina.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        Info.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+
+        this.azioni = new HBox(10, Modifica, Elimina, Info);
+        this.azioni.setAlignment(Pos.CENTER);
     }
     
 }
