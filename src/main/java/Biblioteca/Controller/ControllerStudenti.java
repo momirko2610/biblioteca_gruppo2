@@ -55,6 +55,7 @@ public class ControllerStudenti {
     @FXML
     private TextField searchStudentTextField;
     
+    
    
     
 
@@ -71,10 +72,10 @@ public class ControllerStudenti {
 
  
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        Database.creaDatabase();
         configuraTabella();
         caricaDatiAllAvvio();
-        
         searchStudentTextField.setOnKeyPressed(event -> {
             if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
                 onSearchStudent(); // Esegui la ricerca
@@ -104,10 +105,7 @@ public class ControllerStudenti {
     void caricaDatiAllAvvio() {
         try {
            
-            Database database = new Database();
-            
-          
-            List<Studente> studenteSalvati = database.leggiDatabaseStudenti();
+            List<Studente> studenteSalvati = Database.leggiDatabaseStudenti();
             
            
             if (studenteSalvati != null && !studenteSalvati.isEmpty()) {

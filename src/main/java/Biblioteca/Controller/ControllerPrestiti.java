@@ -59,7 +59,8 @@ public class ControllerPrestiti {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        Database.creaDatabase();
         configuraTabella();
         caricaDatiAllAvvio();
     }
@@ -78,7 +79,6 @@ public class ControllerPrestiti {
     void caricaDatiAllAvvio() {
         try {  
             tablePrestiti.getItems().clear();
-
             List<Prestito> prestitiSalvati = Database.leggiDatabasePrestiti(); 
             System.out.println(prestitiSalvati);
            
