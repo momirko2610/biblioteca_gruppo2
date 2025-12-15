@@ -27,13 +27,11 @@ public class ControllerDeleteTest {
     private Label mockLabelErrore;
     private Button mockButtonConferma;
     
-    // Oggetti Mock (Finti)
     private Libro mockLibro;
     private Studente mockStudente;
 
     @BeforeAll
     public static void setUpClass() {
-        // Inizializza il toolkit JavaFX una volta per tutti i test
         new JFXPanel(); 
     }
 
@@ -42,15 +40,12 @@ public class ControllerDeleteTest {
     public void setUp() throws Exception {
         controller = new ControllerDelete();
         
-        // Creiamo i componenti JavaFX veri
         mockLabelErrore = new Label();
         mockButtonConferma = new Button();
 
-        // Iniettiamo i componenti nel controller
         injectField(controller, "errore", mockLabelErrore);
         injectField(controller, "buttonConferma", mockButtonConferma);
 
-        // Creiamo i MOCK dei modelli
         mockLibro = Mockito.mock(Libro.class);
         mockStudente = Mockito.mock(Studente.class);
     }
@@ -59,10 +54,6 @@ public class ControllerDeleteTest {
     public void tearDown() {
         controller = null;
     }
-
-    // ==========================================
-    // TEST ELIMINAZIONE LIBRO
-    // ==========================================
 
     @Test
     public void testEliminaLibro_InPrestito() throws Exception {
@@ -95,21 +86,14 @@ public class ControllerDeleteTest {
         assertEquals("ERROR, database not found", mockLabelErrore.getText());
     }
 
-    // ==========================================
-    // TEST ELIMINAZIONE STUDENTE (Aggiornati)
-    // ==========================================
-
     @Test
     public void testEliminaStudente_NonTrovato() throws Exception {
         controller.setOggettoDaEliminare(mockStudente);
         
-        // 1. Simuliamo che il Model restituisca -2 (Codice corretto)
         when(mockStudente.cancellazioneDatiStudente()).thenReturn(-2);
 
-        // 2. Eseguiamo
         runOnFxThread(() -> controller.conferma(null));
 
-        // 3. Verifichiamo che il Controller abbia settato il testo giusto
         assertEquals("Studente non risulta nel nostro database", mockLabelErrore.getText());
     }
 
@@ -117,26 +101,18 @@ public class ControllerDeleteTest {
     public void testEliminaStudente_ErroreDatabase() throws Exception {
         controller.setOggettoDaEliminare(mockStudente);
         
-        // 1. Simuliamo che il Model restituisca -3 (Codice corretto)
         when(mockStudente.cancellazioneDatiStudente()).thenReturn(-3);
 
-        // 2. Eseguiamo
         runOnFxThread(() -> controller.conferma(null));
 
-        // 3. Verifichiamo
         assertEquals("ERROR, database not found", mockLabelErrore.getText());
     }
-
-    // ==========================================
-    // TEST SUCCESSO
-    // ==========================================
 
     @Test
     public void testEliminaLibro_Successo() throws Exception {
         controller.setOggettoDaEliminare(mockLibro);
         when(mockLibro.cancellazioneDatiLibro()).thenReturn(0);
         
-        // Prepariamo uno Stage finto per evitare NullPointerException su annulla()
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             Stage stage = new Stage();
@@ -147,20 +123,14 @@ public class ControllerDeleteTest {
             try {
                 controller.conferma(null);
             } catch (Exception e) {
-                // Ignora errori caricamento FXML
             }
             latch.countDown();
         });
         latch.await(5, TimeUnit.SECONDS);
 
         verify(mockLibro, times(1)).cancellazioneDatiLibro();
-        // Se non ci sono errori, il test passa
         assertEquals("", mockLabelErrore.getText());
     }
-
-    // ==========================================
-    // UTILITIES
-    // ==========================================
 
     private void runOnFxThread(Runnable action) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

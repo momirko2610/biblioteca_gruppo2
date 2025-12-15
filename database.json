@@ -1,26 +1,109 @@
 {
   "libri": [
     {
-      "titolo": "Ho sbagliato più di te",
-      "autore": "Nicola Palmieri",
-      "ISBN": "1234567890123",
-      "annoPubblicazione": "2023",
-      "numCopie": "5"
+      "titolo": "Introduzione agli algoritmi e strutture dati",
+      "autore": "Thomas H. Cormen",
+      "ISBN": 9788838665158,
+      "annoPubblicazione": 2023,
+      "numCopie": 4
+    },
+    {
+      "titolo": "Manuale di diritto privato",
+      "autore": "Andrea Torrente",
+      "ISBN": 9788814227288,
+      "annoPubblicazione": 2022,
+      "numCopie": 2
+    },
+    {
+      "titolo": "Fisica generale. Meccanica e termodinamica",
+      "autore": "Sergio Rosati",
+      "ISBN": 9788808088659,
+      "annoPubblicazione": 2021,
+      "numCopie": 4
+    },
+    {
+      "titolo": "Principi di economia",
+      "autore": "N. Gregory Mankiw",
+      "ISBN": 9788808182760,
+      "annoPubblicazione": 2020,
+      "numCopie": 5
+    },
+    {
+      "titolo": "Chimica organica",
+      "autore": "William H. Brown",
+      "ISBN": 9788879598880,
+      "annoPubblicazione": 2019,
+      "numCopie": 1
     }
   ],
   "studenti": [
     {
-      "nome": "Ciro",
-      "cognome": "Senese",
-      "matricola": "0612707469",
-      "e_mail": "c.senese@studenti.unisa.it"
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "matricola": "0512101234",
+      "e_mail": "m.rossi1@studenti.unisa.it"
+    },
+    {
+      "nome": "Giulia",
+      "cognome": "Bianchi",
+      "matricola": "0512105678",
+      "e_mail": "g.bianchi2@studenti.unisa.it"
+    },
+    {
+      "nome": "Luca",
+      "cognome": "Verdi",
+      "matricola": "0512109012",
+      "e_mail": "l.verdi3@studenti.unisa.it"
+    },
+    {
+      "nome": "Sara",
+      "cognome": "Esposito",
+      "matricola": "0512103456",
+      "e_mail": "s.esposito4@studenti.unisa.it"
+    },
+    {
+      "nome": "Alessandro",
+      "cognome": "Romano",
+      "matricola": "0512107890",
+      "e_mail": "a.romano5@studenti.unisa.it"
     }
   ],
-  "prestiti": [],
+  "prestiti": [
+    {
+      "matricola": "0512105678",
+      "titolo": "Manuale di diritto privato",
+      "autore": "Andrea Torrente",
+      "annoPubblicazione": 2022,
+      "ISBN": 9788814227288,
+      "dataInizio": "2025-12-05",
+      "dataFinePrevista": "2026-01-04",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "0512109012",
+      "titolo": "Fisica generale. Meccanica e termodinamica",
+      "autore": "Sergio Rosati",
+      "annoPubblicazione": 2021,
+      "ISBN": 9788808088659,
+      "dataInizio": "2025-12-10",
+      "dataFinePrevista": "2026-01-09",
+      "dataRestituzioneEffettiva": ""
+    },
+    {
+      "matricola": "0512103456",
+      "titolo": "Chimica organica",
+      "autore": "William H. Brown",
+      "annoPubblicazione": 2019,
+      "ISBN": 9788879598880,
+      "dataInizio": "2025-12-12",
+      "dataFinePrevista": "2026-01-11",
+      "dataRestituzioneEffettiva": ""
+    }
+  ],
   "bibliotecari": [
     {
       "e_mail": "bibliotecario@unisa.it",
-      "password": "123456789"
+      "password": "root"
     }
   ]
 }

@@ -28,13 +28,11 @@ public class ControllerResetPasswordTest {
 
     private ControllerResetPassword controller;
     
-    // Componenti UI
     private TextField mockTxtNuovaPass;
     private Label mockErrore;
 
     @BeforeAll
     public static void setUpClass() {
-        // Inizializza il toolkit JavaFX
         new JFXPanel(); 
     }
 
@@ -54,15 +52,10 @@ public class ControllerResetPasswordTest {
         controller = null;
     }
 
-    // ==========================================
-    // TEST 1: Password Vuota
-    // ==========================================
     @Test
     public void testPasswordVuota() throws Exception {
-        // Setup dati
         Platform.runLater(() -> mockTxtNuovaPass.setText(""));
         
-        // Esecuzione
         runOnFxThread(() -> {
             try {
                 invokePrivateMethod(controller, "confermaCambio");
@@ -71,19 +64,14 @@ public class ControllerResetPasswordTest {
             }
         });
 
-        // Verifica
         AtomicReference<String> errorText = new AtomicReference<>();
         runOnFxThread(() -> errorText.set(mockErrore.getText()));
         
         assertEquals("Inserisci una password valida", errorText.get());
     }
 
-    // ==========================================
-    // TEST 2: Cambio Password Successo
-    // ==========================================
     @Test
     public void testCambioPasswordSuccesso() throws Exception {
-        // 1. Setup Dati Utente
         controller.setDatiUtente("admin@test.it");
         
         Platform.runLater(() -> mockTxtNuovaPass.setText("NuovaPassword123"));
@@ -92,35 +80,25 @@ public class ControllerResetPasswordTest {
         CountDownLatch latch = new CountDownLatch(1);
 
         Platform.runLater(() -> {
-            // 2. Intercettiamo la creazione di Bibliotecario
             try (MockedConstruction<Bibliotecario> mockedBiblio = Mockito.mockConstruction(Bibliotecario.class,
                     (mock, context) -> {
-                        // Quando viene chiamato cambiaPassword, restituisci 1 (Successo)
                         when(mock.cambiaPassword(anyString())).thenReturn(1);
                     })) {
 
-                // 3. Prepariamo lo Stage (necessario per il metodo chiudi())
                 Stage stage = new Stage();
-                // Usiamo StackPane perché TextField non è un Parent
                 Scene scene = new Scene(new StackPane(mockTxtNuovaPass)); 
                 stage.setScene(scene);
                 stage.show();
 
-                // 4. Eseguiamo
                 invokePrivateMethod(controller, "confermaCambio");
 
-                // 5. Verifiche
-                // Verifichiamo che sia stato creato l'oggetto
                 if (mockedBiblio.constructed().isEmpty()) {
                     throw new AssertionError("Costruttore Bibliotecario non chiamato");
                 }
                 
                 Bibliotecario b = mockedBiblio.constructed().get(0);
-                // Verifichiamo che sia stato chiamato il metodo di cambio pass
                 verify(b, times(1)).cambiaPassword("NuovaPassword123");
                 
-                // Se non ci sono eccezioni e il mock è stato chiamato, 
-                // e la finestra si è chiusa (stage.close non lancia errori), il test è passato.
 
             } catch (Throwable e) {
                 error.set(e);
@@ -133,9 +111,6 @@ public class ControllerResetPasswordTest {
         if (error.get() != null) fail(error.get().getMessage());
     }
 
-    // ==========================================
-    // TEST 3: Errore nel salvataggio (es. Utente non trovato)
-    // ==========================================
     @Test
     public void testCambioPasswordFallito() throws Exception {
         controller.setDatiUtente("inesistente@test.it");
@@ -145,13 +120,11 @@ public class ControllerResetPasswordTest {
         Platform.runLater(() -> {
             try (MockedConstruction<Bibliotecario> mockedBiblio = Mockito.mockConstruction(Bibliotecario.class,
                     (mock, context) -> {
-                        // Simuliamo errore (-1)
                         when(mock.cambiaPassword(anyString())).thenReturn(-1);
                     })) {
 
                 invokePrivateMethod(controller, "confermaCambio");
 
-                // Verifica messaggio errore
                 if (!mockErrore.getText().contains("Impossibile trovare l'utente")) {
                     throw new AssertionError("Messaggio errore errato: " + mockErrore.getText());
                 }
@@ -165,9 +138,6 @@ public class ControllerResetPasswordTest {
         latch.await(5, TimeUnit.SECONDS);
     }
 
-    // ==========================================
-    // UTILITIES
-    // ==========================================
 
     private void runOnFxThread(Runnable action) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

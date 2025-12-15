@@ -9,7 +9,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.StackPane; // <--- Import necessario
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
@@ -36,7 +36,6 @@ public class ControllerPopupPrestitiTest {
 
     private ControllerPopupPrestiti controller;
     
-    // Componenti UI
     private ComboBox<String> mockComboLibri;
     private ComboBox<String> mockComboStudenti;
     private DatePicker mockDatePicker;
@@ -44,7 +43,6 @@ public class ControllerPopupPrestitiTest {
 
     @BeforeAll
     public static void setUpClass() {
-        // Inizializza il toolkit JavaFX
         new JFXPanel(); 
     }
 
@@ -68,13 +66,10 @@ public class ControllerPopupPrestitiTest {
         controller = null;
     }
 
-    // ==========================================
-    // TEST 1: Caricamento Dati (initialize)
-    // ==========================================
+
     @Test
     public void testCaricamentoDati() throws Exception {
         try (MockedStatic<Database> mockDatabase = Mockito.mockStatic(Database.class)) {
-            // 1. Dati Finti
             List<Libro> libri = new ArrayList<>();
             Libro l1 = mock(Libro.class);
             when(l1.getIsbn()).thenReturn(123L);
@@ -87,15 +82,13 @@ public class ControllerPopupPrestitiTest {
             when(s1.getCognome()).thenReturn("Rossi");
             studenti.add(s1);
 
-            // 2. Configura Database Mock
             mockDatabase.when(Database::leggiDatabaseLibri).thenReturn(libri);
             mockDatabase.when(Database::leggiDatabaseStudenti).thenReturn(studenti);
             mockDatabase.when(Database::creaDatabase).thenAnswer(i -> null);
 
-            // 3. Esegui initialize
             controller.initialize();
 
-            // 4. Verifiche
+
             assertEquals(1, mockComboLibri.getItems().size());
             assertEquals("123 - Java Book", mockComboLibri.getItems().get(0));
             
@@ -104,9 +97,7 @@ public class ControllerPopupPrestitiTest {
         }
     }
 
-    // ==========================================
-    // TEST 2: Salvataggio Prestito (Successo)
-    // ==========================================
+
     @Test
     public void testSalvaPrestito() throws Exception {
         AtomicReference<Throwable> error = new AtomicReference<>();
@@ -114,8 +105,7 @@ public class ControllerPopupPrestitiTest {
 
         Platform.runLater(() -> {
             try (MockedStatic<Database> mockDatabase = Mockito.mockStatic(Database.class)) {
-                
-                // --- 1. SETUP DATI ---
+
                 List<Libro> libri = new ArrayList<>();
                 Libro l1 = mock(Libro.class);
                 when(l1.getIsbn()).thenReturn(999L);
@@ -134,28 +124,22 @@ public class ControllerPopupPrestitiTest {
                 
                 controller.initialize();
 
-                // --- 2. SIMULAZIONE UTENTE ---
                 mockComboLibri.setValue("999 - Test Book");
                 mockComboStudenti.setValue("TEST01 - Bianchi");
                 mockDatePicker.setValue(LocalDate.now().plusDays(10));
                 
-                // Prepariamo la finestra
                 Stage stage = new Stage();
-                // FIX: Avvolgiamo il Text in uno StackPane (che è un Parent)
                 Scene scene = new Scene(new StackPane(mockLabel)); 
                 stage.setScene(scene);
                 stage.show();
 
-                // --- 3. INTERCETTAZIONE NEW PRESTITO ---
                 try (MockedConstruction<Prestito> mockedPrestito = Mockito.mockConstruction(Prestito.class,
                         (mock, context) -> {
                             doNothing().when(mock).registrazionePrestito(anyString(), anyLong());
                         })) {
 
-                    // Eseguiamo salva
                     invokePrivateMethod(controller, "salva");
 
-                    // --- 4. VERIFICHE ---
                     if (mockedPrestito.constructed().isEmpty()) {
                          throw new AssertionError("Nessun Prestito creato.");
                     }
@@ -174,9 +158,6 @@ public class ControllerPopupPrestitiTest {
         if (error.get() != null) fail(error.get().getMessage());
     }
 
-    // ==========================================
-    // UTILITIES
-    // ==========================================
 
     private void injectField(Object target, String fieldName, Object value) throws Exception {
         Field field = target.getClass().getDeclaredField(fieldName);

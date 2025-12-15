@@ -31,16 +31,13 @@ public class ControllerStudentiTest {
 
     private ControllerStudenti controller;
     
-    // Componenti UI
     private TableView<Studente> mockTableView;
     private TextField mockSearchField;
 
-    // Mock Statico Database
     private MockedStatic<Database> mockDatabase;
 
     @BeforeAll
     public static void setUpClass() {
-        // Init Toolkit
         new JFXPanel();
     }
 
@@ -54,7 +51,6 @@ public class ControllerStudentiTest {
         injectField(controller, "tableViewStudenti", mockTableView);
         injectField(controller, "searchStudentTextField", mockSearchField);
         
-        // Init Colonne per evitare NullPointer
         injectField(controller, "Nome", new TableColumn<>());
         injectField(controller, "Cognome", new TableColumn<>());
         injectField(controller, "Matricola", new TableColumn<>());
@@ -72,19 +68,15 @@ public class ControllerStudentiTest {
         controller = null;
     }
 
-    // ==========================================
-    // TEST 1: Caricamento Dati all'Avvio
-    // ==========================================
     @Test
     public void testCaricamentoDati() throws Exception {
-        // 1. Dati Finti
         List<Studente> studenti = new ArrayList<>();
         
         Studente s1 = mock(Studente.class);
         when(s1.getNome()).thenReturn("Mario");
         when(s1.getCognome()).thenReturn("Rossi");
         when(s1.getMatricola()).thenReturn("0512101111");
-        when(s1.getAzioni()).thenReturn(creaHBoxFinto()); // Fondamentale
+        when(s1.getAzioni()).thenReturn(creaHBoxFinto());
         studenti.add(s1);
 
         Studente s2 = mock(Studente.class);
@@ -93,26 +85,19 @@ public class ControllerStudentiTest {
         when(s2.getMatricola()).thenReturn("0512102222");
         when(s2.getAzioni()).thenReturn(creaHBoxFinto());
         studenti.add(s2);
-
-        // 2. Configura Mock
+        
         mockDatabase.when(Database::leggiDatabaseStudenti).thenReturn(studenti);
         mockDatabase.when(Database::creaDatabase).thenAnswer(i -> null);
 
-        // 3. Esegui initialize
         controller.initialize();
 
-        // 4. Verifiche
         assertEquals(2, mockTableView.getItems().size());
         assertEquals(s1, mockTableView.getItems().get(0));
         assertEquals(s2, mockTableView.getItems().get(1));
     }
 
-    // ==========================================
-    // TEST 2: Ricerca Studente
-    // ==========================================
     @Test
     public void testRicercaStudente() throws Exception {
-        // 1. Setup Lista iniziale
         List<Studente> studenti = new ArrayList<>();
         
         Studente s1 = mock(Studente.class);
@@ -129,33 +114,22 @@ public class ControllerStudentiTest {
         when(s2.getAzioni()).thenReturn(creaHBoxFinto());
         studenti.add(s2);
 
-        // Iniettiamo la lista nel controller (bypassando il DB per questo test specifico)
         javafx.collections.ObservableList<Studente> obsStudenti = javafx.collections.FXCollections.observableArrayList(studenti);
         injectField(controller, "listaStudente", obsStudenti);
 
-        // 2. Ricerca per Matricola ("9999")
         mockSearchField.setText("9999");
         invokePrivateMethod(controller, "onSearchStudent");
 
-        // Verifica: deve rimanere solo Luigi
         assertEquals(1, mockTableView.getItems().size());
         assertEquals(s2, mockTableView.getItems().get(0));
         
-        // 3. Ricerca per Nome ("Mario")
         mockSearchField.setText("Mario");
         invokePrivateMethod(controller, "onSearchStudent");
         
-        // Verifica: deve rimanere solo Mario
-        // Nota: Il tuo controller cerca su: cognome su nome e matricola su matricola.
-        // Nel codice che mi hai mandato c'è: String cognome = ... studente.getNome().toLowerCase(); 
-        // Quindi cerca il nome nella variabile cognome. Seguo la logica del tuo codice.
         assertEquals(1, mockTableView.getItems().size());
         assertEquals(s1, mockTableView.getItems().get(0));
     }
 
-    // ==========================================
-    // TEST 3: Navigazione Reset Password (con Bibliotecario)
-    // ==========================================
     @Test
     public void testApriResetPassword() throws Exception {
         Bibliotecario mockBiblio = mock(Bibliotecario.class);
@@ -175,19 +149,15 @@ public class ControllerStudentiTest {
         });
         latch.await(5, TimeUnit.SECONDS);
         
-        // Se non crasha e usa l'email, è ok
         verify(mockBiblio, atLeastOnce()).getEmail();
     }
 
-    // ==========================================
-    // UTILITIES
-    // ==========================================
 
     private HBox creaHBoxFinto() {
         HBox box = new HBox();
         box.getChildren().add(new Button("Modifica"));
         box.getChildren().add(new Button("Elimina"));
-        box.getChildren().add(new Button("Info")); // Importante: sono 3 bottoni per gli studenti
+        box.getChildren().add(new Button("Info"));
         return box;
     }
 

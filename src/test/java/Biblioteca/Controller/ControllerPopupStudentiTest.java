@@ -6,7 +6,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane; // <--- Import Fondamentale aggiunto
+import javafx.scene.layout.StackPane; 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
@@ -29,7 +29,6 @@ public class ControllerPopupStudentiTest {
 
     private ControllerPopupStudenti controller;
     
-    // Componenti UI
     private TextField mockNome;
     private TextField mockCognome;
     private TextField mockMatricola;
@@ -41,7 +40,6 @@ public class ControllerPopupStudentiTest {
 
     @BeforeAll
     public static void setUpClass() {
-        // Inizializza il toolkit JavaFX
         new JFXPanel(); 
     }
 
@@ -71,9 +69,6 @@ public class ControllerPopupStudentiTest {
         controller = null;
     }
 
-    // ==========================================
-    // TEST 1: Nuovo Studente (Successo)
-    // ==========================================
     @Test
     public void testNuovoStudenteSuccesso() throws Exception {
         Platform.runLater(() -> {
@@ -96,7 +91,6 @@ public class ControllerPopupStudentiTest {
                         when(mock.getCognome()).thenReturn("Rossi");
                     })) {
 
-                // FIX: Avvolgiamo mockLabel in uno StackPane
                 Stage stage = new Stage();
                 Scene scene = new Scene(new StackPane(mockLabel)); 
                 stage.setScene(scene);
@@ -127,9 +121,6 @@ public class ControllerPopupStudentiTest {
         if (error.get() != null) fail(error.get().getMessage());
     }
 
-    // ==========================================
-    // TEST 2: Nuovo Studente (Matricola Duplicata)
-    // ==========================================
     @Test
     public void testNuovoStudenteMatricolaDuplicata() throws Exception {
         Platform.runLater(() -> {
@@ -141,7 +132,7 @@ public class ControllerPopupStudentiTest {
         Platform.runLater(() -> {
             try (MockedConstruction<Studente> mockedStudente = Mockito.mockConstruction(Studente.class,
                     (mock, context) -> {
-                        when(mock.inserisciDatiStudente()).thenReturn(-1); // Codice duplicato
+                        when(mock.inserisciDatiStudente()).thenReturn(-1);
                     })) {
 
                 invokePrivateMethod(controller, "salva");
@@ -160,9 +151,6 @@ public class ControllerPopupStudentiTest {
         latch.await(5, TimeUnit.SECONDS);
     }
 
-    // ==========================================
-    // TEST 3: Modifica Studente Esistente
-    // ==========================================
     @Test
     public void testModificaStudente() throws Exception {
         runOnFxThread(() -> controller.setStudenteDaModificare(mockStudenteEsistente));
@@ -180,7 +168,6 @@ public class ControllerPopupStudentiTest {
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             try {
-                // FIX: Avvolgiamo mockLabel in uno StackPane
                 Stage stage = new Stage();
                 Scene scene = new Scene(new StackPane(mockLabel));
                 stage.setScene(scene);
@@ -199,9 +186,6 @@ public class ControllerPopupStudentiTest {
         latch.await(5, TimeUnit.SECONDS);
     }
 
-    // ==========================================
-    // UTILITIES
-    // ==========================================
 
     private void runOnFxThread(Runnable action) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

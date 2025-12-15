@@ -183,7 +183,11 @@ public class ControllerStudenti {
 
             // recupera lo stage precedente, (in questo caso lo fa attraverso la table view, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) tableViewStudenti.getScene().getWindow();
-
+            
+            ControllerPrestiti controller = loader.getController();
+            // passiomo il bibliotecario per il logout e reset password
+            controller.setBibliotecario(this.bibliotecarioLoggato);
+            
             stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
             stage.setMinHeight(600);
 
@@ -208,7 +212,11 @@ public class ControllerStudenti {
 
             // recupera lo stage precedente, (in questo caso lo fa attraverso la table view, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) tableViewStudenti.getScene().getWindow();
-
+            
+            ControllerLibri controller = loader.getController();
+            // passiomo il bibliotecario per il logout e reset password
+            controller.setBibliotecario(this.bibliotecarioLoggato);
+            
             stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
             stage.setMinHeight(600);
 
@@ -343,7 +351,12 @@ public class ControllerStudenti {
             stage.centerOnScreen();
             stage.setResizable(false);
 
-            stage.initModality(Modality.APPLICATION_MODAL); // Blocca la finestra sotto          
+            stage.initModality(Modality.APPLICATION_MODAL); // Blocca la finestra sotto  
+            
+            if (tableViewStudenti != null && tableViewStudenti.getScene() != null) {
+                stage.initOwner(tableViewStudenti.getScene().getWindow());
+            }
+            
             stage.showAndWait();
 
 

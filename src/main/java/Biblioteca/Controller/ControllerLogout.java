@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 /**
  *
@@ -35,7 +34,7 @@ public class ControllerLogout {
             
             popupStage.close();
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/homepage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/login.fxml"));
             Parent root = loader.load();
             
             

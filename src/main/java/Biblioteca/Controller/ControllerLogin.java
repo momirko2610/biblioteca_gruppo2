@@ -75,7 +75,7 @@ public class ControllerLogin {
                             errore.setText("Troppi tentativi! Password resettata: " + nuovaPassword);
                             tentativiFalliti = 0; 
                         } else {
-                            errore.setText("Errore: Email non trovata per il reset.");
+                            errore.setText("Email non presente nel nostro database");
                         }
                     } catch (Exception e) {
                         errore.setText("Errore durante il reset della password.");

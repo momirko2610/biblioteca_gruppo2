@@ -138,8 +138,7 @@ public class Libro {
             bookArray.add(newBook);
         
             Database.ordinaDatabaseLibro(bookArray, FILE, label);
-            
-            return 0;
+           
         }
         Database.salva(FILE, label);
         return 0;
@@ -168,9 +167,12 @@ public class Libro {
         
         if ( i >= 0) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
+            
+            boolean titleChanged = false;
+            
             if (!(newTitle.isEmpty())) {
                 obj.addProperty("titolo", newTitle);
-                Database.ordinaDatabaseLibro(bookArray, FILE, label);             
+                titleChanged = true;             
             }
             if (!(newAuthor.isEmpty())) obj.addProperty("autore", newAuthor);
             if (!(newAnnoPubblicazione.isEmpty())) obj.addProperty("annoPubblicazione", newAnnoPubblicazione);
@@ -179,7 +181,11 @@ public class Libro {
                 this.ISBN = Long.valueOf(newISBN);
             }
             if (!(newNumCopie.isEmpty())) obj.addProperty("numCopie", newNumCopie);
-                        
+            
+            if (titleChanged) {
+                 Database.ordinaDatabaseLibro(bookArray, FILE, label);
+            }
+
             Database.salva(FILE, label);
             
         System.out.println("Libro modificato:");
@@ -195,6 +201,7 @@ public class Libro {
      * @pre Il Bibliotecariə deve essere autenticatə
      * @post Il database contenente il catalogo dei libri è aggiornato.
      */
+    
     public int cancellazioneDatiLibro() throws IOException {
         if (Prestito.ricercaPrestitoISBN(this.ISBN) >= 0) {
             System.out.println("Non puoi eliminare il libro, è in prestito");

@@ -128,13 +128,11 @@ public class ControllerLibri {
                     Elimina.setOnAction(event -> { apriPopupElimina(libro); });
                 }
                 
-                tableViewBook.setItems(listaLibri);
-                
                 System.out.println("Tabella aggiornata con successo. Libri caricati: " + listaLibri.size());
             } else {
                 System.out.println("Nessun libro trovato nel database JSON.");
             }
-
+            tableViewBook.setItems(listaLibri);
         } catch (IOException e) {
             System.err.println("Errore critico nel caricamento del database: " + e.getMessage());
             e.printStackTrace();
@@ -185,9 +183,13 @@ public class ControllerLibri {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/prestiti.fxml"));
             Parent root = loader.load();
-
+            
             // recupera lo stage precedente, (in questo caso lo fa attraverso la table view, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) tableViewBook.getScene().getWindow();
+            
+            ControllerPrestiti controller = loader.getController();
+            // passiomo il bibliotecario per il logout e reset password
+            controller.setBibliotecario(this.bibliotecarioLoggato);
 
             stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
             stage.setMinHeight(600);
@@ -213,7 +215,11 @@ public class ControllerLibri {
 
             // recupera lo stage precedente, (in questo caso lo fa attraverso la tableview, ma potrebbe farlo da qualsiasi altra cosa)
             Stage stage = (Stage) tableViewBook.getScene().getWindow();
-
+            
+            ControllerStudenti controller = loader.getController();
+            // passiomo il bibliotecario per il logout e reset password
+            controller.setBibliotecario(this.bibliotecarioLoggato);
+            
             stage.setMinWidth(900);  // non si puo stringere la schermata oltre questi valori
             stage.setMinHeight(600);
 
@@ -295,9 +301,12 @@ public class ControllerLibri {
             stage.setResizable(false);
 
             stage.initModality(Modality.APPLICATION_MODAL);
+            
+            if (tableViewBook != null && tableViewBook.getScene() != null) {
+                stage.initOwner(tableViewBook.getScene().getWindow());
+            }
+            
             stage.showAndWait();
-
-            caricaDatiAllAvvio(); 
 
         } catch (IOException e) {
             System.err.println("Errore caricamento popup delete: " + e.getMessage());
