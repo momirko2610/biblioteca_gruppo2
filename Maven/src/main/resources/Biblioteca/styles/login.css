@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-dic-2025, 12.58.22
+    Author     : achil
+*/
+.body {
+    -fx-background-image:url("../images/Campus_2.jpg");
+    
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+
+.menu {
+    -fx-background-color:#ffffff;
+
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    
+    -fx-background-radius: 10px; 
+    -fx-border-radius: 10px;
+}
+
+.button-blue {
+    -fx-background-color:linear-gradient(to bottom, #4B85FA, #2264e5);
+    -fx-cursor:hand;
+    -fx-background-color: 
+        #2264E5,
+        linear-gradient(to bottom, #4B85FA 0%, #2264E5 10%),
+        #2264E5;
+        
+    -fx-background-insets: 0, 1, 2;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(34, 100, 229, 0.25), 5, 0, 0, 3);
+}
+
+.button-blue:hover {
+    -fx-background-color: 
+        #1c54c7,
+        linear-gradient(to bottom, #5a8ffb 0%, #1c54c7 10%),
+        #1c54c7;
+}
+.button-blue:pressed {
+
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-color: #1a50be;
+    -fx-translate-y: 1;
+}
+
+.button-red {
+    -fx-cursor: hand;
+
+    -fx-background-color: 
+        #D92020,
+        linear-gradient(to bottom, #FF5555 0%, #D92020 10%),
+        #D92020; 
+        
+    -fx-background-insets: 0, 1, 2;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(217, 32, 32, 0.4), 5, 0, 0, 3);
+}
+
+.button-red:hover {
+    -fx-background-color: 
+        #B91616,
+        linear-gradient(to bottom, #E84040 0%, #B91616 10%),
+        #B91616;
+}
+
+.button-red:pressed {
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-color: #A31111;
+    -fx-translate-y: 1;
+}
