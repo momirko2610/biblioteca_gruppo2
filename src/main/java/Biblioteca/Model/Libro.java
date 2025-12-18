@@ -1,8 +1,6 @@
 package Biblioteca.Model;
 
 import com.google.gson.*;
-//import com.google.gson.reflect.TypeToken;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,35 +9,48 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+
 /**
- * @brief Classe che gestisce il database dei libri
+ * @file Libro.java
+ * @brief Classe del modello che gestisce le informazioni e le operazioni sui libri,
+ * implementando la logica per la conservazione e modifica di Titolo, Autori, Anno, 
+ * ISBN e Numero di copie.
  * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
  */
 public class Libro {
-    private final String titolo; /*!<Titolo del libro*/
-    private final String autore; /*!<Autore/i del libro*/
-    private final int annoPubblicazione; /*!<Anno di publicazione del libro*/
-    private long ISBN; /*!<Codice identificativo unico del libro*/
-    private int numCopie; /*!<Numero di copie disponibili fisicamente nella biblioteca (non prestati))*/
+    /** @brief Titolo del libro. */
+    private final String titolo; 
+    /** @brief Autore/i del libro. */
+    private final String autore; 
+    /** @brief Anno di pubblicazione del libro. */
+    private final int annoPubblicazione; 
+    /** @brief Codice identificativo univoco (ISBN) del libro. */
+    private long ISBN; 
+    /** @brief Numero di copie disponibili fisicamente (non prestate). */
+    private int numCopie; 
     
-    private static final String NAME = "database.json"; /*!<Nome del database contenente i libri*/
-    private static final File FILE = new File(NAME); //File del database
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
-    // transient serve per non far salvare nel sile json l'hbox se no da errore
+    /** @brief Nome del database JSON[cite: 17]. */
+    private static final String NAME = "database.json"; 
+    /** @brief File del database. */
+    private static final File FILE = new File(NAME); 
+    /** @brief Oggetto GSON per la gestione dei file JSON. */
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); 
+    
+    /** @brief Contenitore grafico per i bottoni di azione nella TableView (non salvato su JSON). */
     private transient HBox azioni;
 
     /**
-     * @param numCopie
-     * @brief Costruttore di base
-     * @param titolo Titolo del libro
-     * @param autore Autore/i del libro
-     * @param annoPubblicazione Anno di publicazione del libro
-     * @param ISBN Codice identificativo unico del libro
+     * @brief Costruttore della classe Libro.
+     * @param titolo Titolo del libro.
+     * @param autore Autore/i.
+     * @param annoPubblicazione Anno di pubblicazione.
+     * @param ISBN Codice ISBN.
+     * @param numCopie Numero di copie iniziali.
      */
-    public Libro(String titolo, String autore, int annoPubblicazione,long ISBN, int numCopie) {
+    public Libro(String titolo, String autore, int annoPubblicazione, long ISBN, int numCopie) {
         this.titolo = titolo;
         this.autore = autore;
         this.annoPubblicazione = annoPubblicazione;
@@ -47,11 +58,12 @@ public class Libro {
         this.numCopie = numCopie;
         
         creaBottoni();
-
     }
     
+    /**
+     * @brief Inizializza i componenti grafici (Modifica/Elimina) per la colonna Azioni.
+     */
     private void creaBottoni(){
-        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
         Button Modifica = new Button();
         Button Elimina = new Button();
         
@@ -60,7 +72,6 @@ public class Libro {
         
         viewModifica.setFitHeight(15);
         viewModifica.setFitWidth(15);
-            
         viewElimina.setFitHeight(15);
         viewElimina.setFitWidth(15);
 
@@ -74,8 +85,8 @@ public class Libro {
         this.azioni.setAlignment(Pos.CENTER);
     }
     
+    /** @brief Restituisce l'HBox delle azioni, inizializzandolo se nullo (dopo caricamento JSON). */
     public HBox getAzioni() {
-        // azioni è sempre nulla quando carico dal Database JSON
         if (azioni == null) {
             creaBottoni();
         }
@@ -87,87 +98,76 @@ public class Libro {
     public int getAnnoPubblicazione() { return annoPubblicazione; }
     public long getIsbn() { return ISBN; }
     public int getNumCopie() { return numCopie; }
+
     @Override
     public String toString() {
-        return String.format(
-            "Titolo: %s| Autore: %s | Anno: %d | ISBN: %d | Copie: %d",
-            titolo, autore, annoPubblicazione, ISBN, numCopie
-        );
+        return String.format("Titolo: %s| Autore: %s | Anno: %d | ISBN: %d | Copie: %d",
+            titolo, autore, annoPubblicazione, ISBN, numCopie);
     }
     
-    
     /**
-     * @throws java.io.IOException
-     * @brief Aggiorna il database dei libri creando un nuovo elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Il database contenente il catalogo dei libri è aggiornato.
+     * @brief Inserisce un nuovo libro o aggiorna le copie di uno esistente.
+     * @throws java.io.IOException Se si verificano errori di scrittura.
+     * @pre Il bibliotecario deve essere autenticato[cite: 196, 197].
+     * @post Il catalogo dei libri è aggiornato su file[cite: 25, 198].
+     * @return 0 successo, -1 ISBN non valido (13 cifre), -2 Anno non valido (4 cifre).
      */
     public int inserisciLibro() throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray bookArray = Libro.getArrayLibri(label);
         
         if (bookArray == null) bookArray = new JsonArray();
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
-        if ( i >= 0) {
+        if (i >= 0) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
             obj.addProperty("numCopie", this.numCopie);
-
-            // aggiorna array
             bookArray.set(i, obj);
         }
         else {
-            //Aggiungo nuovo libro
             JsonObject newBook = new JsonObject();
             newBook.addProperty("titolo", this.titolo);
             newBook.addProperty("autore", this.autore);
+            
             if (String.valueOf(this.ISBN).matches("\\d{13}")) {
                 newBook.addProperty("ISBN", this.ISBN);
-            } else {
-                return -1;
-            }
+            } else { return -1; }
+            
             if (String.valueOf(this.annoPubblicazione).matches("\\d{4,}")) {
                 newBook.addProperty("annoPubblicazione", this.annoPubblicazione);
-            } else {
-                return -2;
-            }
+            } else { return -2; }
 
             newBook.addProperty("numCopie", this.numCopie);
             bookArray.add(newBook);
-        
             Database.ordinaDatabaseLibro(bookArray, FILE, label);
-           
         }
         Database.salva(FILE, label);
         return 0;
     }
 
-
     /**
-     * @param newTitle
-     * @param newAuthor
-     * @param newAnnoPubblicazione
-     * @param newISBN
-     * @param newNumCopie
-     * @throws java.io.IOException
-     * @brief Aggiorna il database dei libri modificando un elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Il database contenente il catalogo dei libri è aggiornato.
+     * @brief Modifica i dati di un libro esistente.
+     * @param newTitle Nuovo titolo.
+     * @param newAuthor Nuovo autore.
+     * @param newAnnoPubblicazione Nuovo anno.
+     * @param newISBN Nuovo ISBN.
+     * @param newNumCopie Nuovo numero di copie.
+     * @throws java.io.IOException Se si verificano errori di scrittura.
+     * @pre Il bibliotecario deve essere autenticato.
+     * @post Il catalogo aggiornato viene salvato su file.
+     * @return 0 successo, -2 libro non trovato, -3 database non trovato.
      */
-    public int modificaDatiLibro( String newTitle, String newAuthor, String newAnnoPubblicazione, String newISBN, String newNumCopie) throws IOException{
+    public int modificaDatiLibro(String newTitle, String newAuthor, String newAnnoPubblicazione, String newISBN, String newNumCopie) throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray bookArray = Libro.getArrayLibri(label);
         
         if (bookArray == null) return -3;
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
-        if ( i >= 0) {
+        if (i >= 0) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
-            
             boolean titleChanged = false;
             
             if (!(newTitle.isEmpty())) {
@@ -185,60 +185,46 @@ public class Libro {
             if (titleChanged) {
                  Database.ordinaDatabaseLibro(bookArray, FILE, label);
             }
-
             Database.salva(FILE, label);
-            
-        System.out.println("Libro modificato:");
-        System.out.println(obj.toString());
-        return 0;
+            return 0;
         }
-        else System.out.println("Libro non risulta nel nostro database"); return -2;
-    };
+        return -2;
+    }
 
     /**
-     * @throws java.io.IOException
-     * @brief Aggiorna il database dei libri rimuovendo un elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Il database contenente il catalogo dei libri è aggiornato.
+     * @brief Rimuove un libro dal catalogo.
+     * @throws java.io.IOException Se si verificano errori di scrittura.
+     * @pre Il libro non deve essere attualmente in prestito.
+     * @post Il libro viene eliminato dal database
+     * @return 0 successo, -1 libro in prestito, -2 libro non trovato, -3 database mancante.
      */
-    
     public int cancellazioneDatiLibro() throws IOException {
         if (Prestito.ricercaPrestitoISBN(this.ISBN) >= 0) {
-            System.out.println("Non puoi eliminare il libro, è in prestito");
             return -1;
         }
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray bookArray = Libro.getArrayLibri(label);
         
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return -3;
-        }
+        if (bookArray == null) return -3;
         
         int i = Libro.ricercaLibroISBN(this.ISBN);
         
-        if ( i >= 0) {
+        if (i >= 0) {
             bookArray.remove(i);
             Database.salva(FILE, label);
-            System.out.println("Libro eliminato");
             return 0;
         }
-        else System.out.println("Libro non risulta nel nostro database"); return -2;
-    };
+        return -2;
+    }
 
     /**
-     * @param ISBN
-     * @throws java.io.IOException
-     * @brief Cerca un elemento dal database dei libri
-     * @pre N/A
-     * @post L’utente (sia bibliotecariə che studente) visualizza il libro selezionato
-     * @return posizione del libro nel database o -1 in caso di libro non presente
+     * @brief Ricerca un libro tramite codice ISBN.
+     * @param ISBN Codice ISBN da cercare.
+     * @throws java.io.IOException Se si verificano errori di lettura.
+     * @return La posizione nell'array JSON o -1 se non presente.
      */
     public static int ricercaLibroISBN(Long ISBN) throws IOException {
-        
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray bookArray = Libro.getArrayLibri(label);
         
         if (bookArray == null) return -2;
@@ -249,31 +235,22 @@ public class Libro {
                 return i;
             }
         }
-        
         return -1;
     }
+
     /**
-     * @param titolo
-     * @return 
-     * @throws java.io.IOException
-     * @brief Mostra il libro cercato per titolo
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     * @brief Mostra i libri corrispondenti a un titolo.
+     * @param titolo Query di ricerca per titolo.
+     * @return Una lista di oggetti Libro corrispondenti.
+     * @throws java.io.IOException Se si verificano errori di lettura.
      */
-    public static List<Libro> ricercaLibroTitolo(String titolo)throws IOException{
-        
+    public static List<Libro> ricercaLibroTitolo(String titolo) throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray bookArray = Libro.getArrayLibri(label);
         
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return null;
-        }
+        if (bookArray == null) return null;
         
-        //Creo una lista di tipo List<Libro>
         List<Libro> libri = new ArrayList<>();
-        
         for (int i = 0; i < bookArray.size(); i++) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
             if (obj.get("titolo").getAsString().compareTo(titolo) > 0) break;
@@ -281,58 +258,41 @@ public class Libro {
                 Libro libro = database.fromJson(obj, Libro.class);
                 libri.add(libro);
             }
-            
-           
         }
-        return (libri);    
-    };
-    
+        return libri;
+    }
+
     /**
-     * @param autore
-     * @return 
-     * @throws java.io.IOException
-     * @brief Mostra il libro cercato per titolo
-     * @pre Il libro è presente nel database
-     * @post L’utente (sia bibliotecariə che studente) visualizza le informazioni del libro cercato
+     * @brief Mostra i libri corrispondenti a un autore.
+     * @param autore Query di ricerca per autore.
+     * @return Lista di libri corrispondenti.
+     * @throws java.io.IOException Se si verificano errori di lettura.
      */
-    public static List<Libro> ricercaLibroAutore(String autore)throws IOException{
-        
+    public static List<Libro> ricercaLibroAutore(String autore) throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray bookArray = Libro.getArrayLibri(label);
         
-        if (bookArray == null) {
-            System.out.println("ERROR, database not found");
-            return null;
-        }
+        if (bookArray == null) return null;
         
-        //Creo una lista di tipo List<Libro>
         List<Libro> libri = new ArrayList<>();
-        
         for (int i = 0; i < bookArray.size(); i++) {
             JsonObject obj = bookArray.get(i).getAsJsonObject();
             if (obj.get("autore").getAsString().equalsIgnoreCase(autore)) {
                 Libro libro = database.fromJson(obj, Libro.class);
                 libri.add(libro);
             }
-           
         }
-        
-        return(libri);
-    };
-    
-     /**
-     * @throws java.io.IOException
-     * @brief salva in un JsonArray i libri contenuti nel database
-     * @pre deve esistere un JsonObject contente i libri salvati nel database
-     * @post Ottengo l'array dei libri
+        return libri;
+    }
+
+    /**
+     * @brief Estrae l'array dei libri dal database principale.
+     * @param label JsonObject del database.
+     * @return JsonArray "libri" o null se mancante.
      */
-    
     public static JsonArray getArrayLibri(JsonObject label) {
-        //Ottengo l'array dei libri
         JsonArray bookArray = label.getAsJsonArray("libri");
         if (bookArray == null) {
-            System.out.println("ERROR, database not found");
             return null;
         }
         return bookArray;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Studente;
@@ -19,28 +14,44 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- *
- * @author achil
+ * @file ControllerPopupStudenti.java
+ * @brief Controller che gestisce il popup di inserimento e modifica dei dati studente.
+ * @author Mirko Montella
+ * @author Achille Romano
+ * @author Sabrina Soriano
+ * @author Ciro Senese
  */
 
 public class ControllerPopupStudenti {
+    /** @brief Titolo dinamico della finestra popup. */
     @FXML 
     private Text label;
+    /** @brief Campo di testo per l'inserimento del nome dello studente. */
     @FXML 
     private TextField TextFieldnome;
+    /** @brief Campo di testo per l'inserimento del cognome dello studente. */
     @FXML 
     private TextField TextFieldcognome;
+    /** @brief Campo di testo per l'inserimento della matricola univoca. */
     @FXML 
     private TextField TextFieldmatricola;
+    /** @brief Campo di testo per l'inserimento dell'email istituzionale. */
     @FXML 
     private TextField TextFieldemail;
+    /** @brief Pulsante per la conferma dell'operazione. */
     @FXML 
     private Button conferma;
+    /** @brief Etichetta per la visualizzazione dei messaggi di errore. */
     @FXML
     private Label errore; 
 
+    /** @brief Istanza dello studente correntemente in fase di modifica. */
     private Studente studenteCorrente; 
 
+    /**
+     * @brief Configura il popup popolando i campi se si tratta di una modifica.
+     * @param studente L'oggetto Studente da modificare, null se nuovo inserimento.
+     */
     public void setStudenteDaModificare(Studente studente) {
         this.studenteCorrente = studente;
 
@@ -58,10 +69,13 @@ public class ControllerPopupStudenti {
         }
     }
     
+    /**
+     * @brief Inizializza il controller.
+     */
     @FXML
     public void initialize() {
         // abilita bottone conferma
-      /*  conferma.disableProperty().bind(
+      /* conferma.disableProperty().bind(
             titolo.textProperty().isEmpty()
             .or(autori.textProperty().isEmpty())
             .or(isbn.textProperty().isEmpty())
@@ -71,6 +85,10 @@ public class ControllerPopupStudenti {
       ;
     }
 
+    /**
+     * @brief Salva i dati dello studente nel sistema.
+     * Verifica l'univocità della matricola e la presenza del database.
+     */
     @FXML
     private void salva() {
         System.out.println("1");
@@ -113,18 +131,30 @@ public class ControllerPopupStudenti {
         }
     }
 
+    /**
+     * @brief Mostra una finestra di alert in caso di errore.
+     * @param msg Il messaggio di errore da visualizzare.
+     */
     private void mostraErrore(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(msg);
         alert.show();
     }
     
+    /**
+     * @brief Chiude la finestra del popup.
+     */
     @FXML
     public void chiudi() {
         Stage stage = (Stage) label.getScene().getWindow();
         stage.close();
     }
     
+    /**
+     * @brief Apre il popup di successo dopo il salvataggio dei dati.
+     * @param studenteSalvato Lo studente salvato.
+     * @param azione Descrizione dell'azione effettuata.
+     */
     private void apriPopupSuccesso(Studente studenteSalvato, String azione) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Biblioteca/fxml/successo.fxml"));

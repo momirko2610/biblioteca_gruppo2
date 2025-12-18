@@ -17,20 +17,47 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @file ControllerPopupPrestiti.java
+ * @brief Controller che gestisce il popup di registrazione di un nuovo prestito,
+ * controllando i requisiti definiti.
+ * @author Mirko Montella
+ * @author Achille Romano
+ * @author Sabrina Soriano
+ * @author Ciro Senese
+ */
 public class ControllerPopupPrestiti {
 
+    /** @brief Titolo della finestra popup. */
     @FXML private Text label;
+    
+    /** @brief Menu a tendina per la selezione del libro tramite ISBN e Titolo. */
     @FXML private ComboBox<String> comboLibri; 
+    
+    /** @brief Menu a tendina per la selezione dello studente tramite Matricola e Cognome. */
     @FXML private ComboBox<String> comboStudenti; 
+    
+    /** @brief Selettore della data prevista per la restituzione del libro. */
     @FXML private DatePicker datePickerRestituzione;
+    
+    /** @brief Pulsante per confermare la registrazione del prestito. */
     @FXML private Button conferma;
     
+    /** @brief Etichetta per la visualizzazione dinamica degli errori di validazione. */
     // Assicurati che nel file FXML ci sia <Label fx:id="errore" ... />
     @FXML private Label errore; 
 
+    /** @brief Lista locale dei libri caricati dal database per il filtraggio. */
     private List<Libro> listaLibriCompleta;
+    
+    /** @brief Lista locale degli studenti caricati dal database per il filtraggio. */
     private List<Studente> listaStudentiCompleta;
 
+    /**
+     * @brief Carica i dati di libri e studenti nelle ComboBox
+     * ed imposta il datapicker dekka data di restituzione a 30 giorni dalla data corrente.
+     * @throws IOException In caso di problemi nell'accesso al database.
+     */
     @FXML
     public void initialize() throws IOException {
         Database.creaDatabase();
@@ -39,6 +66,9 @@ public class ControllerPopupPrestiti {
         caricaDatiNelleComboBox();
     }
 
+    /**
+     * @brief Recupera i dati dal database e popola i menu a tendina.
+     */
     private void caricaDatiNelleComboBox() {
         // ... (Codice di caricamento combobox identico a prima) ...
         try {
@@ -65,6 +95,11 @@ public class ControllerPopupPrestiti {
         }
     }
 
+    /**
+     * @brief Legge i dati dall'interfaccia e tenta di registrare il prestito nel database.
+     * Verifica le selezione e controlla se la data non è antecedente a quella odierna 
+     * e gestisce i codici di errore in messaggi testuali per l'utente.
+     */
     @FXML
     private void salva() {
         // Resetta errore precedente
@@ -129,6 +164,9 @@ public class ControllerPopupPrestiti {
         }
     }
 
+    /**
+     * @brief Chiude la finestra popup del prestito.
+     */
     @FXML
     private void chiudi() {
         Stage stage = (Stage) label.getScene().getWindow();

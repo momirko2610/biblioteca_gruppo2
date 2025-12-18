@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Biblioteca.Controller;
 
 import Biblioteca.Model.Prestito;
@@ -14,20 +9,29 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- *
- *  @author Mirko Montella
- *  @author Achille Romano
- *  @author Sabrina Soriano
- *  @author Ciro Senese
+ * @file ControllerRitorno.java
+ * @brief Controller che gestisce la conferma di restituzione di un libro.
+ * @author Mirko Montella
+ * @author Achille Romano
+ * @author Sabrina Soriano
+ * @author Ciro Senese
  */
 public class ControllerRitorno {
+    /** @brief Testo visualizzato nel popup contenente i dettagli della restituzione. */
     @FXML
     private Text messaggio;
 
+    /** @brief Matricola dello studente che effettua la restituzione. */
     private String matricolaCorrente;
+    
+    /** @brief Codice ISBN del libro restituito. */
     private Long isbnCorrente;
 
-
+    /**
+     * @brief Inizializza i dati della restituzione e imposta il messaggio con le informazioni relative alla restituzione.
+     * @param matricola La matricola dello studente.
+     * @param isbn Il codice ISBN del libro.
+     */
     public void setDatiRestituzione(String matricola, Long isbn) {
         this.matricolaCorrente = matricola;
         this.isbnCorrente = isbn;
@@ -42,6 +46,10 @@ public class ControllerRitorno {
         messaggio.setText(txtmessaggio);
     }
 
+    /**
+     * @brief Conferma l'avvenuta restituzione del libro.
+     * In caso di successo, chiude la finestra di popup.
+     */
     @FXML
     private void conferma() {
         try {
@@ -56,6 +64,9 @@ public class ControllerRitorno {
         }
     }
 
+    /**
+     * @brief Chiude la finestra di dialogo corrente.
+     */
     @FXML
     public void chiudi() {
         Stage stage = (Stage) messaggio.getScene().getWindow();

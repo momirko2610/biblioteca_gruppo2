@@ -15,30 +15,39 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
- * @brief Classe che gestisce il database degli studenti
+ * @file Studente.java
+ * @brief Classe del modello per la gestione delle anagrafiche studenti.
  * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
  */
 public class Studente {
-    private String nome; /*!<Nome dello studente*/
-    private String cognome; /*!<Cognome dello studente*/
-    private String matricola; /*!<matricola dello studente*/
-    private String e_mail; /*!<e-mail dello studente*/
-    /**< Nome del database che verrà creato */
+    /** @brief Nome dello studente. */
+    private String nome; 
+    /** @brief Cognome dello studente. */
+    private String cognome; 
+    /** @brief Matricola univoca dello studente. */
+    private String matricola; 
+    /** @brief Indirizzo e-mail istituzionale dello studente. */
+    private String e_mail; 
+    
+    /** @brief Nome del file database JSON. */
     private static final String NAME = "database.json";
-    private static final File FILE = new File(NAME); //File del database
-    /**< Oggetto della funzione per la creazione dei file JSON */
+    /** @brief Oggetto File associato al database fisico. */
+    private static final File FILE = new File(NAME); 
+    /** @brief Istanza GSON per la formattazione e gestione JSON. */
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
     
+    /** @brief Contenitore grafico per i bottoni di azione (Modifica, Elimina, Info) nella UI. */
     private transient HBox azioni;
+
     /**
-     * @brief Costruttore di base
-     * @param nome nome dello studente
-     * @param cognome nome dello studente
-     * @param matricola matricola nome dello studente
-     * @param e_mail e-mail nome dello studente
+     * @brief Costruttore della classe Studente.
+     * @param nome Nome dello studente.
+     * @param cognome Cognome dello studente.
+     * @param matricola Matricola univoca.
+     * @param e_mail E-mail istituzionale.
      */
     public Studente(String nome, String cognome, String matricola, String e_mail) {
         this.nome = nome;
@@ -49,8 +58,10 @@ public class Studente {
         creaBottoni();
     }
     
+    /**
+     * @brief Inizializza i pulsanti grafici per la colonna Azioni della tabella studenti.
+     */
     private void creaBottoni(){
-        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
         Button Modifica = new Button();
         Button Elimina = new Button();
         Button Info = new Button();
@@ -61,10 +72,8 @@ public class Studente {
         
         viewModifica.setFitHeight(15);
         viewModifica.setFitWidth(15);
-            
         viewElimina.setFitHeight(15);
         viewElimina.setFitWidth(15);
-        
         viewInfo.setFitHeight(15);
         viewInfo.setFitWidth(15);
         
@@ -80,8 +89,10 @@ public class Studente {
         this.azioni.setAlignment(Pos.CENTER);
     }
     
+    /** * @brief Restituisce l'HBox delle azioni. 
+     * @return Il contenitore HBox con i pulsanti attivi.
+     */
     public HBox getAzioni() {
-        // azioni è sempre nulla quando carico dal Database JSON
         if (azioni == null) {
             creaBottoni();
         }
@@ -102,27 +113,25 @@ public class Studente {
     }
 
     /**
-     * @throws java.io.IOException
-     * @brief Aggiorna il database degli studenti creando un nuovo elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Il database contenente l’elenco degli studenti è aggiornato.
+     * @brief Registra un nuovo studente nel database.
+     * @return 0 in caso di successo, -1 se la matricola è già presente.
+     * @throws java.io.IOException Se fallisce la scrittura su file.
+     * @pre Il Bibliotecario deve essere autenticato.
+     * @post Il database viene aggiornato e ordinato per cognome.
      */
     public int inserisciDatiStudente() throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray studentArray = Studente.getArrayStudenti(label);
         
         if (studentArray == null) studentArray = new JsonArray();
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
         
-        if ( i >= 0) {
+        if (i >= 0) {
             System.out.println("Matricola già inserita nel database");
             return -1;
         }
-        
         else {
-            //Aggiungo nuovo studente
             JsonObject newStudent = new JsonObject();
             newStudent.addProperty("nome", this.nome);
             newStudent.addProperty("cognome", this.cognome);
@@ -133,30 +142,23 @@ public class Studente {
             Database.ordinaDatabaseStudente(studentArray, FILE, label);
         }
         return 0;
-    };
+    }
 
     /**
-     * @param newNome
-     * @param newCognome
-     * @param newMatricola
-     * @param newE_mail
-     * @throws java.io.IOException
-     * @brief Aggiorna il database degli studenti modificando un elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Il database contenente l’elenco degli studenti è aggiornato.
+     * @brief Modifica i dati di un profilo studente esistente.
+     * @return 0 successo, -2 studente non trovato, -3 database mancante.
+     * @throws java.io.IOException Se fallisce l'aggiornamento del file.
+     * @pre Il Bibliotecario deve essere autenticato.
+     * @post I dati vengono persistiti e il database riordinato se necessario.
      */
     public int modificaDatiStudente(String newNome, String newCognome, String newMatricola, String newE_mail) throws IOException{
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray studentArray = Studente.getArrayStudenti(label);
-        if (studentArray == null) {
-            System.out.println("ERROR, database not found");
-            return -3;
-        }
+        if (studentArray == null) return -3;
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
         
-        if ( i >= 0) {
+        if (i >= 0) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
             if (!(newNome.isEmpty())) obj.addProperty("nome", newNome);
             if (!(newCognome.isEmpty())) {
@@ -170,52 +172,42 @@ public class Studente {
             if (!(newE_mail.isEmpty())) obj.addProperty("e_mail", newE_mail);
             
             Database.salva(FILE, label);
-            System.out.println("Studente modificato:");
-            System.out.println(obj.toString());
-            
             return 0;
         }
-        else System.out.println("Studente non risulta nel nostro database"); return -2;
-    };
+        return -2;
+    }
 
     /**
-     * @throws java.io.IOException
-     * @brief Aggiorna il database degli studenti eliminando un elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post Il database contenente l’elenco degli studenti è aggiornato.
+     * @brief Elimina uno studente dal database.
+     * @return 0 successo, -2 studente non trovato, -3 database mancante.
+     * @throws java.io.IOException Se fallisce la rimozione fisica dal file.
+     * @pre Il Bibliotecario deve essere autenticato.
+     * @post Il record dello studente viene rimosso definitivamente.
      */
     public int cancellazioneDatiStudente () throws IOException {
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray studentArray = Studente.getArrayStudenti(label);
         
-        if (studentArray == null) {
-            System.out.println("ERROR, database not found");
-            return -3;
-        }
+        if (studentArray == null) return -3;
         
         int i = Studente.ricercaStudenteMatricola(this.matricola);
         
-        if ( i >= 0) {
+        if (i >= 0) {
             studentArray.remove(i);
             Database.salva(FILE, label);
-            System.out.println("Studente eliminato dal database");
             return 0;
         }
-        else System.out.println("Studente non risulta nel nostro database"); return -2;
-    };
+        return -2;
+    }
 
     /**
-     * @param matricola
-     * @throws java.io.IOException
-     * @brief Cerca un elemento dal database degli studenti
-     * @pre N/A
-     * @post Bibliotecariə visualizza a schermo i dati dello studente selezionato
-     * @return posizione del libro nel database o -1 in caso di libro non presente
+     * @brief Cerca la posizione di uno studente nell'array JSON tramite matricola.
+     * @param matricola La matricola da ricercare.
+     * @return L'indice dell'elemento nel database o -1 se non presente.
+     * @throws java.io.IOException Se fallisce la lettura del database.
      */
     public static int ricercaStudenteMatricola(String matricola) throws IOException{
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray studentArray = Studente.getArrayStudenti(label);
         
         if (studentArray == null) return -2;
@@ -226,63 +218,43 @@ public class Studente {
                 return i;
             }
         }
-        
         return -1;
-    };
-    
+    }
+
     /**
-     * @param cognome
-     * @return 
-     * @throws java.io.IOException 
-     * @brief Mostra l'elemento cercato (per cognome) dal database degli studenti
-     * @pre lo studente è presente nel database
-     * @post il bibliotecariə visualizza le informazioni dello studente cercato
+     * @brief Filtra l'elenco degli studenti per cognome.
+     * @param cognome Il cognome da ricercare.
+     * @return Lista di oggetti Studente che corrispondono al criterio.
+     * @throws java.io.IOException Se fallisce la lettura del database.
      */
     public static List<Studente> ricercaStudenteCognome(String cognome) throws IOException{
         JsonObject label = Database.leggiDatabase(FILE);
-        
         JsonArray studentArray = Studente.getArrayStudenti(label);
         
-        if (studentArray == null) {
-            System.out.println("ERROR, database not found");
-            return null;
-        }
+        if (studentArray == null) return null;
         
-        //Creo una lista di tipo List<Studente>
         List<Studente> studenti = new ArrayList<>();
-        
         for (int i = 0; i < studentArray.size(); i++) {
             JsonObject obj = studentArray.get(i).getAsJsonObject();
             if (obj.get("cognome").getAsString().compareTo(cognome) > 0) break;
             else if (obj.get("cognome").getAsString().equalsIgnoreCase(cognome)) {
                 Studente studente = database.fromJson(obj, Studente.class);
                 studenti.add(studente);
-                
             }
-           
         }
-        
-        return(studenti);
-        
-    };
-    
-     /**
-     * @throws java.io.IOException
-     * @brief salva in un JsonArray gli studenti contenuti nel database
-     * @pre deve esistere un JsonObject contente gli studenti salvati nel database
-     * @post Ottengo l'array degli studenti
+        return studenti;
+    }
+
+    /**
+     * @brief Estrae l'array "studenti" dal JsonObject del database.
+     * @param label Il JsonObject principale caricato in memoria.
+     * @return L'array JSON degli studenti o null se la chiave non esiste.
      */
-    
     private static JsonArray getArrayStudenti(JsonObject label) {
-        //Ottengo l'array dei studenti
         JsonArray studentArray = label.getAsJsonArray("studenti");
         if (studentArray == null) {
-            System.out.println("ERROR, database not found");
             return null;
         }
         return studentArray;
     }
-    
 }
-
-

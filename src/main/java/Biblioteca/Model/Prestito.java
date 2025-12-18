@@ -14,10 +14,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-
-
 /**
- * @brief Classe che gestisce il database dei prestiti
+ * @file Prestito.java
+ * @brief Classe del modello che gestisce la logica dei prestiti e delle restituzioni.
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
@@ -25,24 +24,37 @@ import javafx.scene.layout.HBox;
  */
 public class Prestito {
     
+    /** @brief Nome del file database JSON. */
+    private static final String NAME = "database.json"; 
+    /** @brief Oggetto GSON per la gestione dei file JSON. */
+    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); 
+    /** @brief File del database. */
+    private static final File FILE = new File(NAME); 
     
-    private static final String NAME = "database.json"; /*!<Nome del database contenente i prestiti*/
-    private static final Gson database = new GsonBuilder().setPrettyPrinting().create(); /*!<Oggetto della funzione GSON per la creazione dei file JSON*/
-     private static final File FILE = new File(NAME); //File del database
-    
+    /** @brief Matricola dello studente associato al prestito. */
     private final String matricola;
+    /** @brief Codice ISBN del libro concesso in prestito. */
     private final long ISBN; 
+    /** @brief Data di inizio del prestito. */
     private final LocalDate dataInizio;
+    /** @brief Data entro la quale è prevista la restituzione. */
     private final LocalDate dataFinePrevista;
     
-
-    private transient Libro libro;    
+    /** @brief Riferimento transiente all'oggetto Libro (non salvato su JSON). */
+    private transient Libro libro;     
+    /** @brief Riferimento transiente all'oggetto Studente (non salvato su JSON). */
     private transient Studente studente;
     
-    // transient serve per non far salvare nel sile json l'hbox se no da errore
+    /** @brief Contenitore grafico per le azioni nella tabella (non salvato su JSON). */
     private transient HBox azioni;
 
-
+    /**
+     * @brief Costruttore della classe Prestito.
+     * @param studente Lo studente che richiede il prestito.
+     * @param libro Il libro richiesto.
+     * @param dataInizio Data odierna di inizio.
+     * @param dataFinePrevista Data di scadenza del prestito.
+     */
     public Prestito(Studente studente, Libro libro, LocalDate dataInizio, LocalDate dataFinePrevista) {
         this.studente = studente;
         this.libro = libro;
@@ -53,8 +65,9 @@ public class Prestito {
         
         creaBottoni();
     }
+
+    /** @brief Restituisce l'HBox delle azioni per la TableView. */
     public HBox getAzioni() {
-        // azioni è sempre nulla quando carico dal Database JSON
         if (azioni == null) {
             creaBottoni();
         }
@@ -66,18 +79,15 @@ public class Prestito {
     public LocalDate getDataInizio() { return dataInizio; }
     public LocalDate getDataFinePrevista() { return dataFinePrevista; }
 
-    
-
-    
-
    /**
-     * @param matricola
-     * @param ISBN
-     * @throws java.io.IOException
-     * @brief Aggiorna il database dei prestiti creando un nuovo elemento
+     * @brief Registra un nuovo prestito nel sistema eseguendo tutti i controlli.
+     * @param matricola Matricola dello studente.
+     * @param ISBN Codice ISBN del libro.
+     * @return 0 successo, -1 studente non trovato, -2 limite prestiti raggiunto, 
+     * -3 ritardi presenti, -4 copie esaurite, -5 libro non trovato.
+     * @throws java.io.IOException In caso di errori di I/O.
      */
     public int registrazionePrestito(String matricola, long ISBN) throws IOException {
-
         File file = new File(NAME);
         JsonObject label;
 
@@ -117,25 +127,14 @@ public class Prestito {
             }
         }
 
-        if (!flag || libroTrovato == null) return -5; // Libro non trovato
+        if (!flag || libroTrovato == null) return -5; 
 
-        if (checkAccountStudente() == -1) {
-            return -1; 
-        }
+        if (checkAccountStudente() == -1) return -1; 
+        if (checkPrestitiAttiviStudente(matricola) == -1) return -2; 
+        if (checkRitardoRestituzionePrestito() == -1) return -3; 
+        if (checkCopieDisponibili(libroTrovato) == -1) return -4;
 
-        if (checkPrestitiAttiviStudente(matricola) == -1) {
-            return -2; 
-        }
-
-        if (checkRitardoRestituzionePrestito() == -1) {
-            return -3; 
-        }
-        
-        if (checkCopieDisponibili(libroTrovato) == -1) {
-            return -4;
-        }
-
-
+        // Decremento copie nel database
         JsonObject libroJson = bookArray.get(indiceLibro).getAsJsonObject();
         int nuoveCopie = libroTrovato.getNumCopie() - 1;
         libroJson.addProperty("numCopie", nuoveCopie); 
@@ -157,95 +156,50 @@ public class Prestito {
         newPrestito.addProperty("dataRestituzioneEffettiva", ""); 
 
         prestitiArray.add(newPrestito);
-
         Database.ordinaDatabasePrestito(prestitiArray, file, label);
         
         System.out.println("Prestito registrato con successo!");
         return 0;
     }
 
-    
     /**
-     * @param matricola
-     * @param ISBN
-     * @throws java.io.IOException
-     * @brief Aggiorna il database dei prestiti eliminando un elemento
-     * @pre Il Bibliotecariə deve essere autenticatə
-     * @post N/A
+     * @brief Registra la restituzione di un libro e aggiorna l'inventario.
+     * @param matricola Matricola dello studente.
+     * @param ISBN Codice ISBN del libro restituito.
+     * @throws java.io.IOException In caso di errori di scrittura.
+     * @pre Il bibliotecario deve essere autenticato.
+     * @post Il prestito viene eliminato e l'inventario aggiornato.
      */
     public static void registrazioneRestituzione(String matricola, long ISBN) throws IOException {
-   
-        //Legge il database
         JsonObject label = Database.leggiDatabase(FILE);
-    
-        // Ottengo l'array dei prestiti
         JsonArray prestitiArray = label.getAsJsonArray("prestiti");
+        
         if (prestitiArray == null) {
             System.out.println("Nessun prestito attivo nel database.");
             return;
         }
         
-        //Trovo il prestito da rimuovere
-        
         int indexDaRimuovere = ricercaPrestito(matricola, ISBN);
+        if(indexDaRimuovere == -1) return;
         
-        if(indexDaRimuovere == -1){
-            System.out.println("Prestito non trovato!\n");
-            return;
-        }
-        
-        if(indexDaRimuovere == -2){
-            System.out.println("Array Prestiti non trovato in database!\n\n");
-            return;
-        }
-      
-   
-  
-        //Aggiorno le copie del libro (Aumenta di 1)
-
-        //Ottengo l'Array dei libri
         JsonArray bookArray = Libro.getArrayLibri(label);
-
-        // Cerchiamo il libro nell'array dei libri
         int indiceLibro = Libro.ricercaLibroISBN(ISBN);
-        if(indiceLibro == -1){
-            System.out.println("Libro non trovato!\n");
-            return;
-        } 
-        //Libro trovato!
-        JsonObject bookObj = bookArray.get(indiceLibro).getAsJsonObject();  
+        if(indiceLibro == -1) return;
 
-        // Libro trovato, incremento le copie
+        JsonObject bookObj = bookArray.get(indiceLibro).getAsJsonObject();  
         int copieAttuali = bookObj.get("numCopie").getAsInt();
         bookObj.addProperty("numCopie", copieAttuali + 1);
-        System.out.println("Copie libro aggiornate: " + (copieAttuali + 1));
 
-
-        //Rimuovo il prestito e Salvo
         prestitiArray.remove(indexDaRimuovere);
-
         Database.salva(FILE, label);
-        System.out.println("Prestito eliminato e database salvato.");
-            
-        
-        
     }
     
     /**
-     * @param matricola
-     * @param ISBN
-     * @throws java.io.IOException
-     * @brief Cerca un elemento dal database dei libri
-     * @pre N/A
-     * @post L’utente (sia bibliotecariə che studente) visualizza il libro selezionato
-     * @return posizione del libro nel database o -1 in caso di libro non presente
+     * @brief Cerca un prestito specifico tramite matricola e ISBN.
+     * @return Indice dell'array JSON o -1 se non trovato.
      */
     public static int ricercaPrestito(String matricola, long ISBN) throws IOException {
-        
-        //Leggo il database
         JsonObject label = Database.leggiDatabase(FILE);
-        
-        //Ottengo l'array dei prestiti
         JsonArray loanArray = label.getAsJsonArray("prestiti");
         if (loanArray == null) return -2;
         
@@ -255,17 +209,15 @@ public class Prestito {
                 return i;
             }
         }
-        
         return -1;
     }
     
-    
+    /**
+     * @brief Verifica l'esistenza di prestiti attivi per un determinato ISBN.
+     * Utilizzato per impedire la cancellazione di libri attualmente in prestito.
+     */
     public static int ricercaPrestitoISBN(long ISBN) throws IOException {
-        
-        //Leggo il database
-         JsonObject label = Database.leggiDatabase(FILE);
-        
-        //Ottengo l'array dei prestiti
+        JsonObject label = Database.leggiDatabase(FILE);
         JsonArray loanArray = label.getAsJsonArray("prestiti");
         if (loanArray == null) return -2;
         
@@ -275,28 +227,21 @@ public class Prestito {
                 return i;
             }
         }
-        
         return -1;
     }
-     
 
     /**
-     * @brief Verifica se lo studente esiste nel database degli studenti
-     * @pre Lo studente deve essere registrato nel database
-     * @post Permesso prestito libro
-     * @return boolean
+     * @brief Verifica se lo studente è registrato nel database.
+     * @return 0 se presente, -1 altrimenti.
      */
     private int checkAccountStudente() throws IOException {
         if(Studente.ricercaStudenteMatricola(matricola) >= 0){return 0;}
         return -1;
     }
-   
 
     /**
-     * @brief Verifica quanti prestiti ha attivo lo studente
-     * @pre Accesso database studenti e prestiti
-     * @post N/A
-     * @return numero di prestiti attivi
+     * @brief Verifica che lo studente non abbia superato il limite di 3 prestiti attivi.
+     * @return 0 se entro il limite, -1 se superato.
      */
     private int checkPrestitiAttiviStudente(String matricola) throws IOException {
         File file = new File(NAME);
@@ -318,12 +263,9 @@ public class Prestito {
         return 0;
     }
 
-
     /**
-     * @brief Verifica se lo studente ha un ritardo nella restituzione di un prestito
-     * @pre Accesso database studenti e prestiti
-     * @post N/A
-     * @return boolean
+     * @brief Verifica la presenza di ritardi nelle restituzioni.
+     * @return 0 se in regola, -1 se in ritardo.
      */
    private int checkRitardoRestituzionePrestito() {
         if(dataFinePrevista.isAfter(now())){
@@ -332,11 +274,9 @@ public class Prestito {
         return -1; 
     }
 
-     /**
-     * @brief Verifica se è presente almeno una copia del libro nel database dei libri
-     * @pre Accesso database libri e prestiti
-     * @post N/A
-     * @return numero di copie disponibili/boolean
+    /**
+     * @brief Verifica la disponibilità fisica di copie del libro.
+     * @return 0 se disponibile, -1 se esaurito.
      */
     private int checkCopieDisponibili(Libro libro) throws IOException{
         File file = new File(NAME);
@@ -349,33 +289,22 @@ public class Prestito {
         if (bookArray == null) return -1;
         
         int idx = Libro.ricercaLibroISBN(libro.getIsbn());
-        
         if (idx >= 0) {
              JsonObject libroJson = bookArray.get(idx).getAsJsonObject();
              int copie = libroJson.get("numCopie").getAsInt();
-             
-             if (copie > 0) return 0; // Copie disponibili
-             else return -1; // Copie esaurite
+             if (copie > 0) return 0;
+             else return -1;
         }
-        
-        return -1; // Libro non trovato
+        return -1;
     }
 
     /**
-     * @brief crea i bottini nell'interfaccia
+     * @brief Inizializza il pulsante "Restituito" per la gestione UI dei prestiti.
      */
-    
     private void creaBottoni(){
-        // creo i bottoni che popoleranno la colonna azioni della tabella dei libri
         Button Ritorno = new Button("Restituito");
-        
         Ritorno.setStyle("-fx-background-color: #2264E5; -fx-cursor: hand; -fx-text-fill: white;");
-
         this.azioni = new HBox(10, Ritorno);
         this.azioni.setAlignment(Pos.CENTER);
     }
 }
-
-
-
-

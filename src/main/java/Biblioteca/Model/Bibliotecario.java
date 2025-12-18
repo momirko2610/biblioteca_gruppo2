@@ -10,35 +10,47 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * @brief Classe che gestisce il login dei bibliotecari
- * @author Sabrina Soriano
+ * @file Bibliotecario.java
+ * @brief Classe del modello che gestisce l'autenticazione e i dati dei bibliotecari.
+ * * @author Sabrina Soriano
  * @author Mirko Montella
  * @author Ciro Senese
  * @author Achille Romano
  */
 public class Bibliotecario {
-    private final String e_mail; /*!<Email dell'account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo loginBibliotecario*/
-    private final String password; /*!<password dell'account letta da una textbox che verrà confrontata con i dati presenti nel database dal metodo loginBibliotecario*/
+    /** @brief Email dell'account letta da una textbox per il confronto con il database. [cite: 97] */
+    private final String e_mail; 
+    /** @brief Password dell'account letta da una textbox per il confronto con il database. [cite: 97] */
+    private final String password; 
 
-    private static final String NAME = "database.json"; /*!<Nome del database da cui verranno confrontati i dati*/
-    private static final File FILE = new File(NAME); //File del database
+    /** @brief Nome del file di persistenza dell'intero archivio. [cite: 17, 120] */
+    private static final String NAME = "database.json"; 
+    /** @brief Oggetto File associato al database. */
+    private static final File FILE = new File(NAME); 
+    /** @brief Istanza Gson configurata per la formattazione leggibile dei dati JSON. */
     private static final Gson database = new GsonBuilder().setPrettyPrinting().create();
+
     /**
-     * @brief Costruttore di base
-     * @param e_mail L'email del bibliotecariə
-     * @param password La password del bibliotecariə
+     * @brief Costruttore dell'oggetto Bibliotecario.
+     * @param e_mail L'indirizzo e-mail istituzionale fornito in input. 
+     * @param password La password inserita dall'utente. [cite: 97]
      */
     public Bibliotecario(String e_mail, String password) {
         this.e_mail = e_mail;
         this.password = password;
     }
-    public String getEmail() { return this.e_mail;}
+
     /**
-     * @return 
-     * @throws java.io.FileNotFoundException
-     * @brief Funzione che verifica gli attrubuti dell'oggetto Bibliotecario con i dati presenti nel database
-     * @brief Login da parte dei bibliotecari per accedere alle funzionalità ristrette.
-     * @post Il bibliotecariə ha accesso a tutte le funzionalità
+     * @brief Restituisce l'email dell'istanza corrente.
+     * @return Stringa contenente l'email.
+     */
+    public String getEmail() { return this.e_mail;}
+
+    /**
+     * @brief Verifica le credenziali dell'oggetto Bibliotecario confrontandole con il database.
+     * @return 1 se le credenziali sono valide, -1 se errate, -2 se il database non è trovato.
+     * @throws java.io.IOException In caso di errori di lettura dal file.
+     * @post In caso di esito positivo (1), il bibliotecario ha accesso a tutte le funzionalità. [cite: 98]
      */
     public int loginBibliotecario() throws FileNotFoundException, IOException {
         JsonObject label = Database.leggiDatabase(FILE);
@@ -61,12 +73,11 @@ public class Bibliotecario {
     };
     
     /**
-     * @param password
-     * @return 
-     * @throws java.io.FileNotFoundException
-     * @brief Il bibliotecario più cambiare la password per effettuare il login
-     * @pre N/A
-     * @post Nuova password
+     * @brief Consente al bibliotecario di modificare la propria password.
+     * @param password La nuova stringa alfanumerica da impostare come password.
+     * @return 1 in caso di successo, -1 se l'utente non è trovato, -2 in caso di errore database.
+     * @throws java.io.IOException In caso di errori di scrittura sul file.
+     * @post La nuova password viene persistita nel database JSON. 
      */
     public int cambiaPassword(String password) throws FileNotFoundException, IOException {
         JsonObject label = Database.leggiDatabase(FILE);
@@ -89,6 +100,11 @@ public class Bibliotecario {
         return -1;
     };
     
+    /**
+     * @brief Genera una nuova password casuale in caso di reset forzato dopo 3 tentativi falliti.
+     * @return La nuova password generata (stringa di 8 cifre) o null se l'utente non esiste.
+     * @throws java.io.IOException In caso di errori di aggiornamento del database.
+     */
     public String resetPassword() throws FileNotFoundException, IOException{
         JsonObject label = Database.leggiDatabase(FILE);
         
@@ -102,7 +118,7 @@ public class Bibliotecario {
                 Random random = new Random();
                 StringBuilder builder = new StringBuilder(8);
 
-                for (int j = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
                     builder.append(random.nextInt(10));
                 }
                 String password = builder.toString();
@@ -117,14 +133,13 @@ public class Bibliotecario {
     }
     
     /**
-     * @throws java.io.IOException
-     * @brief salva in un JsonArray i dati dei bibliotecari contenuti nel database
-     * @pre deve esistere un JsonObject contente i dati dei bibliotecari salvati nel database
-     * @post Ottengo l'array con i dati dei bibliotecari
+     * @brief Estrae l'array dei bibliotecari dal file JSON caricato in memoria.
+     * @param label Il JsonObject principale che rappresenta l'intero database.
+     * @return JsonArray contenente i dati dei bibliotecari o null se la sezione manca.
+     * @pre Deve esistere un JsonObject caricato correttamente tramite Database.leggiDatabase.
      */
-    
     private static JsonArray getArrayBibliotecari(JsonObject label) {
-        //Ottengo l'array dei bibliotecari
+        //Ottengo l'array dei bibliotecari dalla sezione specifica del database
         JsonArray bookArray = label.getAsJsonArray("bibliotecari");
         if (bookArray == null) {
             System.out.println("ERROR, database not found");

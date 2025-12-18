@@ -12,21 +12,41 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * @file ControllerDelete.java
+ * @brief Controller per la gestione del popup di conferma in caso di eliminazione dei libri o studenti dal database.
+ * @author Mirko Montella
+ * @author Achille Romano
+ * @author Sabrina Soriano
+ * @author Ciro Senese
+ */
 public class ControllerDelete {
 
+    /** @brief L'oggetto (Libro o Studente) selezionato per la cancellazione. */
     private Object oggettoDaEliminare; 
     
+    /** @brief Label per la visualizzazione di eventuali errori. */
     @FXML
     private Label errore; 
 
-
+    /**
+     * @brief Imposta l'oggetto che deve essere rimosso dal database.
+     * @param obj Libro o Studente da eliminare.
+     */
     public void setOggettoDaEliminare(Object obj) {
         this.oggettoDaEliminare = obj;
     }
 
+    /** @brief Pulsante per confermare la cancellazione. */
     @FXML
     private Button buttonConferma; 
     
+    /**
+     * @brief Esegue la cancellazione definitiva dei dati nel database.
+     * Gestisce i diversi esiti dell'operazione (successo, libro in prestito, errore database)
+     * aggiornando l'interfaccia di conseguenza.
+     * @param event L'evento di click del mouse sul pulsante conferma.
+     */
     @FXML
     public void conferma(MouseEvent event) { 
         try {
@@ -65,13 +85,19 @@ public class ControllerDelete {
         }
     }
     
-    
+    /**
+     * @brief Chiude il popup
+     */
     @FXML
     public void annulla() {
         Stage stage = (Stage) buttonConferma.getScene().getWindow();
         stage.close();
     }
     
+    /**
+     * @brief Apre una finestra di notifica per confermare l'avvenuta eliminazione.
+     * Carica il file successo.fxml e personalizza il messaggio in base al tipo di oggetto eliminato.
+     */
     @FXML
     private void apriPopupSuccesso() {
         try {
