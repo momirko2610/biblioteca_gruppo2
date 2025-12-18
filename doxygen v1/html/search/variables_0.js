@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['anno_0',['Anno',['../class_biblioteca_1_1_controller_1_1_controller_homepage.html#a7ef747bc31d52c8e045f427238a0dddf',1,'Biblioteca.Controller.ControllerHomepage.Anno'],['../class_biblioteca_1_1_controller_1_1_controller_libri.html#acc018bac0569c62904c4d982c276eb93',1,'Biblioteca.Controller.ControllerLibri.Anno']]],
+  ['annopubblicazione_1',['annoPubblicazione',['../class_biblioteca_1_1_model_1_1_libro.html#afdc20eade3c9b45a067ecfb39bc22f9b',1,'Biblioteca::Model::Libro']]],
+  ['autore_2',['Autore',['../class_biblioteca_1_1_controller_1_1_controller_homepage.html#a397340325b79b4078f579769e5adb66c',1,'Biblioteca.Controller.ControllerHomepage.Autore'],['../class_biblioteca_1_1_controller_1_1_controller_libri.html#a5a3c12dc2a73fc95f2108262eeec363f',1,'Biblioteca.Controller.ControllerLibri.Autore']]],
+  ['autore_3',['autore',['../class_biblioteca_1_1_model_1_1_libro.html#a92b9f703358d30af38e819b1da4c9d2a',1,'Biblioteca::Model::Libro']]],
+  ['autori_4',['autori',['../class_biblioteca_1_1_controller_1_1_controller_popup_libro.html#a8b0a48bd0f1b3cf9ae698e6c041cf72a',1,'Biblioteca::Controller::ControllerPopupLibro']]],
+  ['azioni_5',['Azioni',['../class_biblioteca_1_1_controller_1_1_controller_libri.html#afe92a88d5febff461f5c334d6c48d1c3',1,'Biblioteca.Controller.ControllerLibri.Azioni'],['../class_biblioteca_1_1_controller_1_1_controller_prestiti.html#a096412cafb12332a72f57895f952af93',1,'Biblioteca.Controller.ControllerPrestiti.Azioni'],['../class_biblioteca_1_1_controller_1_1_controller_studenti.html#a4cac4fc875e3ac24c367be48f77f057d',1,'Biblioteca.Controller.ControllerStudenti.Azioni']]],
+  ['azioni_6',['azioni',['../class_biblioteca_1_1_model_1_1_libro.html#a7327895a36851ba716228f38ec54f430',1,'Biblioteca.Model.Libro.azioni'],['../class_biblioteca_1_1_model_1_1_prestito.html#a211dff304c8e84c05714bb00694e9743',1,'Biblioteca.Model.Prestito.azioni'],['../class_biblioteca_1_1_model_1_1_studente.html#a52ecea5eeb3d54063258222cf51e006c',1,'Biblioteca.Model.Studente.azioni']]]
+];
