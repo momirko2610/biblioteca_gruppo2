@@ -1,0 +1,25 @@
+var class_biblioteca_1_1_controller_1_1_controller_studenti =
+[
+    [ "ControllerStudenti", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a9c6253d289281f1d5858ae92795babf4", null ],
+    [ "apriPopupElimina", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#af16b86ae3d007c770742e03fe0899397", null ],
+    [ "apriPopupInfo", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a656fec215cd181b5660666ef99721fe4", null ],
+    [ "apriPopupModifica", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a83f84df9760922247699a5e0e8576850", null ],
+    [ "apriResetPassword", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a8f5361ccdc1587413d30c3c97816efc9", null ],
+    [ "configuraTabella", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#ae6d11ab4ef4be39c708ca0dd4cb611f1", null ],
+    [ "goToLibri", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a33cee403c5feaa88b3cb7344ef25362a", null ],
+    [ "goToPrestiti", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a3bb3db06ead87c2ada00cea9f06fd340", null ],
+    [ "initialize", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#aef8cdfa4843d0e1f8c06e3650fd41f10", null ],
+    [ "onSearchStudent", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a9898e028ecac5027c1db184d060d901e", null ],
+    [ "openPopupLogout", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#ab2cf4c18a7c2ff63e782ac0e5e66291a", null ],
+    [ "openPopupStudente", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a5a6a9c15be424c02163a752e0bba9e6c", null ],
+    [ "setBibliotecario", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a0c3cf543a664cf7f93231a36b6a06add", null ],
+    [ "Azioni", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a4cac4fc875e3ac24c367be48f77f057d", null ],
+    [ "bibliotecarioLoggato", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a6a02c915df837a737d8622314cd0bd8e", null ],
+    [ "Cognome", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#ae841504c0e43970411c08c97ba00020b", null ],
+    [ "Email", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a04cdb791afe2d5f3e2abeaa2e9e19836", null ],
+    [ "listaStudente", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a0150b04b0862fce1ce774020d3827572", null ],
+    [ "Matricola", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#ae6fb9bcf5fdc12566644283204d1d079", null ],
+    [ "Nome", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a7933a7e54ec66a59cacd228cdd4f94ec", null ],
+    [ "searchStudentTextField", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a0c3ba621f77b115e9306f168ae8c0a95", null ],
+    [ "tableViewStudenti", "class_biblioteca_1_1_controller_1_1_controller_studenti.html#a30f07c049f13e5e2d5ff0cd862b9e70e", null ]
+];
