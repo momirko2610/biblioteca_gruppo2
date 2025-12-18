@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane alignment="TOP_LEFT" maxHeight="1080.0" maxWidth="1920.0" minHeight="500.0" minWidth="450.0" prefHeight="720.0" prefWidth="1280.0" styleClass="body" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softeng.progetto.gruppo2.Controller.ControllerLogin">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+         <children>
+            <ImageView fitHeight="168.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Logo-Salerno.png" />
+               </image>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ImageView>
+            <VBox alignment="CENTER" maxHeight="350.0" maxWidth="350.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="500.0" maxWidth="500.0" prefHeight="400.0" prefWidth="338.0" spacing="10.0" styleClass="menu">
+                     <children>
+                        <Label text="Login" textFill="#2264e5">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TextFieldEmail" maxWidth="300.0" prefHeight="80.0" promptText="Email" />
+                        <PasswordField fx:id="TextFieldPassword" maxWidth="300.0" prefHeight="80.0" prefWidth="302.0" promptText="Password" />
+                        <Label fx:id="errore" textFill="#d92020" wrapText="true">
+                            <font>
+                               <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0" spacing="70.0">
+                           <children>
+                              <Button fx:id="ConfirmButton" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="44.0" prefWidth="150.0" styleClass="button-blue" text="Conferma" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/check.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <ImageView fitHeight="70.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/2.png" />
+               </image>
+            </ImageView>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </VBox>
+      <Button mnemonicParsing="false" onMouseClicked="#goToHomepage" styleClass="button-blue">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons">
+               <image>
+                  <Image url="@../icons/arrow.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+   <padding>
+      <Insets left="20.0" top="20.0" />
+   </padding>
+</StackPane>
