@@ -1,0 +1,25 @@
+var class_biblioteca_1_1_controller_1_1_controller_libri =
+[
+    [ "ControllerLibri", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a4a6c0371984e33dbf4b1b6a45ecfc6f9", null ],
+    [ "apriPopupElimina", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a3180404aa6cb28bd8e61920785eee766", null ],
+    [ "apriPopupModifica", "class_biblioteca_1_1_controller_1_1_controller_libri.html#ae52f9dea5d610dc3c88adcb46f0f072f", null ],
+    [ "apriResetPassword", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a852569b7382b09115b4b12dea81fa93b", null ],
+    [ "configuraTabella", "class_biblioteca_1_1_controller_1_1_controller_libri.html#aa088610417900e17beff3aef5ae4e190", null ],
+    [ "goToPrestiti", "class_biblioteca_1_1_controller_1_1_controller_libri.html#aff8faad26142e467195363ea60ebfba7", null ],
+    [ "goToStudenti", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a1a66307ac59ca49ca2ac670ac0a598b0", null ],
+    [ "initialize", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a3805fd5ab1967ff038e47750ecbbfbce", null ],
+    [ "onSearchBook", "class_biblioteca_1_1_controller_1_1_controller_libri.html#aa55f6ab4029d0f98c5389f380666de39", null ],
+    [ "openPopupLibro", "class_biblioteca_1_1_controller_1_1_controller_libri.html#aa8ab05c248857c534885c3f0a0e26deb", null ],
+    [ "openPopupLogout", "class_biblioteca_1_1_controller_1_1_controller_libri.html#ab5dfd9cb8ef465b6af3758fbf577689c", null ],
+    [ "setBibliotecario", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a79651f1ef303bb527e186191042df8e2", null ],
+    [ "Anno", "class_biblioteca_1_1_controller_1_1_controller_libri.html#acc018bac0569c62904c4d982c276eb93", null ],
+    [ "Autore", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a5a3c12dc2a73fc95f2108262eeec363f", null ],
+    [ "Azioni", "class_biblioteca_1_1_controller_1_1_controller_libri.html#afe92a88d5febff461f5c334d6c48d1c3", null ],
+    [ "bibliotecarioLoggato", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a24fec23fcb6c06e260936e096420257c", null ],
+    [ "Copie_Disp", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a4f2784b72f0c5b3467d0764298f96718", null ],
+    [ "ISBN", "class_biblioteca_1_1_controller_1_1_controller_libri.html#ad43da39fdc72ede534a402987e2c7bfb", null ],
+    [ "listaLibri", "class_biblioteca_1_1_controller_1_1_controller_libri.html#a48a8828aebd00abfbf5d994c19b3cea3", null ],
+    [ "searchBookTextField", "class_biblioteca_1_1_controller_1_1_controller_libri.html#ac350ffc93e5e80fa413e6e7c5b394619", null ],
+    [ "tableViewBook", "class_biblioteca_1_1_controller_1_1_controller_libri.html#ac4c9917ff41a3bee20a8b092f9f7ddf6", null ],
+    [ "Titolo", "class_biblioteca_1_1_controller_1_1_controller_libri.html#acb77ade4089ed2b528746d439cb8eebe", null ]
+];
