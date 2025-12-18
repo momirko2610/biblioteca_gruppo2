@@ -1,0 +1,80 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Homepage Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage}{}\label{class_biblioteca_1_1_controller_1_1_controller_homepage}\index{Biblioteca.Controller.ControllerHomepage@{Biblioteca.Controller.ControllerHomepage}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_af58aab69adc0d0a9e402e17e32b18516}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_af58aab69adc0d0a9e402e17e32b18516} 
+{\bfseries Controller\+Homepage} ()
+\begin{DoxyCompactList}\small\item\em Costruttore vuoto della classe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_homepage_a6f9429bea35bace1b0ebaa39865d0021}{initialize}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Inizializzazione per leggere il database e popolare la tabella. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a444e156c6831eeb22d004bac0ca44ed3}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a444e156c6831eeb22d004bac0ca44ed3} 
+void {\bfseries carica\+Dati\+All\+Avvio} ()
+\begin{DoxyCompactList}\small\item\em Legge la lista dei libri dal database per aggiornare la Table\+View. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a9d13efc9bf657138c0456a0dbe03f0c0}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a9d13efc9bf657138c0456a0dbe03f0c0} 
+void {\bfseries configura\+Tabella} ()
+\begin{DoxyCompactList}\small\item\em Mappa le colonne della Table\+View con gli attributi della classe \doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a21a9ee55451caeb561d05dbf24c929ea}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a21a9ee55451caeb561d05dbf24c929ea} 
+void {\bfseries on\+Search\+Book} ()
+\begin{DoxyCompactList}\small\item\em Gestisce la ricerca dei libri nel catalogo. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a866884d2a88821d5cc598e32527852b3}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a866884d2a88821d5cc598e32527852b3} 
+void {\bfseries go\+To\+Login} ()
+\begin{DoxyCompactList}\small\item\em Carica l\textquotesingle{}xml per passare alla schermata di login. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_afddbccee8ced84b0846833c3f0785e4d}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_afddbccee8ced84b0846833c3f0785e4d} 
+Table\+View$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ {\bfseries table\+View\+Book}
+\begin{DoxyCompactList}\small\item\em Tabella per la visualizzazione dei libri. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a8e5a017a0112ff42eac97a2021b09dfc}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a8e5a017a0112ff42eac97a2021b09dfc} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, Long $>$ {\bfseries ISBN}
+\begin{DoxyCompactList}\small\item\em Colonna per il codice ISBN del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_afda1cef94a574dc566f790acf812de53}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_afda1cef94a574dc566f790acf812de53} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, String $>$ {\bfseries Titolo}
+\begin{DoxyCompactList}\small\item\em Colonna per il titolo del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a397340325b79b4078f579769e5adb66c}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a397340325b79b4078f579769e5adb66c} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, String $>$ {\bfseries Autore}
+\begin{DoxyCompactList}\small\item\em Colonna per l\textquotesingle{}autore del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a7ef747bc31d52c8e045f427238a0dddf}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a7ef747bc31d52c8e045f427238a0dddf} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, Integer $>$ {\bfseries Anno}
+\begin{DoxyCompactList}\small\item\em Colonna per l\textquotesingle{}anno di pubblicazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a0a3ddbbebe981ff44661fe8966d32148}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a0a3ddbbebe981ff44661fe8966d32148} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, Integer $>$ {\bfseries Copie\+\_\+\+Disp}
+\begin{DoxyCompactList}\small\item\em Colonna per il numero di copie disponibili. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_add850ce2c3ca3998d1cb011183be184b}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_add850ce2c3ca3998d1cb011183be184b} 
+Text\+Field {\bfseries search\+Book\+Text\+Field}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento della query di ricerca. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a6ad44ab967a94690e9a3e2cfe2138d3a}\label{class_biblioteca_1_1_controller_1_1_controller_homepage_a6ad44ab967a94690e9a3e2cfe2138d3a} 
+Observable\+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ {\bfseries lista\+Libri} = FXCollections.\+observable\+Array\+List()
+\begin{DoxyCompactList}\small\item\em Lista osservabile contenente tutti i libri caricati dal database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_homepage_a6f9429bea35bace1b0ebaa39865d0021}\index{Biblioteca.Controller.ControllerHomepage@{Biblioteca.Controller.ControllerHomepage}!initialize@{initialize}}
+\index{initialize@{initialize}!Biblioteca.Controller.ControllerHomepage@{Biblioteca.Controller.ControllerHomepage}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_homepage_a6f9429bea35bace1b0ebaa39865d0021} 
+void Biblioteca.\+Controller.\+Controller\+Homepage.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Inizializzazione per leggere il database e popolare la tabella. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori nell\textquotesingle{}accesso al database. \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_homepage_8java}{Controller\+Homepage.\+java}}\end{DoxyCompactItemize}

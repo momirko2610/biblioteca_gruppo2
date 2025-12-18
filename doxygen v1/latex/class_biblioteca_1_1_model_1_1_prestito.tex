@@ -1,0 +1,238 @@
+\doxysection{Biblioteca.\+Model.\+Prestito Class Reference}
+\hypertarget{class_biblioteca_1_1_model_1_1_prestito}{}\label{class_biblioteca_1_1_model_1_1_prestito}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_af3d41574a41211dbbe65cd8f71ef7716}{Prestito}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1baaceafaf1af5d615a22afbbce5e5a4}{studente}}, \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a7e8464de7f8320dbcb3cb0a7173aa0f2}{libro}}, Local\+Date \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_adfc4e102cd44808475b7776a659a5737}{data\+Inizio}}, Local\+Date \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_aeb4de73f8c8ef72b33b82549a8bc37ee}{data\+Fine\+Prevista}})
+\begin{DoxyCompactList}\small\item\em Costruttore della classe \doxylink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a4b0115a32b99a68a40990a13830f2710}\label{class_biblioteca_1_1_model_1_1_prestito_a4b0115a32b99a68a40990a13830f2710} 
+HBox {\bfseries get\+Azioni} ()
+\begin{DoxyCompactList}\small\item\em Restituisce l\textquotesingle{}HBox delle azioni per la Table\+View. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a6ffe40a94dbf948d8838ad73fe7ab2b5}\label{class_biblioteca_1_1_model_1_1_prestito_a6ffe40a94dbf948d8838ad73fe7ab2b5} 
+String {\bfseries get\+Matricola} ()
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_aa96370897b3e5ee1172d9714ed3122f6}\label{class_biblioteca_1_1_model_1_1_prestito_aa96370897b3e5ee1172d9714ed3122f6} 
+long {\bfseries get\+Isbn} ()
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_af866709df6a904226581a71ca62b7ba3}\label{class_biblioteca_1_1_model_1_1_prestito_af866709df6a904226581a71ca62b7ba3} 
+Local\+Date {\bfseries get\+Data\+Inizio} ()
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_aacf70d8c990e0802f9003f65512779d4}\label{class_biblioteca_1_1_model_1_1_prestito_aacf70d8c990e0802f9003f65512779d4} 
+Local\+Date {\bfseries get\+Data\+Fine\+Prevista} ()
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1056a1ef28edb20d852cbc444aba194d}{registrazione\+Prestito}} (String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a41e53756e092a7368c98e646e1574437}{matricola}}, long \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1c0d04c797e34fc9010ad6c0b7f44b4d}{ISBN}})  throws IOException 
+\begin{DoxyCompactList}\small\item\em Registra un nuovo prestito nel sistema eseguendo tutti i controlli. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_ad33b13418d0c14039835d6b173c77ecd}{registrazione\+Restituzione}} (String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a41e53756e092a7368c98e646e1574437}{matricola}}, long \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1c0d04c797e34fc9010ad6c0b7f44b4d}{ISBN}})  throws IOException 
+\begin{DoxyCompactList}\small\item\em Registra la restituzione di un libro e aggiorna l\textquotesingle{}inventario. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a7eae5d51940e12f17519c881d007940d}{ricerca\+Prestito}} (String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a41e53756e092a7368c98e646e1574437}{matricola}}, long \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1c0d04c797e34fc9010ad6c0b7f44b4d}{ISBN}})  throws IOException 
+\begin{DoxyCompactList}\small\item\em Cerca un prestito specifico tramite matricola e ISBN. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_af870df848b07142982bf3027a793b127}\label{class_biblioteca_1_1_model_1_1_prestito_af870df848b07142982bf3027a793b127} 
+static int {\bfseries ricerca\+Prestito\+ISBN} (long \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1c0d04c797e34fc9010ad6c0b7f44b4d}{ISBN}})  throws IOException 
+\begin{DoxyCompactList}\small\item\em Verifica l\textquotesingle{}esistenza di prestiti attivi per un determinato ISBN. Utilizzato per impedire la cancellazione di libri attualmente in prestito. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a95c37ffc18b219e8b2cf8f41cc2a0790}{check\+Account\+Studente}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Verifica se lo studente è registrato nel database. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_aa0035ab43c408c71cfcdd1fd9bc4343d}{check\+Prestiti\+Attivi\+Studente}} (String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a41e53756e092a7368c98e646e1574437}{matricola}})  throws IOException 
+\begin{DoxyCompactList}\small\item\em Verifica che lo studente non abbia superato il limite di 3 prestiti attivi. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a1076126257c385273eca4de1a9878a1a}{check\+Ritardo\+Restituzione\+Prestito}} ()
+\begin{DoxyCompactList}\small\item\em Verifica la presenza di ritardi nelle restituzioni. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_afa9fe0cb72af3dea56c817b65972a23c}{check\+Copie\+Disponibili}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_a7e8464de7f8320dbcb3cb0a7173aa0f2}{libro}})  throws IOException
+\begin{DoxyCompactList}\small\item\em Verifica la disponibilità fisica di copie del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a2ba90cc78a9dae4b720de87eb03837be}\label{class_biblioteca_1_1_model_1_1_prestito_a2ba90cc78a9dae4b720de87eb03837be} 
+void {\bfseries crea\+Bottoni} ()
+\begin{DoxyCompactList}\small\item\em Inizializza il pulsante "{}\+Restituito"{} per la gestione UI dei prestiti. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a41e53756e092a7368c98e646e1574437}\label{class_biblioteca_1_1_model_1_1_prestito_a41e53756e092a7368c98e646e1574437} 
+final String {\bfseries matricola}
+\begin{DoxyCompactList}\small\item\em Matricola dello studente associato al prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a1c0d04c797e34fc9010ad6c0b7f44b4d}\label{class_biblioteca_1_1_model_1_1_prestito_a1c0d04c797e34fc9010ad6c0b7f44b4d} 
+final long {\bfseries ISBN}
+\begin{DoxyCompactList}\small\item\em Codice ISBN del libro concesso in prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_adfc4e102cd44808475b7776a659a5737}\label{class_biblioteca_1_1_model_1_1_prestito_adfc4e102cd44808475b7776a659a5737} 
+final Local\+Date {\bfseries data\+Inizio}
+\begin{DoxyCompactList}\small\item\em Data di inizio del prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_aeb4de73f8c8ef72b33b82549a8bc37ee}\label{class_biblioteca_1_1_model_1_1_prestito_aeb4de73f8c8ef72b33b82549a8bc37ee} 
+final Local\+Date {\bfseries data\+Fine\+Prevista}
+\begin{DoxyCompactList}\small\item\em Data entro la quale è prevista la restituzione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a7e8464de7f8320dbcb3cb0a7173aa0f2}\label{class_biblioteca_1_1_model_1_1_prestito_a7e8464de7f8320dbcb3cb0a7173aa0f2} 
+transient \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} {\bfseries libro}
+\begin{DoxyCompactList}\small\item\em Riferimento transiente all\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro} (non salvato su JSON). \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a1baaceafaf1af5d615a22afbbce5e5a4}\label{class_biblioteca_1_1_model_1_1_prestito_a1baaceafaf1af5d615a22afbbce5e5a4} 
+transient \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} {\bfseries studente}
+\begin{DoxyCompactList}\small\item\em Riferimento transiente all\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_studente}{Studente} (non salvato su JSON). \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a211dff304c8e84c05714bb00694e9743}\label{class_biblioteca_1_1_model_1_1_prestito_a211dff304c8e84c05714bb00694e9743} 
+transient HBox {\bfseries azioni}
+\begin{DoxyCompactList}\small\item\em Contenitore grafico per le azioni nella tabella (non salvato su JSON). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_aa7babe2772dd92fcc36818235bf02569}\label{class_biblioteca_1_1_model_1_1_prestito_aa7babe2772dd92fcc36818235bf02569} 
+static final String {\bfseries NAME} = "{}database.\+json"{}
+\begin{DoxyCompactList}\small\item\em Nome del file database JSON. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a0835d868f1b9c3ee77adf02b44945766}\label{class_biblioteca_1_1_model_1_1_prestito_a0835d868f1b9c3ee77adf02b44945766} 
+static final Gson {\bfseries database} = new Gson\+Builder().set\+Pretty\+Printing().create()
+\begin{DoxyCompactList}\small\item\em Oggetto GSON per la gestione dei file JSON. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_ab27b51c2cd2a75a291266c9b2760c6ef}\label{class_biblioteca_1_1_model_1_1_prestito_ab27b51c2cd2a75a291266c9b2760c6ef} 
+static final File {\bfseries FILE} = new File(\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito_aa7babe2772dd92fcc36818235bf02569}{NAME}})
+\begin{DoxyCompactList}\small\item\em File del database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_af3d41574a41211dbbe65cd8f71ef7716}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!Prestito@{Prestito}}
+\index{Prestito@{Prestito}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{Prestito()}{Prestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_af3d41574a41211dbbe65cd8f71ef7716} 
+Biblioteca.\+Model.\+Prestito.\+Prestito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente}{, }\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}}]{libro}{, }\item[{Local\+Date}]{data\+Inizio}{, }\item[{Local\+Date}]{data\+Fine\+Prevista}{}\end{DoxyParamCaption})}
+
+
+
+Costruttore della classe \doxylink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente} & Lo studente che richiede il prestito. \\
+\hline
+{\em libro} & Il libro richiesto. \\
+\hline
+{\em data\+Inizio} & Data odierna di inizio. \\
+\hline
+{\em data\+Fine\+Prevista} & Data di scadenza del prestito. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a95c37ffc18b219e8b2cf8f41cc2a0790}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!checkAccountStudente@{checkAccountStudente}}
+\index{checkAccountStudente@{checkAccountStudente}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkAccountStudente()}{checkAccountStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_a95c37ffc18b219e8b2cf8f41cc2a0790} 
+int Biblioteca.\+Model.\+Prestito.\+check\+Account\+Studente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica se lo studente è registrato nel database. 
+
+\begin{DoxyReturn}{Returns}
+0 se presente, -\/1 altrimenti. 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_afa9fe0cb72af3dea56c817b65972a23c}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!checkCopieDisponibili@{checkCopieDisponibili}}
+\index{checkCopieDisponibili@{checkCopieDisponibili}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkCopieDisponibili()}{checkCopieDisponibili()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_afa9fe0cb72af3dea56c817b65972a23c} 
+int Biblioteca.\+Model.\+Prestito.\+check\+Copie\+Disponibili (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}}]{libro}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica la disponibilità fisica di copie del libro. 
+
+\begin{DoxyReturn}{Returns}
+0 se disponibile, -\/1 se esaurito. 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_aa0035ab43c408c71cfcdd1fd9bc4343d}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!checkPrestitiAttiviStudente@{checkPrestitiAttiviStudente}}
+\index{checkPrestitiAttiviStudente@{checkPrestitiAttiviStudente}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkPrestitiAttiviStudente()}{checkPrestitiAttiviStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_aa0035ab43c408c71cfcdd1fd9bc4343d} 
+int Biblioteca.\+Model.\+Prestito.\+check\+Prestiti\+Attivi\+Studente (\begin{DoxyParamCaption}\item[{String}]{matricola}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica che lo studente non abbia superato il limite di 3 prestiti attivi. 
+
+\begin{DoxyReturn}{Returns}
+0 se entro il limite, -\/1 se superato. 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a1076126257c385273eca4de1a9878a1a}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!checkRitardoRestituzionePrestito@{checkRitardoRestituzionePrestito}}
+\index{checkRitardoRestituzionePrestito@{checkRitardoRestituzionePrestito}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{checkRitardoRestituzionePrestito()}{checkRitardoRestituzionePrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_a1076126257c385273eca4de1a9878a1a} 
+int Biblioteca.\+Model.\+Prestito.\+check\+Ritardo\+Restituzione\+Prestito (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifica la presenza di ritardi nelle restituzioni. 
+
+\begin{DoxyReturn}{Returns}
+0 se in regola, -\/1 se in ritardo. 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a1056a1ef28edb20d852cbc444aba194d}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!registrazionePrestito@{registrazionePrestito}}
+\index{registrazionePrestito@{registrazionePrestito}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{registrazionePrestito()}{registrazionePrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_a1056a1ef28edb20d852cbc444aba194d} 
+int Biblioteca.\+Model.\+Prestito.\+registrazione\+Prestito (\begin{DoxyParamCaption}\item[{String}]{matricola}{, }\item[{long}]{ISBN}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Registra un nuovo prestito nel sistema eseguendo tutti i controlli. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matricola} & Matricola dello studente. \\
+\hline
+{\em ISBN} & Codice ISBN del libro. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 successo, -\/1 studente non trovato, -\/2 limite prestiti raggiunto, -\/3 ritardi presenti, -\/4 copie esaurite, -\/5 libro non trovato. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+io.\+IOException} & In caso di errori di I/O. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_ad33b13418d0c14039835d6b173c77ecd}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!registrazioneRestituzione@{registrazioneRestituzione}}
+\index{registrazioneRestituzione@{registrazioneRestituzione}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{registrazioneRestituzione()}{registrazioneRestituzione()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_ad33b13418d0c14039835d6b173c77ecd} 
+void Biblioteca.\+Model.\+Prestito.\+registrazione\+Restituzione (\begin{DoxyParamCaption}\item[{String}]{matricola}{, }\item[{long}]{ISBN}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Registra la restituzione di un libro e aggiorna l\textquotesingle{}inventario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matricola} & Matricola dello studente. \\
+\hline
+{\em ISBN} & Codice ISBN del libro restituito. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+io.\+IOException} & In caso di errori di scrittura. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyPrecond}{Precondition}
+Il bibliotecario deve essere autenticato. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Il prestito viene eliminato e l\textquotesingle{}inventario aggiornato. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_model_1_1_prestito_a7eae5d51940e12f17519c881d007940d}\index{Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}!ricercaPrestito@{ricercaPrestito}}
+\index{ricercaPrestito@{ricercaPrestito}!Biblioteca.Model.Prestito@{Biblioteca.Model.Prestito}}
+\doxysubsubsection{\texorpdfstring{ricercaPrestito()}{ricercaPrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_prestito_a7eae5d51940e12f17519c881d007940d} 
+int Biblioteca.\+Model.\+Prestito.\+ricerca\+Prestito (\begin{DoxyParamCaption}\item[{String}]{matricola}{, }\item[{long}]{ISBN}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Cerca un prestito specifico tramite matricola e ISBN. 
+
+\begin{DoxyReturn}{Returns}
+Indice dell\textquotesingle{}array JSON o -\/1 se non trovato. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Model/\mbox{\hyperlink{_prestito_8java}{Prestito.\+java}}\end{DoxyCompactItemize}

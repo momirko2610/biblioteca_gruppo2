@@ -1,0 +1,71 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Popup\+Prestiti Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti}{}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti}\index{Biblioteca.Controller.ControllerPopupPrestiti@{Biblioteca.Controller.ControllerPopupPrestiti}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a3688abbd51f08cd90c7f90c3a12fef12}{initialize}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Carica i dati di libri e studenti nelle Combo\+Box ed imposta il datapicker dekka data di restituzione a 30 giorni dalla data corrente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_aea1ec83246dfcc9cf2d2ad021739c2d5}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_aea1ec83246dfcc9cf2d2ad021739c2d5} 
+void {\bfseries carica\+Dati\+Nelle\+Combo\+Box} ()
+\begin{DoxyCompactList}\small\item\em Recupera i dati dal database e popola i menu a tendina. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a0ec792aa716fc0877c9c55591cc08d67}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a0ec792aa716fc0877c9c55591cc08d67} 
+void {\bfseries salva} ()
+\begin{DoxyCompactList}\small\item\em Legge i dati dall\textquotesingle{}interfaccia e tenta di registrare il prestito nel database. Verifica le selezione e controlla se la data non è antecedente a quella odierna e gestisce i codici di errore in messaggi testuali per l\textquotesingle{}utente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_aae44a0406db9c3fc0cfe3e694631779e}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_aae44a0406db9c3fc0cfe3e694631779e} 
+void {\bfseries chiudi} ()
+\begin{DoxyCompactList}\small\item\em Chiude la finestra popup del prestito. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a4a6a75b02ac1e69ad90846191d1def55}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a4a6a75b02ac1e69ad90846191d1def55} 
+Text {\bfseries label}
+\begin{DoxyCompactList}\small\item\em Titolo della finestra popup. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_ae5bdb01f1768643a380a9a467a8e3f1e}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_ae5bdb01f1768643a380a9a467a8e3f1e} 
+Combo\+Box$<$ String $>$ {\bfseries combo\+Libri}
+\begin{DoxyCompactList}\small\item\em Menu a tendina per la selezione del libro tramite ISBN e Titolo. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a7453b2705ea74bf21087976c81c818df}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a7453b2705ea74bf21087976c81c818df} 
+Combo\+Box$<$ String $>$ {\bfseries combo\+Studenti}
+\begin{DoxyCompactList}\small\item\em Menu a tendina per la selezione dello studente tramite Matricola e Cognome. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a3fa6f45b057f8e79a682b54710975a02}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a3fa6f45b057f8e79a682b54710975a02} 
+Date\+Picker {\bfseries date\+Picker\+Restituzione}
+\begin{DoxyCompactList}\small\item\em Selettore della data prevista per la restituzione del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_acd81da16c345d721f1e30e7a0110434d}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_acd81da16c345d721f1e30e7a0110434d} 
+Button {\bfseries conferma}
+\begin{DoxyCompactList}\small\item\em Pulsante per confermare la registrazione del prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_acd3accd7a5b543e5cb2393d60cb6a430}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_acd3accd7a5b543e5cb2393d60cb6a430} 
+Label {\bfseries errore}
+\begin{DoxyCompactList}\small\item\em Etichetta per la visualizzazione dinamica degli errori di validazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a8a0a001bf8fea771fdd6fd0fa8d51dbf}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a8a0a001bf8fea771fdd6fd0fa8d51dbf} 
+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ {\bfseries lista\+Libri\+Completa}
+\begin{DoxyCompactList}\small\item\em Lista locale dei libri caricati dal database per il filtraggio. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_aeafff554c3b2350895cdeefd73fa29c4}\label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_aeafff554c3b2350895cdeefd73fa29c4} 
+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} $>$ {\bfseries lista\+Studenti\+Completa}
+\begin{DoxyCompactList}\small\item\em Lista locale degli studenti caricati dal database per il filtraggio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a3688abbd51f08cd90c7f90c3a12fef12}\index{Biblioteca.Controller.ControllerPopupPrestiti@{Biblioteca.Controller.ControllerPopupPrestiti}!initialize@{initialize}}
+\index{initialize@{initialize}!Biblioteca.Controller.ControllerPopupPrestiti@{Biblioteca.Controller.ControllerPopupPrestiti}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_prestiti_a3688abbd51f08cd90c7f90c3a12fef12} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Prestiti.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Carica i dati di libri e studenti nelle Combo\+Box ed imposta il datapicker dekka data di restituzione a 30 giorni dalla data corrente. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di problemi nell\textquotesingle{}accesso al database. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_popup_prestiti_8java}{Controller\+Popup\+Prestiti.\+java}}\end{DoxyCompactItemize}

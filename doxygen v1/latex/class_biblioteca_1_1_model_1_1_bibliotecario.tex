@@ -1,0 +1,172 @@
+\doxysection{Biblioteca.\+Model.\+Bibliotecario Class Reference}
+\hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario}{}\label{class_biblioteca_1_1_model_1_1_bibliotecario}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a337f60b251ec2f22c88a876d11ddb840}{Bibliotecario}} (String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a1885941ed872c223658beb04141f546f}{e\+\_\+mail}}, String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a5980e5f84c9a966cf9c48a0a61929871}{password}})
+\begin{DoxyCompactList}\small\item\em Costruttore dell\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_aef75d453883df3fb6daec68aa42b3314}{get\+Email}} ()
+\begin{DoxyCompactList}\small\item\em Restituisce l\textquotesingle{}email dell\textquotesingle{}istanza corrente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_af9978d4463b015e19633140ad83eaa36}{login\+Bibliotecario}} ()  throws File\+Not\+Found\+Exception, IOException 
+\begin{DoxyCompactList}\small\item\em Verifica le credenziali dell\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario} confrontandole con il database. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_ade3979604c45c6b65d41ffa8dac61154}{cambia\+Password}} (String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a5980e5f84c9a966cf9c48a0a61929871}{password}})  throws File\+Not\+Found\+Exception, IOException 
+\begin{DoxyCompactList}\small\item\em Consente al bibliotecario di modificare la propria password. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a2a0c402ceb39c7c72ff4b966bd03f8af}{reset\+Password}} ()  throws File\+Not\+Found\+Exception, IOException
+\begin{DoxyCompactList}\small\item\em Genera una nuova password casuale in caso di reset forzato dopo 3 tentativi falliti. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Json\+Array \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a6491af19d3d96c6008b151ae6256107c}{get\+Array\+Bibliotecari}} (Json\+Object label)
+\begin{DoxyCompactList}\small\item\em Estrae l\textquotesingle{}array dei bibliotecari dal file JSON caricato in memoria. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a1885941ed872c223658beb04141f546f}\label{class_biblioteca_1_1_model_1_1_bibliotecario_a1885941ed872c223658beb04141f546f} 
+final String {\bfseries e\+\_\+mail}
+\begin{DoxyCompactList}\small\item\em Email dell\textquotesingle{}account letta da una textbox per il confronto con il database. \mbox{[}cite\+: 97\mbox{]}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a5980e5f84c9a966cf9c48a0a61929871}\label{class_biblioteca_1_1_model_1_1_bibliotecario_a5980e5f84c9a966cf9c48a0a61929871} 
+final String {\bfseries password}
+\begin{DoxyCompactList}\small\item\em Password dell\textquotesingle{}account letta da una textbox per il confronto con il database. \mbox{[}cite\+: 97\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a79a02e8fc89920b15d902cb01d14c82f}\label{class_biblioteca_1_1_model_1_1_bibliotecario_a79a02e8fc89920b15d902cb01d14c82f} 
+static final String {\bfseries NAME} = "{}database.\+json"{}
+\begin{DoxyCompactList}\small\item\em Nome del file di persistenza dell\textquotesingle{}intero archivio. \mbox{[}cite\+: 17, 120\mbox{]}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a1d17842cef34496ba09f202e5989af56}\label{class_biblioteca_1_1_model_1_1_bibliotecario_a1d17842cef34496ba09f202e5989af56} 
+static final File {\bfseries FILE} = new File(\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario_a79a02e8fc89920b15d902cb01d14c82f}{NAME}})
+\begin{DoxyCompactList}\small\item\em Oggetto File associato al database. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_aad65ad61da45149cb7a4b3f8e64e8578}\label{class_biblioteca_1_1_model_1_1_bibliotecario_aad65ad61da45149cb7a4b3f8e64e8578} 
+static final Gson {\bfseries database} = new Gson\+Builder().set\+Pretty\+Printing().create()
+\begin{DoxyCompactList}\small\item\em Istanza Gson configurata per la formattazione leggibile dei dati JSON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a337f60b251ec2f22c88a876d11ddb840}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}!Bibliotecario@{Bibliotecario}}
+\index{Bibliotecario@{Bibliotecario}!Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{Bibliotecario()}{Bibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_bibliotecario_a337f60b251ec2f22c88a876d11ddb840} 
+Biblioteca.\+Model.\+Bibliotecario.\+Bibliotecario (\begin{DoxyParamCaption}\item[{String}]{e\+\_\+mail}{, }\item[{String}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Costruttore dell\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e\+\_\+mail} & L\textquotesingle{}indirizzo e-\/mail istituzionale fornito in input. \\
+\hline
+{\em password} & La password inserita dall\textquotesingle{}utente. \mbox{[}cite\+: 97\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_ade3979604c45c6b65d41ffa8dac61154}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}!cambiaPassword@{cambiaPassword}}
+\index{cambiaPassword@{cambiaPassword}!Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{cambiaPassword()}{cambiaPassword()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_bibliotecario_ade3979604c45c6b65d41ffa8dac61154} 
+int Biblioteca.\+Model.\+Bibliotecario.\+cambia\+Password (\begin{DoxyParamCaption}\item[{String}]{password}{}\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception, IOException}
+
+
+
+Consente al bibliotecario di modificare la propria password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em password} & La nuova stringa alfanumerica da impostare come password. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 in caso di successo, -\/1 se l\textquotesingle{}utente non è trovato, -\/2 in caso di errore database. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+io.\+IOException} & In caso di errori di scrittura sul file. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyPostcond}{Postcondition}
+La nuova password viene persistita nel database JSON. 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a6491af19d3d96c6008b151ae6256107c}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}!getArrayBibliotecari@{getArrayBibliotecari}}
+\index{getArrayBibliotecari@{getArrayBibliotecari}!Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{getArrayBibliotecari()}{getArrayBibliotecari()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_bibliotecario_a6491af19d3d96c6008b151ae6256107c} 
+Json\+Array Biblioteca.\+Model.\+Bibliotecario.\+get\+Array\+Bibliotecari (\begin{DoxyParamCaption}\item[{Json\+Object}]{label}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Estrae l\textquotesingle{}array dei bibliotecari dal file JSON caricato in memoria. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & Il Json\+Object principale che rappresenta l\textquotesingle{}intero database. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Array contenente i dati dei bibliotecari o null se la sezione manca. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Deve esistere un Json\+Object caricato correttamente tramite \doxylink{class_biblioteca_1_1_model_1_1_database_a3f733fbb2d274715c1fb10243d699068}{Database.\+leggi\+Database}. 
+\end{DoxyPrecond}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_aef75d453883df3fb6daec68aa42b3314}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}!getEmail@{getEmail}}
+\index{getEmail@{getEmail}!Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{getEmail()}{getEmail()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_bibliotecario_aef75d453883df3fb6daec68aa42b3314} 
+String Biblioteca.\+Model.\+Bibliotecario.\+get\+Email (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Restituisce l\textquotesingle{}email dell\textquotesingle{}istanza corrente. 
+
+\begin{DoxyReturn}{Returns}
+Stringa contenente l\textquotesingle{}email. 
+\end{DoxyReturn}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_af9978d4463b015e19633140ad83eaa36}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}!loginBibliotecario@{loginBibliotecario}}
+\index{loginBibliotecario@{loginBibliotecario}!Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{loginBibliotecario()}{loginBibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_bibliotecario_af9978d4463b015e19633140ad83eaa36} 
+int Biblioteca.\+Model.\+Bibliotecario.\+login\+Bibliotecario (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception, IOException}
+
+
+
+Verifica le credenziali dell\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario} confrontandole con il database. 
+
+\begin{DoxyReturn}{Returns}
+1 se le credenziali sono valide, -\/1 se errate, -\/2 se il database non è trovato. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+io.\+IOException} & In caso di errori di lettura dal file. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyPostcond}{Postcondition}
+In caso di esito positivo (1), il bibliotecario ha accesso a tutte le funzionalità. \mbox{[}cite\+: 98\mbox{]} 
+\end{DoxyPostcond}
+\Hypertarget{class_biblioteca_1_1_model_1_1_bibliotecario_a2a0c402ceb39c7c72ff4b966bd03f8af}\index{Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}!resetPassword@{resetPassword}}
+\index{resetPassword@{resetPassword}!Biblioteca.Model.Bibliotecario@{Biblioteca.Model.Bibliotecario}}
+\doxysubsubsection{\texorpdfstring{resetPassword()}{resetPassword()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_bibliotecario_a2a0c402ceb39c7c72ff4b966bd03f8af} 
+String Biblioteca.\+Model.\+Bibliotecario.\+reset\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception, IOException}
+
+
+
+Genera una nuova password casuale in caso di reset forzato dopo 3 tentativi falliti. 
+
+\begin{DoxyReturn}{Returns}
+La nuova password generata (stringa di 8 cifre) o null se l\textquotesingle{}utente non esiste. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em java.\+io.\+IOException} & In caso di errori di aggiornamento del database. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Model/\mbox{\hyperlink{_bibliotecario_8java}{Bibliotecario.\+java}}\end{DoxyCompactItemize}

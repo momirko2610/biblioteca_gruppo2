@@ -1,0 +1,143 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Libri Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri}{}\label{class_biblioteca_1_1_controller_1_1_controller_libri}\index{Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_libri_a79651f1ef303bb527e186191042df8e2}{set\+Bibliotecario}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} bibliotecario)
+\begin{DoxyCompactList}\small\item\em Imposta l\textquotesingle{}istanza del bibliotecario loggato. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a4a6c0371984e33dbf4b1b6a45ecfc6f9}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a4a6c0371984e33dbf4b1b6a45ecfc6f9} 
+{\bfseries Controller\+Libri} ()
+\begin{DoxyCompactList}\small\item\em Costruttore vuoto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_libri_a3805fd5ab1967ff038e47750ecbbfbce}{initialize}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Inizializza l\textquotesingle{}interfaccia, configurando la tabella e caricando i dati. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_aa088610417900e17beff3aef5ae4e190}\label{class_biblioteca_1_1_controller_1_1_controller_libri_aa088610417900e17beff3aef5ae4e190} 
+void {\bfseries configura\+Tabella} ()
+\begin{DoxyCompactList}\small\item\em Mappa le colonne della tabella e le proprietà del \doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_aa55f6ab4029d0f98c5389f380666de39}\label{class_biblioteca_1_1_controller_1_1_controller_libri_aa55f6ab4029d0f98c5389f380666de39} 
+void {\bfseries on\+Search\+Book} ()
+\begin{DoxyCompactList}\small\item\em Gestisce la ricerca dei libri per Titolo, Autore o ISBN in modalità case-\/insensitive. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_aff8faad26142e467195363ea60ebfba7}\label{class_biblioteca_1_1_controller_1_1_controller_libri_aff8faad26142e467195363ea60ebfba7} 
+void {\bfseries go\+To\+Prestiti} ()
+\begin{DoxyCompactList}\small\item\em Naviga verso la schermata di gestione dei Prestiti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a1a66307ac59ca49ca2ac670ac0a598b0}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a1a66307ac59ca49ca2ac670ac0a598b0} 
+void {\bfseries go\+To\+Studenti} ()
+\begin{DoxyCompactList}\small\item\em Naviga verso la schermata di gestione degli Studenti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_aa8ab05c248857c534885c3f0a0e26deb}\label{class_biblioteca_1_1_controller_1_1_controller_libri_aa8ab05c248857c534885c3f0a0e26deb} 
+void {\bfseries open\+Popup\+Libro} ()
+\begin{DoxyCompactList}\small\item\em Apre il popup per l\textquotesingle{}inserimento di un nuovo libro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_libri_ae52f9dea5d610dc3c88adcb46f0f072f}{apri\+Popup\+Modifica}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} libro)
+\begin{DoxyCompactList}\small\item\em Apre il popup per la modifica di un libro esistente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_libri_a3180404aa6cb28bd8e61920785eee766}{apri\+Popup\+Elimina}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} libro)
+\begin{DoxyCompactList}\small\item\em Apre il popup di conferma per l\textquotesingle{}eliminazione di un libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_ab5dfd9cb8ef465b6af3758fbf577689c}\label{class_biblioteca_1_1_controller_1_1_controller_libri_ab5dfd9cb8ef465b6af3758fbf577689c} 
+void {\bfseries open\+Popup\+Logout} ()
+\begin{DoxyCompactList}\small\item\em Apre il popup di conferma Logout. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a852569b7382b09115b4b12dea81fa93b}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a852569b7382b09115b4b12dea81fa93b} 
+void {\bfseries apri\+Reset\+Password} ()
+\begin{DoxyCompactList}\small\item\em Apre la schermata per il reset della password del bibliotecariə. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_ac4c9917ff41a3bee20a8b092f9f7ddf6}\label{class_biblioteca_1_1_controller_1_1_controller_libri_ac4c9917ff41a3bee20a8b092f9f7ddf6} 
+Table\+View$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ {\bfseries table\+View\+Book}
+\begin{DoxyCompactList}\small\item\em Tabella per la visualizzazione dei libri gestiti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_ad43da39fdc72ede534a402987e2c7bfb}\label{class_biblioteca_1_1_controller_1_1_controller_libri_ad43da39fdc72ede534a402987e2c7bfb} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, Long $>$ {\bfseries ISBN}
+\begin{DoxyCompactList}\small\item\em Colonna per il codice ISBN. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_acb77ade4089ed2b528746d439cb8eebe}\label{class_biblioteca_1_1_controller_1_1_controller_libri_acb77ade4089ed2b528746d439cb8eebe} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, String $>$ {\bfseries Titolo}
+\begin{DoxyCompactList}\small\item\em Colonna per il Titolo del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a5a3c12dc2a73fc95f2108262eeec363f}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a5a3c12dc2a73fc95f2108262eeec363f} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, String $>$ {\bfseries Autore}
+\begin{DoxyCompactList}\small\item\em Colonna per gli Autori. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_acc018bac0569c62904c4d982c276eb93}\label{class_biblioteca_1_1_controller_1_1_controller_libri_acc018bac0569c62904c4d982c276eb93} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, Integer $>$ {\bfseries Anno}
+\begin{DoxyCompactList}\small\item\em Colonna per l\textquotesingle{}Anno di pubblicazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a4f2784b72f0c5b3467d0764298f96718}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a4f2784b72f0c5b3467d0764298f96718} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, Integer $>$ {\bfseries Copie\+\_\+\+Disp}
+\begin{DoxyCompactList}\small\item\em Colonna per il Numero di copie disponibili. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_ac350ffc93e5e80fa413e6e7c5b394619}\label{class_biblioteca_1_1_controller_1_1_controller_libri_ac350ffc93e5e80fa413e6e7c5b394619} 
+Text\+Field {\bfseries search\+Book\+Text\+Field}
+\begin{DoxyCompactList}\small\item\em Campo di testo per la query di ricerca. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_afe92a88d5febff461f5c334d6c48d1c3}\label{class_biblioteca_1_1_controller_1_1_controller_libri_afe92a88d5febff461f5c334d6c48d1c3} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}, HBox $>$ {\bfseries Azioni}
+\begin{DoxyCompactList}\small\item\em Colonna contenente i pulsanti di azione (Modifica/\+Elimina) per ogni riga. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a48a8828aebd00abfbf5d994c19b3cea3}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a48a8828aebd00abfbf5d994c19b3cea3} 
+Observable\+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ {\bfseries lista\+Libri} = FXCollections.\+observable\+Array\+List()
+\begin{DoxyCompactList}\small\item\em Lista osservabile dei libri caricati nel sistema. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a24fec23fcb6c06e260936e096420257c}\label{class_biblioteca_1_1_controller_1_1_controller_libri_a24fec23fcb6c06e260936e096420257c} 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} {\bfseries bibliotecario\+Loggato}
+\begin{DoxyCompactList}\small\item\em Riferimento al bibliotecario attualmente autenticato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a3180404aa6cb28bd8e61920785eee766}\index{Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}!apriPopupElimina@{apriPopupElimina}}
+\index{apriPopupElimina@{apriPopupElimina}!Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}}
+\doxysubsubsection{\texorpdfstring{apriPopupElimina()}{apriPopupElimina()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_libri_a3180404aa6cb28bd8e61920785eee766} 
+void Biblioteca.\+Controller.\+Controller\+Libri.\+apri\+Popup\+Elimina (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}}]{libro}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup di conferma per l\textquotesingle{}eliminazione di un libro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em libro} & il libro da rimuovere. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_ae52f9dea5d610dc3c88adcb46f0f072f}\index{Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}!apriPopupModifica@{apriPopupModifica}}
+\index{apriPopupModifica@{apriPopupModifica}!Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}}
+\doxysubsubsection{\texorpdfstring{apriPopupModifica()}{apriPopupModifica()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_libri_ae52f9dea5d610dc3c88adcb46f0f072f} 
+void Biblioteca.\+Controller.\+Controller\+Libri.\+apri\+Popup\+Modifica (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}}]{libro}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup per la modifica di un libro esistente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em libro} & Il libro da modificare. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a3805fd5ab1967ff038e47750ecbbfbce}\index{Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}!initialize@{initialize}}
+\index{initialize@{initialize}!Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_libri_a3805fd5ab1967ff038e47750ecbbfbce} 
+void Biblioteca.\+Controller.\+Controller\+Libri.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Inizializza l\textquotesingle{}interfaccia, configurando la tabella e caricando i dati. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori nell\textquotesingle{}accesso al database. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_libri_a79651f1ef303bb527e186191042df8e2}\index{Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}!setBibliotecario@{setBibliotecario}}
+\index{setBibliotecario@{setBibliotecario}!Biblioteca.Controller.ControllerLibri@{Biblioteca.Controller.ControllerLibri}}
+\doxysubsubsection{\texorpdfstring{setBibliotecario()}{setBibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_libri_a79651f1ef303bb527e186191042df8e2} 
+void Biblioteca.\+Controller.\+Controller\+Libri.\+set\+Bibliotecario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}}}]{bibliotecario}{}\end{DoxyParamCaption})}
+
+
+
+Imposta l\textquotesingle{}istanza del bibliotecario loggato. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bibliotecario} & Istanza del bibliotecario autenticato. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_libri_8java}{Controller\+Libri.\+java}}\end{DoxyCompactItemize}

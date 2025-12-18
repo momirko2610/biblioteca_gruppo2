@@ -1,0 +1,76 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Info Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_info}{}\label{class_biblioteca_1_1_controller_1_1_controller_info}\index{Biblioteca.Controller.ControllerInfo@{Biblioteca.Controller.ControllerInfo}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_info_a2fabe117dee77ac8d176392676ece5d9}{initialize}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Inizializza la tabella impostando le proprietà delle colonne. Mappa le colonne agli attributi della classe \doxylink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_info_a20e71cefd82465ec394e6659bb5e2246}{set\+Studente}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} studente)
+\begin{DoxyCompactList}\small\item\em Imposta lo studente selezionato e avvia la ricerca dei suoi prestiti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_afa4e96f49069042fc1a4c487907ce6d2}\label{class_biblioteca_1_1_controller_1_1_controller_info_afa4e96f49069042fc1a4c487907ce6d2} 
+void {\bfseries chiudi} ()
+\begin{DoxyCompactList}\small\item\em Chiude la finestra corrente dei dettagli studente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_aa0e8c5dd82fbe37e9661645eee668b1d}\label{class_biblioteca_1_1_controller_1_1_controller_info_aa0e8c5dd82fbe37e9661645eee668b1d} 
+void {\bfseries cerca\+Prestiti} ()
+\begin{DoxyCompactList}\small\item\em Filtra il database dei prestiti in base alla matricola dello studente selezionato, popolando la lista con solo i prestit associati alla matricola. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a2778d28937b6850109daa703de77b01d}\label{class_biblioteca_1_1_controller_1_1_controller_info_a2778d28937b6850109daa703de77b01d} 
+Table\+View$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} $>$ {\bfseries table\+View\+Prestito}
+\begin{DoxyCompactList}\small\item\em Tabella per la visualizzazione dei prestiti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a4d36ea0914a39d32efa35f71c430843d}\label{class_biblioteca_1_1_controller_1_1_controller_info_a4d36ea0914a39d32efa35f71c430843d} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}, String $>$ {\bfseries ISBN}
+\begin{DoxyCompactList}\small\item\em Colonna per il codice ISBN del libro in prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a1e7edf89dcd3eadf616b71929160cd77}\label{class_biblioteca_1_1_controller_1_1_controller_info_a1e7edf89dcd3eadf616b71929160cd77} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}, Local\+Date $>$ {\bfseries Data\+Prestito}
+\begin{DoxyCompactList}\small\item\em Colonna per la data di inizio del prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a6366d3e2f01d61787ced0e533d68c68b}\label{class_biblioteca_1_1_controller_1_1_controller_info_a6366d3e2f01d61787ced0e533d68c68b} 
+Observable\+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} $>$ {\bfseries lista\+Prestito} = FXCollections.\+observable\+Array\+List()
+\begin{DoxyCompactList}\small\item\em Lista osservabile filtrata dei prestiti dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a1204ef7cb6890fbf290ecea5bcacafef}\label{class_biblioteca_1_1_controller_1_1_controller_info_a1204ef7cb6890fbf290ecea5bcacafef} 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} {\bfseries studente\+Selezionato}
+\begin{DoxyCompactList}\small\item\em Riferimento allo studente di cui si vogliono visualizzare le informazioni. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a2fabe117dee77ac8d176392676ece5d9}\index{Biblioteca.Controller.ControllerInfo@{Biblioteca.Controller.ControllerInfo}!initialize@{initialize}}
+\index{initialize@{initialize}!Biblioteca.Controller.ControllerInfo@{Biblioteca.Controller.ControllerInfo}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_info_a2fabe117dee77ac8d176392676ece5d9} 
+void Biblioteca.\+Controller.\+Controller\+Info.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Inizializza la tabella impostando le proprietà delle colonne. Mappa le colonne agli attributi della classe \doxylink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori nella creazione o accesso al database. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_info_a20e71cefd82465ec394e6659bb5e2246}\index{Biblioteca.Controller.ControllerInfo@{Biblioteca.Controller.ControllerInfo}!setStudente@{setStudente}}
+\index{setStudente@{setStudente}!Biblioteca.Controller.ControllerInfo@{Biblioteca.Controller.ControllerInfo}}
+\doxysubsubsection{\texorpdfstring{setStudente()}{setStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_info_a20e71cefd82465ec394e6659bb5e2246} 
+void Biblioteca.\+Controller.\+Controller\+Info.\+set\+Studente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente}{}\end{DoxyParamCaption})}
+
+
+
+Imposta lo studente selezionato e avvia la ricerca dei suoi prestiti. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente} & L\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_studente}{Studente} selezionato dalla lista degli studenti. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_info_8java}{Controller\+Info.\+java}}\end{DoxyCompactItemize}

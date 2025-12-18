@@ -1,0 +1,157 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Studenti Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti}{}\label{class_biblioteca_1_1_controller_1_1_controller_studenti}\index{Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_studenti_a0c3cf543a664cf7f93231a36b6a06add}{set\+Bibliotecario}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} bibliotecario)
+\begin{DoxyCompactList}\small\item\em Imposta il bibliotecario loggato. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a9c6253d289281f1d5858ae92795babf4}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a9c6253d289281f1d5858ae92795babf4} 
+{\bfseries Controller\+Studenti} ()
+\begin{DoxyCompactList}\small\item\em Costruttore vuoto della classe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_studenti_aef8cdfa4843d0e1f8c06e3650fd41f10}{initialize}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Inizializza il controller e popola la tabella. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_ae6d11ab4ef4be39c708ca0dd4cb611f1}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_ae6d11ab4ef4be39c708ca0dd4cb611f1} 
+void {\bfseries configura\+Tabella} ()
+\begin{DoxyCompactList}\small\item\em Mappa delle colonne della tabella con la classe \doxylink{class_biblioteca_1_1_model_1_1_studente}{Studente}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a9898e028ecac5027c1db184d060d901e}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a9898e028ecac5027c1db184d060d901e} 
+void {\bfseries on\+Search\+Student} ()
+\begin{DoxyCompactList}\small\item\em Gestisce la ricerca degli studenti per cognome o matricola. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a3bb3db06ead87c2ada00cea9f06fd340}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a3bb3db06ead87c2ada00cea9f06fd340} 
+void {\bfseries go\+To\+Prestiti} ()
+\begin{DoxyCompactList}\small\item\em Naviga verso la schermata di gestione dei prestiti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a33cee403c5feaa88b3cb7344ef25362a}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a33cee403c5feaa88b3cb7344ef25362a} 
+void {\bfseries go\+To\+Libri} ()
+\begin{DoxyCompactList}\small\item\em Naviga verso la schermata di gestione del catalogo libri. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a5a6a9c15be424c02163a752e0bba9e6c}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a5a6a9c15be424c02163a752e0bba9e6c} 
+void {\bfseries open\+Popup\+Studente} ()
+\begin{DoxyCompactList}\small\item\em Apre il popup per l\textquotesingle{}inserimento di un nuovo studente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_studenti_a83f84df9760922247699a5e0e8576850}{apri\+Popup\+Modifica}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} studente)
+\begin{DoxyCompactList}\small\item\em Apre il popup per la modifica dei dati di uno studente esistente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_studenti_af16b86ae3d007c770742e03fe0899397}{apri\+Popup\+Elimina}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} studente)
+\begin{DoxyCompactList}\small\item\em Apre il popup per la cancellazione di uno studente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_studenti_a656fec215cd181b5660666ef99721fe4}{apri\+Popup\+Info}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} studente)
+\begin{DoxyCompactList}\small\item\em Apre il popup informativo con i dettagli e i prestiti dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_ab2cf4c18a7c2ff63e782ac0e5e66291a}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_ab2cf4c18a7c2ff63e782ac0e5e66291a} 
+void {\bfseries open\+Popup\+Logout} ()
+\begin{DoxyCompactList}\small\item\em Apre il popup per confermare il logout. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a8f5361ccdc1587413d30c3c97816efc9}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a8f5361ccdc1587413d30c3c97816efc9} 
+void {\bfseries apri\+Reset\+Password} ()
+\begin{DoxyCompactList}\small\item\em Apre la schermata per il reset della password del bibliotecariə. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a30f07c049f13e5e2d5ff0cd862b9e70e}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a30f07c049f13e5e2d5ff0cd862b9e70e} 
+Table\+View$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} $>$ {\bfseries table\+View\+Studenti}
+\begin{DoxyCompactList}\small\item\em Tabella per la visualizzazione dell\textquotesingle{}elenco studenti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a7933a7e54ec66a59cacd228cdd4f94ec}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a7933a7e54ec66a59cacd228cdd4f94ec} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}, String $>$ {\bfseries Nome}
+\begin{DoxyCompactList}\small\item\em Colonna per il nome dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_ae841504c0e43970411c08c97ba00020b}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_ae841504c0e43970411c08c97ba00020b} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}, String $>$ {\bfseries Cognome}
+\begin{DoxyCompactList}\small\item\em Colonna per il cognome dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_ae6fb9bcf5fdc12566644283204d1d079}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_ae6fb9bcf5fdc12566644283204d1d079} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}, String $>$ {\bfseries Matricola}
+\begin{DoxyCompactList}\small\item\em Colonna per la matricola univoca dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a04cdb791afe2d5f3e2abeaa2e9e19836}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a04cdb791afe2d5f3e2abeaa2e9e19836} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}, String $>$ {\bfseries Email}
+\begin{DoxyCompactList}\small\item\em Colonna per l\textquotesingle{}e-\/mail istituzionale dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a4cac4fc875e3ac24c367be48f77f057d}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a4cac4fc875e3ac24c367be48f77f057d} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}, HBox $>$ {\bfseries Azioni}
+\begin{DoxyCompactList}\small\item\em Colonna per i pulsanti di azione (Modifica, Elimina, Info). \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a0c3ba621f77b115e9306f168ae8c0a95}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a0c3ba621f77b115e9306f168ae8c0a95} 
+Text\+Field {\bfseries search\+Student\+Text\+Field}
+\begin{DoxyCompactList}\small\item\em Campo di testo per la ricerca degli studenti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a0150b04b0862fce1ce774020d3827572}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a0150b04b0862fce1ce774020d3827572} 
+Observable\+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} $>$ {\bfseries lista\+Studente} = FXCollections.\+observable\+Array\+List()
+\begin{DoxyCompactList}\small\item\em Lista osservabile degli studenti caricati dal database. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a6a02c915df837a737d8622314cd0bd8e}\label{class_biblioteca_1_1_controller_1_1_controller_studenti_a6a02c915df837a737d8622314cd0bd8e} 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} {\bfseries bibliotecario\+Loggato}
+\begin{DoxyCompactList}\small\item\em Riferimento al bibliotecario attualmente loggato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_af16b86ae3d007c770742e03fe0899397}\index{Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}!apriPopupElimina@{apriPopupElimina}}
+\index{apriPopupElimina@{apriPopupElimina}!Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}}
+\doxysubsubsection{\texorpdfstring{apriPopupElimina()}{apriPopupElimina()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_studenti_af16b86ae3d007c770742e03fe0899397} 
+void Biblioteca.\+Controller.\+Controller\+Studenti.\+apri\+Popup\+Elimina (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup per la cancellazione di uno studente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente} & Lo studente da eliminare. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a656fec215cd181b5660666ef99721fe4}\index{Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}!apriPopupInfo@{apriPopupInfo}}
+\index{apriPopupInfo@{apriPopupInfo}!Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}}
+\doxysubsubsection{\texorpdfstring{apriPopupInfo()}{apriPopupInfo()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_studenti_a656fec215cd181b5660666ef99721fe4} 
+void Biblioteca.\+Controller.\+Controller\+Studenti.\+apri\+Popup\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup informativo con i dettagli e i prestiti dello studente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente} & Lo studente di cui visualizzare le info. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a83f84df9760922247699a5e0e8576850}\index{Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}!apriPopupModifica@{apriPopupModifica}}
+\index{apriPopupModifica@{apriPopupModifica}!Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}}
+\doxysubsubsection{\texorpdfstring{apriPopupModifica()}{apriPopupModifica()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_studenti_a83f84df9760922247699a5e0e8576850} 
+void Biblioteca.\+Controller.\+Controller\+Studenti.\+apri\+Popup\+Modifica (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup per la modifica dei dati di uno studente esistente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente} & Lo studente da modificare. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_aef8cdfa4843d0e1f8c06e3650fd41f10}\index{Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}!initialize@{initialize}}
+\index{initialize@{initialize}!Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_studenti_aef8cdfa4843d0e1f8c06e3650fd41f10} 
+void Biblioteca.\+Controller.\+Controller\+Studenti.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Inizializza il controller e popola la tabella. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori nell\textquotesingle{}accesso al database. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_studenti_a0c3cf543a664cf7f93231a36b6a06add}\index{Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}!setBibliotecario@{setBibliotecario}}
+\index{setBibliotecario@{setBibliotecario}!Biblioteca.Controller.ControllerStudenti@{Biblioteca.Controller.ControllerStudenti}}
+\doxysubsubsection{\texorpdfstring{setBibliotecario()}{setBibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_studenti_a0c3cf543a664cf7f93231a36b6a06add} 
+void Biblioteca.\+Controller.\+Controller\+Studenti.\+set\+Bibliotecario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}}}]{bibliotecario}{}\end{DoxyParamCaption})}
+
+
+
+Imposta il bibliotecario loggato. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bibliotecario} & \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario} autenticato. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_studenti_8java}{Controller\+Studenti.\+java}}\end{DoxyCompactItemize}

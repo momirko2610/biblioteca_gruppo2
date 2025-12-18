@@ -1,0 +1,107 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Popup\+Studenti Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti}{}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti}\index{Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aca4f63f3fe5c3112689b71a0a2e0d23a}{set\+Studente\+Da\+Modificare}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} studente)
+\begin{DoxyCompactList}\small\item\em Configura il popup popolando i campi se si tratta di una modifica. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a8e957268d56a5d28f47c54a0880f97f8}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a8e957268d56a5d28f47c54a0880f97f8} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Inizializza il controller. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a2290e92d1a323fecb462a1c17eb182a4}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a2290e92d1a323fecb462a1c17eb182a4} 
+void {\bfseries chiudi} ()
+\begin{DoxyCompactList}\small\item\em Chiude la finestra del popup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_ac9ffffa9b054e96ee0577e108da07a75}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_ac9ffffa9b054e96ee0577e108da07a75} 
+void {\bfseries salva} ()
+\begin{DoxyCompactList}\small\item\em Salva i dati dello studente nel sistema. Verifica l\textquotesingle{}univocità della matricola e la presenza del database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a5a01d9cd42d3fd6eb6dff8e0b3245ad4}{mostra\+Errore}} (String msg)
+\begin{DoxyCompactList}\small\item\em Mostra una finestra di alert in caso di errore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a075e350a0df637efa1df133b9dda29c5}{apri\+Popup\+Successo}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} studente\+Salvato, String azione)
+\begin{DoxyCompactList}\small\item\em Apre il popup di successo dopo il salvataggio dei dati. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_ab0f808f8092eb2fd918cbfd2cadc08de}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_ab0f808f8092eb2fd918cbfd2cadc08de} 
+Text {\bfseries label}
+\begin{DoxyCompactList}\small\item\em Titolo dinamico della finestra popup. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aae5b7871220631bf5081f19966c7ec64}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aae5b7871220631bf5081f19966c7ec64} 
+Text\+Field {\bfseries Text\+Fieldnome}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento del nome dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_adad66062255527afb34debb7f3106f12}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_adad66062255527afb34debb7f3106f12} 
+Text\+Field {\bfseries Text\+Fieldcognome}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento del cognome dello studente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a4156c8cf0c3d984d58106a95dbe26d41}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a4156c8cf0c3d984d58106a95dbe26d41} 
+Text\+Field {\bfseries Text\+Fieldmatricola}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento della matricola univoca. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aa50865ad184b0c45826d4d26a6e2b7dc}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aa50865ad184b0c45826d4d26a6e2b7dc} 
+Text\+Field {\bfseries Text\+Fieldemail}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento dell\textquotesingle{}email istituzionale. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a13f53cbe97d6d3ba81a28652ec378817}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a13f53cbe97d6d3ba81a28652ec378817} 
+Button {\bfseries conferma}
+\begin{DoxyCompactList}\small\item\em Pulsante per la conferma dell\textquotesingle{}operazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_ab7a34ca8728f88a28ffd53151e180456}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_ab7a34ca8728f88a28ffd53151e180456} 
+Label {\bfseries errore}
+\begin{DoxyCompactList}\small\item\em Etichetta per la visualizzazione dei messaggi di errore. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a720bceab51abc4767efc45a3763a60b7}\label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a720bceab51abc4767efc45a3763a60b7} 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} {\bfseries studente\+Corrente}
+\begin{DoxyCompactList}\small\item\em Istanza dello studente correntemente in fase di modifica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a075e350a0df637efa1df133b9dda29c5}\index{Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}!apriPopupSuccesso@{apriPopupSuccesso}}
+\index{apriPopupSuccesso@{apriPopupSuccesso}!Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}}
+\doxysubsubsection{\texorpdfstring{apriPopupSuccesso()}{apriPopupSuccesso()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a075e350a0df637efa1df133b9dda29c5} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Studenti.\+apri\+Popup\+Successo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente\+Salvato}{, }\item[{String}]{azione}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup di successo dopo il salvataggio dei dati. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente\+Salvato} & Lo studente salvato. \\
+\hline
+{\em azione} & Descrizione dell\textquotesingle{}azione effettuata. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a5a01d9cd42d3fd6eb6dff8e0b3245ad4}\index{Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}!mostraErrore@{mostraErrore}}
+\index{mostraErrore@{mostraErrore}!Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}}
+\doxysubsubsection{\texorpdfstring{mostraErrore()}{mostraErrore()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_a5a01d9cd42d3fd6eb6dff8e0b3245ad4} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Studenti.\+mostra\+Errore (\begin{DoxyParamCaption}\item[{String}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mostra una finestra di alert in caso di errore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Il messaggio di errore da visualizzare. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aca4f63f3fe5c3112689b71a0a2e0d23a}\index{Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}!setStudenteDaModificare@{setStudenteDaModificare}}
+\index{setStudenteDaModificare@{setStudenteDaModificare}!Biblioteca.Controller.ControllerPopupStudenti@{Biblioteca.Controller.ControllerPopupStudenti}}
+\doxysubsubsection{\texorpdfstring{setStudenteDaModificare()}{setStudenteDaModificare()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_studenti_aca4f63f3fe5c3112689b71a0a2e0d23a} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Studenti.\+set\+Studente\+Da\+Modificare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}}}]{studente}{}\end{DoxyParamCaption})}
+
+
+
+Configura il popup popolando i campi se si tratta di una modifica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em studente} & L\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_studente}{Studente} da modificare, null se nuovo inserimento. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_popup_studenti_8java}{Controller\+Popup\+Studenti.\+java}}\end{DoxyCompactItemize}

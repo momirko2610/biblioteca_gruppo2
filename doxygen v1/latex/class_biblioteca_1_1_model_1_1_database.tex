@@ -1,0 +1,278 @@
+\doxysection{Biblioteca.\+Model.\+Database Class Reference}
+\hypertarget{class_biblioteca_1_1_model_1_1_database}{}\label{class_biblioteca_1_1_model_1_1_database}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_a0a02890de2669885cf7c3fdbbdc952ef}{crea\+Database}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Crea il database se non esiste inizializzandolo con dati predefiniti. Controlla l\textquotesingle{}esistenza del file database.\+json. Se assente, crea la struttura con array vuoti. \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_adb33af14e61ab2d980bc79f51362de7a}{leggi\+Database\+Libri}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Legge l\textquotesingle{}elenco dei libri dal database. \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} $>$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_a4cfb368b704fb176d4838d8dea6386ca}{leggi\+Database\+Studenti}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Legge l\textquotesingle{}elenco degli studenti dal database. \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} $>$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_adb124a783aa10b6d9cf16e8e6e7e6bb0}{leggi\+Database\+Prestiti}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Legge l\textquotesingle{}elenco dei prestiti attivi dal database. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_a73e1b634c92804807917e59b3aba9acd}{ordina\+Database\+Libro}} (Json\+Array array, File file, Json\+Object label)  throws IOException 
+\begin{DoxyCompactList}\small\item\em Ordina i libri per titolo e aggiorna il file JSON. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_aad0b598a8ff69756bdcf35d1a76da147}{ordina\+Database\+Studente}} (Json\+Array array, File file, Json\+Object label)  throws IOException 
+\begin{DoxyCompactList}\small\item\em Ordina gli studenti per cognome e aggiorna il file JSON. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_a117c931bd015b2e32711deb75ba64546}{ordina\+Database\+Prestito}} (Json\+Array array, File file, Json\+Object label)  throws IOException 
+\begin{DoxyCompactList}\small\item\em Ordina i prestiti per data di restituzione e aggiorna il file JSON. \end{DoxyCompactList}\item 
+static Json\+Object \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_a3f733fbb2d274715c1fb10243d699068}{leggi\+Database}} (File file)  throws IOException
+\begin{DoxyCompactList}\small\item\em Legge l\textquotesingle{}intero contenuto del database come Json\+Object. Utilizzato per operazioni di modifica massiva dei dati. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_addc27ac9550a269cdb0403004cf29d2f}{salva}} (File file, Json\+Object label)  throws IOException 
+\begin{DoxyCompactList}\small\item\em Salva lo stato corrente del Json\+Object sul file json. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_aa19a75e65324026928cc78bc41d24d8e}\label{class_biblioteca_1_1_model_1_1_database_aa19a75e65324026928cc78bc41d24d8e} 
+static final String {\bfseries NAME} = "{}database.\+json"{}
+\begin{DoxyCompactList}\small\item\em Nome del file database JSON utilizzato per la persistenza. \end{DoxyCompactList}\item 
+static final Gson \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_database_a0acd5e4c9743b662db15f1aa8f00426b}{database}}
+\begin{DoxyCompactList}\small\item\em Configurazione dell\textquotesingle{}oggetto Gson con adattatori personalizzati per la gestione delle date (Local\+Date). \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a65279d758082b62666683b3d0077c262}\label{class_biblioteca_1_1_model_1_1_database_a65279d758082b62666683b3d0077c262} 
+static final Comparator$<$ Json\+Object $>$ {\bfseries CONF\+\_\+\+TITOLO} = (a, b) -\/$>$ a.\+get("{}titolo"{}).get\+As\+String().compare\+To\+Ignore\+Case(b.\+get("{}titolo"{}).get\+As\+String())
+\begin{DoxyCompactList}\small\item\em Comparatore per l\textquotesingle{}ordinamento dei libri per titolo. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_afd49cc8d56ecd4824e3e358fb941c0e6}\label{class_biblioteca_1_1_model_1_1_database_afd49cc8d56ecd4824e3e358fb941c0e6} 
+static final Comparator$<$ Json\+Object $>$ {\bfseries CONF\+\_\+\+COGNOME} = (a, b) -\/$>$ a.\+get("{}cognome"{}).get\+As\+String().compare\+To\+Ignore\+Case(b.\+get("{}cognome"{}).get\+As\+String())
+\begin{DoxyCompactList}\small\item\em Comparatore per l\textquotesingle{}ordinamento degli studenti per cognome. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_aba29e018371a3cd2d97fa3220eeab835}\label{class_biblioteca_1_1_model_1_1_database_aba29e018371a3cd2d97fa3220eeab835} 
+static final Comparator$<$ Json\+Object $>$ {\bfseries CONF\+\_\+\+DATA\+\_\+\+PRESTITO} = (a, b) -\/$>$ a.\+get("{}data\+Fine\+Prevista"{}).get\+As\+String().compare\+To\+Ignore\+Case(b.\+get("{}data\+Fine\+Prevista"{}).get\+As\+String())
+\begin{DoxyCompactList}\small\item\em Comparatore per l\textquotesingle{}ordinamento dei prestiti per data di restituzione prevista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a0a02890de2669885cf7c3fdbbdc952ef}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!creaDatabase@{creaDatabase}}
+\index{creaDatabase@{creaDatabase}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{creaDatabase()}{creaDatabase()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_a0a02890de2669885cf7c3fdbbdc952ef} 
+void Biblioteca.\+Model.\+Database.\+crea\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Crea il database se non esiste inizializzandolo con dati predefiniti. Controlla l\textquotesingle{}esistenza del file database.\+json. Se assente, crea la struttura con array vuoti. 
+
+\begin{DoxyPrecond}{Precondition}
+Il sistema deve avere i permessi di scrittura nella cartella di esecuzione. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Viene creato il file database.\+json con la struttura base. 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & Se si verifica un errore durante la scrittura del file. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a3f733fbb2d274715c1fb10243d699068}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!leggiDatabase@{leggiDatabase}}
+\index{leggiDatabase@{leggiDatabase}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{leggiDatabase()}{leggiDatabase()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_a3f733fbb2d274715c1fb10243d699068} 
+Json\+Object Biblioteca.\+Model.\+Database.\+leggi\+Database (\begin{DoxyParamCaption}\item[{File}]{file}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Legge l\textquotesingle{}intero contenuto del database come Json\+Object. Utilizzato per operazioni di modifica massiva dei dati. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Il file JSON da leggere. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Object Il database completo in formato JSON. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori di lettura. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_adb33af14e61ab2d980bc79f51362de7a}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!leggiDatabaseLibri@{leggiDatabaseLibri}}
+\index{leggiDatabaseLibri@{leggiDatabaseLibri}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{leggiDatabaseLibri()}{leggiDatabaseLibri()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_adb33af14e61ab2d980bc79f51362de7a} 
+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} $>$ Biblioteca.\+Model.\+Database.\+leggi\+Database\+Libri (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Legge l\textquotesingle{}elenco dei libri dal database. 
+
+\begin{DoxyReturn}{Returns}
+List$<$\+Libro$>$ Elenco dei libri salvati o null in caso di errore. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di problemi di lettura del file. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_adb124a783aa10b6d9cf16e8e6e7e6bb0}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!leggiDatabasePrestiti@{leggiDatabasePrestiti}}
+\index{leggiDatabasePrestiti@{leggiDatabasePrestiti}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{leggiDatabasePrestiti()}{leggiDatabasePrestiti()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_adb124a783aa10b6d9cf16e8e6e7e6bb0} 
+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} $>$ Biblioteca.\+Model.\+Database.\+leggi\+Database\+Prestiti (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Legge l\textquotesingle{}elenco dei prestiti attivi dal database. 
+
+\begin{DoxyReturn}{Returns}
+List$<$\+Prestito$>$ Elenco dei prestiti registrati. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di problemi di lettura del file. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a4cfb368b704fb176d4838d8dea6386ca}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!leggiDatabaseStudenti@{leggiDatabaseStudenti}}
+\index{leggiDatabaseStudenti@{leggiDatabaseStudenti}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{leggiDatabaseStudenti()}{leggiDatabaseStudenti()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_a4cfb368b704fb176d4838d8dea6386ca} 
+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_studente}{Studente}} $>$ Biblioteca.\+Model.\+Database.\+leggi\+Database\+Studenti (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Legge l\textquotesingle{}elenco degli studenti dal database. 
+
+\begin{DoxyReturn}{Returns}
+List$<$\+Studente$>$ Elenco degli studenti salvati o null in caso di errore. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di problemi di lettura del file. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a73e1b634c92804807917e59b3aba9acd}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!ordinaDatabaseLibro@{ordinaDatabaseLibro}}
+\index{ordinaDatabaseLibro@{ordinaDatabaseLibro}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{ordinaDatabaseLibro()}{ordinaDatabaseLibro()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_a73e1b634c92804807917e59b3aba9acd} 
+void Biblioteca.\+Model.\+Database.\+ordina\+Database\+Libro (\begin{DoxyParamCaption}\item[{Json\+Array}]{array}{, }\item[{File}]{file}{, }\item[{Json\+Object}]{label}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Ordina i libri per titolo e aggiorna il file JSON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Json\+Array contenente i libri. \\
+\hline
+{\em file} & Riferimento al file database. \\
+\hline
+{\em label} & Json\+Object radice del database. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori durante il salvataggio. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a117c931bd015b2e32711deb75ba64546}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!ordinaDatabasePrestito@{ordinaDatabasePrestito}}
+\index{ordinaDatabasePrestito@{ordinaDatabasePrestito}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{ordinaDatabasePrestito()}{ordinaDatabasePrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_a117c931bd015b2e32711deb75ba64546} 
+void Biblioteca.\+Model.\+Database.\+ordina\+Database\+Prestito (\begin{DoxyParamCaption}\item[{Json\+Array}]{array}{, }\item[{File}]{file}{, }\item[{Json\+Object}]{label}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Ordina i prestiti per data di restituzione e aggiorna il file JSON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Json\+Array contenente i prestiti. \\
+\hline
+{\em file} & Riferimento al file database. \\
+\hline
+{\em label} & Json\+Object radice del database. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori durante il salvataggio. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_aad0b598a8ff69756bdcf35d1a76da147}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!ordinaDatabaseStudente@{ordinaDatabaseStudente}}
+\index{ordinaDatabaseStudente@{ordinaDatabaseStudente}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{ordinaDatabaseStudente()}{ordinaDatabaseStudente()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_aad0b598a8ff69756bdcf35d1a76da147} 
+void Biblioteca.\+Model.\+Database.\+ordina\+Database\+Studente (\begin{DoxyParamCaption}\item[{Json\+Array}]{array}{, }\item[{File}]{file}{, }\item[{Json\+Object}]{label}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Ordina gli studenti per cognome e aggiorna il file JSON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Json\+Array contenente gli studenti. \\
+\hline
+{\em file} & Riferimento al file database. \\
+\hline
+{\em label} & Json\+Object radice del database. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori durante il salvataggio. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_addc27ac9550a269cdb0403004cf29d2f}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!salva@{salva}}
+\index{salva@{salva}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{salva()}{salva()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_addc27ac9550a269cdb0403004cf29d2f} 
+void Biblioteca.\+Model.\+Database.\+salva (\begin{DoxyParamCaption}\item[{File}]{file}{, }\item[{Json\+Object}]{label}{}\end{DoxyParamCaption}) throws IOException\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Salva lo stato corrente del Json\+Object sul file json. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em file} & Il file di destinazione. \\
+\hline
+{\em label} & Il Json\+Object contenente i dati aggiornati. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori di scrittura sul disco. \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}
+
+\label{doc-variable-members}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_biblioteca_1_1_model_1_1_database_a0acd5e4c9743b662db15f1aa8f00426b}\index{Biblioteca.Model.Database@{Biblioteca.Model.Database}!database@{database}}
+\index{database@{database}!Biblioteca.Model.Database@{Biblioteca.Model.Database}}
+\doxysubsubsection{\texorpdfstring{database}{database}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_model_1_1_database_a0acd5e4c9743b662db15f1aa8f00426b} 
+final Gson Biblioteca.\+Model.\+Database.\+database\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{new}\ GsonBuilder()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .setPrettyPrinting().registerTypeAdapter(LocalDate.class,\ \textcolor{keyword}{new}\ JsonSerializer<LocalDate>()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ public\ JsonElement\ serialize(LocalDate\ src,\ Type\ typeOfSrc,\ JsonSerializationContext\ context)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ new\ JsonPrimitive(src.toString());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .registerTypeAdapter(LocalDate.class,\ \textcolor{keyword}{new}\ JsonDeserializer<LocalDate>()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @Override}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ public\ LocalDate\ deserialize(JsonElement\ json,\ Type\ typeOfT,\ JsonDeserializationContext\ context)\ throws\ JsonParseException\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ LocalDate.parse(json.getAsString());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .create()}
+
+\end{DoxyCode}
+
+
+Configurazione dell\textquotesingle{}oggetto Gson con adattatori personalizzati per la gestione delle date (Local\+Date). 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Model/\mbox{\hyperlink{_database_8java}{Database.\+java}}\end{DoxyCompactItemize}

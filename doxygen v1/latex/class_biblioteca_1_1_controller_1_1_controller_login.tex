@@ -1,0 +1,62 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Login Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_login}{}\label{class_biblioteca_1_1_controller_1_1_controller_login}\index{Biblioteca.Controller.ControllerLogin@{Biblioteca.Controller.ControllerLogin}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_a8cbef93971141a03053a4b42785bbe32}\label{class_biblioteca_1_1_controller_1_1_controller_login_a8cbef93971141a03053a4b42785bbe32} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Inizializzazione del controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_aacb6e8682c8664d13b8241974a69b697}\label{class_biblioteca_1_1_controller_1_1_controller_login_aacb6e8682c8664d13b8241974a69b697} 
+void {\bfseries on\+Login\+Click} ()
+\begin{DoxyCompactList}\small\item\em Gestisce l\textquotesingle{}evento di click sul pulsante di login. Verifica che i campi non siano vuoti e verifica l\textquotesingle{}esito, bloccando l\textquotesingle{}accesso dopo il terzo tentativo fallito. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_login_ab53e16f6310942011c0a7fb7dd0d0190}{go\+To\+Libri}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} bibliotecario\+Loggato)
+\begin{DoxyCompactList}\small\item\em Reindirizza l\textquotesingle{}utente alla schermata di gestione libri dopo un login riuscito, passando l\textquotesingle{}oggetto bibliotecario loggato al controller successivo per mantenere la sessione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_abd1cec819e174c7005a1d60b034b4ed7}\label{class_biblioteca_1_1_controller_1_1_controller_login_abd1cec819e174c7005a1d60b034b4ed7} 
+void {\bfseries go\+To\+Homepage} ()
+\begin{DoxyCompactList}\small\item\em Permette di tornare alla Homepage dell\textquotesingle{}applicazione. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_a1d591bf75961318f7d58e12f733efde7}\label{class_biblioteca_1_1_controller_1_1_controller_login_a1d591bf75961318f7d58e12f733efde7} 
+Text\+Field {\bfseries Text\+Field\+Email}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento dell\textquotesingle{}email istituzionale. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_a59f6ad239424676df06193bf3043f0cf}\label{class_biblioteca_1_1_controller_1_1_controller_login_a59f6ad239424676df06193bf3043f0cf} 
+Password\+Field {\bfseries Text\+Field\+Password}
+\begin{DoxyCompactList}\small\item\em Campo di testo oscurato per l\textquotesingle{}inserimento della password. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_add34869fdc11526f16ecd720fb56425a}\label{class_biblioteca_1_1_controller_1_1_controller_login_add34869fdc11526f16ecd720fb56425a} 
+Button {\bfseries Confirm\+Button}
+\begin{DoxyCompactList}\small\item\em Pulsante per confermare l\textquotesingle{}invio delle credenziali. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_a52bec7faaec6a53091c10e8aa1ece1bc}\label{class_biblioteca_1_1_controller_1_1_controller_login_a52bec7faaec6a53091c10e8aa1ece1bc} 
+Label {\bfseries errore}
+\begin{DoxyCompactList}\small\item\em Etichetta per mostrare messaggi di errore o avvisi di sicurezza. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_a1921899a9a2626c47f79d6e5a3663357}\label{class_biblioteca_1_1_controller_1_1_controller_login_a1921899a9a2626c47f79d6e5a3663357} 
+int {\bfseries tentativi\+Falliti} = 0
+\begin{DoxyCompactList}\small\item\em Contatore interno per monitorare i tentativi di accesso consecutivi errati. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_login_ab53e16f6310942011c0a7fb7dd0d0190}\index{Biblioteca.Controller.ControllerLogin@{Biblioteca.Controller.ControllerLogin}!goToLibri@{goToLibri}}
+\index{goToLibri@{goToLibri}!Biblioteca.Controller.ControllerLogin@{Biblioteca.Controller.ControllerLogin}}
+\doxysubsubsection{\texorpdfstring{goToLibri()}{goToLibri()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_login_ab53e16f6310942011c0a7fb7dd0d0190} 
+void Biblioteca.\+Controller.\+Controller\+Login.\+go\+To\+Libri (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}}}]{bibliotecario\+Loggato}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reindirizza l\textquotesingle{}utente alla schermata di gestione libri dopo un login riuscito, passando l\textquotesingle{}oggetto bibliotecario loggato al controller successivo per mantenere la sessione. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bibliotecario\+Loggato} & \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario} autenticato. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_login_8java}{Controller\+Login.\+java}}\end{DoxyCompactItemize}

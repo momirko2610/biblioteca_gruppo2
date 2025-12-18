@@ -1,0 +1,70 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Delete Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete}{}\label{class_biblioteca_1_1_controller_1_1_controller_delete}\index{Biblioteca.Controller.ControllerDelete@{Biblioteca.Controller.ControllerDelete}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_delete_af9e222b0d0ae8aa7aa55331405072011}{set\+Oggetto\+Da\+Eliminare}} (Object obj)
+\begin{DoxyCompactList}\small\item\em Imposta l\textquotesingle{}oggetto che deve essere rimosso dal database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_delete_a612576a833bfcf5f76b21621b84a1262}{conferma}} (Mouse\+Event event)
+\begin{DoxyCompactList}\small\item\em Esegue la cancellazione definitiva dei dati nel database. Gestisce i diversi esiti dell\textquotesingle{}operazione (successo, libro in prestito, errore database) aggiornando l\textquotesingle{}interfaccia di conseguenza. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_ac3f3ec9aa75e45a63c18ffc92821e121}\label{class_biblioteca_1_1_controller_1_1_controller_delete_ac3f3ec9aa75e45a63c18ffc92821e121} 
+void {\bfseries annulla} ()
+\begin{DoxyCompactList}\small\item\em Chiude il popup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_a83f00e6e3c880e8c1ef6ddccc3fa74e1}\label{class_biblioteca_1_1_controller_1_1_controller_delete_a83f00e6e3c880e8c1ef6ddccc3fa74e1} 
+void {\bfseries apri\+Popup\+Successo} ()
+\begin{DoxyCompactList}\small\item\em Apre una finestra di notifica per confermare l\textquotesingle{}avvenuta eliminazione. Carica il file successo.\+fxml e personalizza il messaggio in base al tipo di oggetto eliminato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_a2c8526859102859b8d20a42ed02b6788}\label{class_biblioteca_1_1_controller_1_1_controller_delete_a2c8526859102859b8d20a42ed02b6788} 
+Object {\bfseries oggetto\+Da\+Eliminare}
+\begin{DoxyCompactList}\small\item\em L\textquotesingle{}oggetto (\doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro} o \doxylink{class_biblioteca_1_1_model_1_1_studente}{Studente}) selezionato per la cancellazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_ab7def3d7dadfa4c5153dc25fd7597fd5}\label{class_biblioteca_1_1_controller_1_1_controller_delete_ab7def3d7dadfa4c5153dc25fd7597fd5} 
+Label {\bfseries errore}
+\begin{DoxyCompactList}\small\item\em Label per la visualizzazione di eventuali errori. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_a6027c64040fb236aa18f903d31c4f3bd}\label{class_biblioteca_1_1_controller_1_1_controller_delete_a6027c64040fb236aa18f903d31c4f3bd} 
+Button {\bfseries button\+Conferma}
+\begin{DoxyCompactList}\small\item\em Pulsante per confermare la cancellazione. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_a612576a833bfcf5f76b21621b84a1262}\index{Biblioteca.Controller.ControllerDelete@{Biblioteca.Controller.ControllerDelete}!conferma@{conferma}}
+\index{conferma@{conferma}!Biblioteca.Controller.ControllerDelete@{Biblioteca.Controller.ControllerDelete}}
+\doxysubsubsection{\texorpdfstring{conferma()}{conferma()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_delete_a612576a833bfcf5f76b21621b84a1262} 
+void Biblioteca.\+Controller.\+Controller\+Delete.\+conferma (\begin{DoxyParamCaption}\item[{Mouse\+Event}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Esegue la cancellazione definitiva dei dati nel database. Gestisce i diversi esiti dell\textquotesingle{}operazione (successo, libro in prestito, errore database) aggiornando l\textquotesingle{}interfaccia di conseguenza. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & L\textquotesingle{}evento di click del mouse sul pulsante conferma. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_delete_af9e222b0d0ae8aa7aa55331405072011}\index{Biblioteca.Controller.ControllerDelete@{Biblioteca.Controller.ControllerDelete}!setOggettoDaEliminare@{setOggettoDaEliminare}}
+\index{setOggettoDaEliminare@{setOggettoDaEliminare}!Biblioteca.Controller.ControllerDelete@{Biblioteca.Controller.ControllerDelete}}
+\doxysubsubsection{\texorpdfstring{setOggettoDaEliminare()}{setOggettoDaEliminare()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_delete_af9e222b0d0ae8aa7aa55331405072011} 
+void Biblioteca.\+Controller.\+Controller\+Delete.\+set\+Oggetto\+Da\+Eliminare (\begin{DoxyParamCaption}\item[{Object}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Imposta l\textquotesingle{}oggetto che deve essere rimosso dal database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & \doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro} o \doxylink{class_biblioteca_1_1_model_1_1_studente}{Studente} da eliminare. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_delete_8java}{Controller\+Delete.\+java}}\end{DoxyCompactItemize}

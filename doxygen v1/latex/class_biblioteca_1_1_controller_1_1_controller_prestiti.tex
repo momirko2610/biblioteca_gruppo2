@@ -1,0 +1,114 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Prestiti Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti}{}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti}\index{Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_prestiti_a6d933d44b5ec40fd4a27b62ef5a8132c}{set\+Bibliotecario}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} bibliotecario)
+\begin{DoxyCompactList}\small\item\em Imposta il bibliotecario loggato per la sessione corrente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a41473f4475e3040af1e71a33bad81bc0}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a41473f4475e3040af1e71a33bad81bc0} 
+{\bfseries Controller\+Prestiti} ()
+\begin{DoxyCompactList}\small\item\em Costruttore vuoto della classe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_prestiti_ac8f61cf9f07f23be3c29b4f37073e5e8}{initialize}} ()  throws IOException 
+\begin{DoxyCompactList}\small\item\em Inizializza il controller configurando la tabella e caricando i dati all\textquotesingle{}avvio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_aa977b75c163f39640b534c2be10fbf2d}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_aa977b75c163f39640b534c2be10fbf2d} 
+void {\bfseries configura\+Tabella} ()
+\begin{DoxyCompactList}\small\item\em Mappa le colonne della Table\+View alla classe \doxylink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_ae9b6d1c8c32a6438da9d2cc0902db204}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_ae9b6d1c8c32a6438da9d2cc0902db204} 
+void {\bfseries go\+To\+Libri} ()
+\begin{DoxyCompactList}\small\item\em Cambia la visualizzazione passando alla gestione del catalogo libri. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a2d88cd14f468fe72deda494cda78d498}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a2d88cd14f468fe72deda494cda78d498} 
+void {\bfseries go\+To\+Studenti} ()
+\begin{DoxyCompactList}\small\item\em Cambia la visualizzazione passando alla gestione dell\textquotesingle{}anagrafica studenti. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a568af01c2260a1f34a807dc5b5d925b5}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a568af01c2260a1f34a807dc5b5d925b5} 
+void {\bfseries open\+Popup\+Nuovo\+Prestito} ()
+\begin{DoxyCompactList}\small\item\em Apre il popup per la registrazione di un nuovo prestito. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_prestiti_ac1f988b3073d0d5aa16fa494adeeeed0}{termina\+Prestito}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} prestito)
+\begin{DoxyCompactList}\small\item\em Apre il popup per gestire la restituzione di un libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a7dae7a783d213e5d0cb43ac8bea9d119}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a7dae7a783d213e5d0cb43ac8bea9d119} 
+void {\bfseries open\+Popup\+Logout} ()
+\begin{DoxyCompactList}\small\item\em Apre il popup per confermare il logout dell\textquotesingle{}utente. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_ab6d64ea51f1a6a656d81861fd8622eec}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_ab6d64ea51f1a6a656d81861fd8622eec} 
+void {\bfseries apri\+Reset\+Password} ()
+\begin{DoxyCompactList}\small\item\em Apre la finestra per il reset della password del bibliotecario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a237be818fd5cbee5a57ad6b3f92a0872}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a237be818fd5cbee5a57ad6b3f92a0872} 
+Table\+View$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} $>$ {\bfseries table\+Prestiti}
+\begin{DoxyCompactList}\small\item\em Tabella per la visualizzazione dei prestiti registrati nel sistema. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a706699ffa57021d4f82a9bf856edec9b}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a706699ffa57021d4f82a9bf856edec9b} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}, String $>$ {\bfseries ISBN}
+\begin{DoxyCompactList}\small\item\em Colonna della tabella per il codice ISBN del libro in prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a48d1762060feac339e5b3afe9d54a5cf}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a48d1762060feac339e5b3afe9d54a5cf} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}, String $>$ {\bfseries Matricola}
+\begin{DoxyCompactList}\small\item\em Colonna della tabella per la matricola dello studente che ha richiesto il prestito. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a78748596537c7d3681ac60970894f2f3}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a78748596537c7d3681ac60970894f2f3} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}, Local\+Date $>$ {\bfseries Data}
+\begin{DoxyCompactList}\small\item\em Colonna della tabella per la data di restituzione prevista. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a096412cafb12332a72f57895f952af93}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a096412cafb12332a72f57895f952af93} 
+Table\+Column$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}, HBox $>$ {\bfseries Azioni}
+\begin{DoxyCompactList}\small\item\em Colonna per ospitare i pulsanti di azione (es. Ritorno) per ogni riga. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a2c121822c9e7dfb517eabc344c23ba50}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a2c121822c9e7dfb517eabc344c23ba50} 
+Observable\+List$<$ \mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}} $>$ {\bfseries lista\+Prestiti} = FXCollections.\+observable\+Array\+List()
+\begin{DoxyCompactList}\small\item\em Lista osservabile dei prestiti caricati dal database. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_ade3321868699a136fe2b8c871bdc6d00}\label{class_biblioteca_1_1_controller_1_1_controller_prestiti_ade3321868699a136fe2b8c871bdc6d00} 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}} {\bfseries bibliotecario\+Loggato}
+\begin{DoxyCompactList}\small\item\em Riferimento al bibliotecario attualmente loggato nel sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_ac8f61cf9f07f23be3c29b4f37073e5e8}\index{Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}!initialize@{initialize}}
+\index{initialize@{initialize}!Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_prestiti_ac8f61cf9f07f23be3c29b4f37073e5e8} 
+void Biblioteca.\+Controller.\+Controller\+Prestiti.\+initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws IOException}
+
+
+
+Inizializza il controller configurando la tabella e caricando i dati all\textquotesingle{}avvio. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & In caso di errori nell\textquotesingle{}accesso al database. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_a6d933d44b5ec40fd4a27b62ef5a8132c}\index{Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}!setBibliotecario@{setBibliotecario}}
+\index{setBibliotecario@{setBibliotecario}!Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}}
+\doxysubsubsection{\texorpdfstring{setBibliotecario()}{setBibliotecario()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_prestiti_a6d933d44b5ec40fd4a27b62ef5a8132c} 
+void Biblioteca.\+Controller.\+Controller\+Prestiti.\+set\+Bibliotecario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario}}}]{bibliotecario}{}\end{DoxyParamCaption})}
+
+
+
+Imposta il bibliotecario loggato per la sessione corrente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bibliotecario} & \doxylink{class_biblioteca_1_1_model_1_1_bibliotecario}{Bibliotecario} autenticato. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_prestiti_ac1f988b3073d0d5aa16fa494adeeeed0}\index{Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}!terminaPrestito@{terminaPrestito}}
+\index{terminaPrestito@{terminaPrestito}!Biblioteca.Controller.ControllerPrestiti@{Biblioteca.Controller.ControllerPrestiti}}
+\doxysubsubsection{\texorpdfstring{terminaPrestito()}{terminaPrestito()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_prestiti_ac1f988b3073d0d5aa16fa494adeeeed0} 
+void Biblioteca.\+Controller.\+Controller\+Prestiti.\+termina\+Prestito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_prestito}{Prestito}}}]{prestito}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup per gestire la restituzione di un libro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prestito} & L\textquotesingle{}oggetto \doxylink{class_biblioteca_1_1_model_1_1_prestito}{Prestito} da terminare. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_prestiti_8java}{Controller\+Prestiti.\+java}}\end{DoxyCompactItemize}

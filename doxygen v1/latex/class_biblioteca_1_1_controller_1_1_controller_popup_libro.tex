@@ -1,0 +1,110 @@
+\doxysection{Biblioteca.\+Controller.\+Controller\+Popup\+Libro Class Reference}
+\hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro}{}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro}\index{Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_libro_acc1279769711a18b05580c0fb7ae1256}{set\+Libro\+Da\+Modificare}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} libro)
+\begin{DoxyCompactList}\small\item\em Configura il popup per la modifica di un libro esistente o per un nuovo libro Se l\textquotesingle{}oggetto passato è diverso da null, popola le textfield con i dati del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a335c114a308cda99647f0ebd9169a797}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a335c114a308cda99647f0ebd9169a797} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Inizializzazione del controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_aec537d2bc4ac8f00e30bc2413037f8f1}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_aec537d2bc4ac8f00e30bc2413037f8f1} 
+void {\bfseries salva} ()
+\begin{DoxyCompactList}\small\item\em Gestisce il salvataggio dei dati del libro nel database Verificando i formati di ISBN (13 cifre) e Anno (4 cifre). In caso di successo, chiude il popup e mostra una notifica di avvenuta operazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a4efd69498a0cb89dd0a83e52442ac2f0}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a4efd69498a0cb89dd0a83e52442ac2f0} 
+void {\bfseries chiudi} ()
+\begin{DoxyCompactList}\small\item\em Chiude la finestra del popup. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_libro_adb7f1928a42a54ad846f8d5333c3fcd9}{mostra\+Errore}} (String msg)
+\begin{DoxyCompactList}\small\item\em Mostra un messaggio di errore tramite un Alert. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a3bc55b3631227120e08a913cf1b63257}{apri\+Popup\+Successo}} (\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} libro\+Salvato, String azione)
+\begin{DoxyCompactList}\small\item\em Apre il popup di successo dopo un inserimento o una modifica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a7a2ed7a9d69c55c74f466c5541e2ec55}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a7a2ed7a9d69c55c74f466c5541e2ec55} 
+Text {\bfseries label}
+\begin{DoxyCompactList}\small\item\em Titolo del popup. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a3937de9d3952b4c4ce67024cfb193626}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a3937de9d3952b4c4ce67024cfb193626} 
+Text\+Field {\bfseries titolo}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento del titolo del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a8b0a48bd0f1b3cf9ae698e6c041cf72a}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a8b0a48bd0f1b3cf9ae698e6c041cf72a} 
+Text\+Field {\bfseries autori}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento degli autori del libro. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a8f6e5d5dc422a0b8d0d617f68c2efc2c}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a8f6e5d5dc422a0b8d0d617f68c2efc2c} 
+Text\+Field {\bfseries isbn}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento del codice identificativo univoco ISBN. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_adfb8037ab1c52f9e598fbbbd1b08516e}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_adfb8037ab1c52f9e598fbbbd1b08516e} 
+Text\+Field {\bfseries n\+Copie}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento del numero di copie disponibili. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a8cc1f5f8d966d82f592418a816392b1d}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a8cc1f5f8d966d82f592418a816392b1d} 
+Text\+Field {\bfseries data}
+\begin{DoxyCompactList}\small\item\em Campo di testo per l\textquotesingle{}inserimento dell\textquotesingle{}anno di pubblicazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_aa4191746e8a2d35a5afaa116c7cde546}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_aa4191746e8a2d35a5afaa116c7cde546} 
+Button {\bfseries conferma}
+\begin{DoxyCompactList}\small\item\em Pulsante per confermare l\textquotesingle{}operazione di salvataggio. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_ada44dca019bd222e068480b7bc0a940b}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_ada44dca019bd222e068480b7bc0a940b} 
+Label {\bfseries errore}
+\begin{DoxyCompactList}\small\item\em Etichetta per la visualizzazione di messaggi di errore di validazione. \end{DoxyCompactList}\item 
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a315f7ed504ce4a44fe1969907593a656}\label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a315f7ed504ce4a44fe1969907593a656} 
+\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}} {\bfseries libro\+Corrente}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro} da modificare (o null se si tratta di un nuovo libro). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a3bc55b3631227120e08a913cf1b63257}\index{Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}!apriPopupSuccesso@{apriPopupSuccesso}}
+\index{apriPopupSuccesso@{apriPopupSuccesso}!Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}}
+\doxysubsubsection{\texorpdfstring{apriPopupSuccesso()}{apriPopupSuccesso()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_a3bc55b3631227120e08a913cf1b63257} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Libro.\+apri\+Popup\+Successo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}}]{libro\+Salvato}{, }\item[{String}]{azione}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Apre il popup di successo dopo un inserimento o una modifica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em libro\+Salvato} & Il libro salvato. \\
+\hline
+{\em azione} & Stringa "{}inserito"{} o "{}modificato"{}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_adb7f1928a42a54ad846f8d5333c3fcd9}\index{Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}!mostraErrore@{mostraErrore}}
+\index{mostraErrore@{mostraErrore}!Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}}
+\doxysubsubsection{\texorpdfstring{mostraErrore()}{mostraErrore()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_adb7f1928a42a54ad846f8d5333c3fcd9} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Libro.\+mostra\+Errore (\begin{DoxyParamCaption}\item[{String}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mostra un messaggio di errore tramite un Alert. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Il messaggio di errore da visualizzare. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_biblioteca_1_1_controller_1_1_controller_popup_libro_acc1279769711a18b05580c0fb7ae1256}\index{Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}!setLibroDaModificare@{setLibroDaModificare}}
+\index{setLibroDaModificare@{setLibroDaModificare}!Biblioteca.Controller.ControllerPopupLibro@{Biblioteca.Controller.ControllerPopupLibro}}
+\doxysubsubsection{\texorpdfstring{setLibroDaModificare()}{setLibroDaModificare()}}
+{\footnotesize\ttfamily \label{class_biblioteca_1_1_controller_1_1_controller_popup_libro_acc1279769711a18b05580c0fb7ae1256} 
+void Biblioteca.\+Controller.\+Controller\+Popup\+Libro.\+set\+Libro\+Da\+Modificare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_biblioteca_1_1_model_1_1_libro}{Libro}}}]{libro}{}\end{DoxyParamCaption})}
+
+
+
+Configura il popup per la modifica di un libro esistente o per un nuovo libro Se l\textquotesingle{}oggetto passato è diverso da null, popola le textfield con i dati del libro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em libro} & \doxylink{class_biblioteca_1_1_model_1_1_libro}{Libro} da modificare, oppure null per un nuovo libro. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/\+Biblioteca/\+Controller/\mbox{\hyperlink{_controller_popup_libro_8java}{Controller\+Popup\+Libro.\+java}}\end{DoxyCompactItemize}
